@@ -1,6 +1,6 @@
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.0.1"
+version = "{{ cookiecutter.version }}"
 tag_format = "$version"
 
 [tool.coverage]
