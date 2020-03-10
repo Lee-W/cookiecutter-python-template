@@ -1,0 +1,48 @@
+default_stages: [push]
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+
+  - repo: https://github.com/Woile/commitizen
+    rev: v1.4.2
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+
+  - repo: local
+    hooks:
+      - id: style-reformat
+        name: style-reformat
+        stages: [push]
+        language: system
+        pass_filenames: false
+        entry: inv style.reformat
+        types: [python]
+
+      - id: style-check
+        name: style-check
+        stages: [push]
+        language: system
+        pass_filenames: false
+        entry: inv style
+        types: [python]
+
+      - id: package-check
+        name: package-check
+        stages: [push]
+        language: system
+        pass_filenames: false
+        entry: inv secure
+        types: [python]
+
+      - id: test
+        name: test
+        stages: [push]
+        language: system
+        pass_filenames: false
+        entry: inv test
+        types: [python]
