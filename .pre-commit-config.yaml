@@ -1,0 +1,14 @@
+default_stages: [push]
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+
+  - repo: https://github.com/Woile/commitizen
+    rev: v1.16.4
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
