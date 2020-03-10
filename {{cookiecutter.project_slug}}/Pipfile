@@ -26,3 +26,6 @@ coverage = {extras = ["toml"],version = "*"}
 pre-commit = "*"
 
 [packages]
+
+[pipenv]
+allow_prereleases = true
