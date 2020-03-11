@@ -29,3 +29,6 @@ pre-commit = "*"
 
 [pipenv]
 allow_prereleases = true
+
+[requires]
+python_version = "{{ cookiecutter.python_version }}"
