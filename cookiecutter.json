@@ -1,0 +1,12 @@
+{
+    "full_name": "Wei Lee",
+    "email": "weilee.rx@gmail.com",
+    "github_username": "Lee-W",
+    "project_name": "Python Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "project_description": "Short Descirption for Python Project",
+    "version": "0.0.1",
+    "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
+    "timestamp": "{% now 'utc', '%Y-%m-%d' %}",
+    "_template_version": "0.3.0"
+}
