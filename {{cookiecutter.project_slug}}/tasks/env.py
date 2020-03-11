@@ -16,6 +16,7 @@ def init(ctx):
 @task
 def setup_pre_commit_hook(ctx):
     """Setup pre-commit hook to automate check before git commit and git push"""
+    ctx.run("git init")
     ctx.run(
         "pipenv run pre-commit install -t pre-commit & "
         "pipenv run pre-commit install -t pre-push & "
