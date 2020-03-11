@@ -6,7 +6,7 @@ from tasks.common import COMMON_TARGETS_AS_STR, PIPENV_PREFIX
 @task
 def flake8(ctx):
     """Check style through flake8"""
-    ctx.run(f"{PIPENV_PREFIX} flake8")
+    ctx.run(f"{PIPENV_PREFIX} flake8 --config=setup.cfg")
 
 
 @task
