@@ -17,10 +17,10 @@ jobs:
           token: {% raw %} '${{ secrets.PERSONAL_ACCESS_TOKEN }}' {% endraw %}
           fetch-depth: 0
 
-      - name: Set up Python 3.7
+      - name: Set up Python {{ cookiecutter.python_version }}
         uses: actions/setup-python@v1
         with:
-          python-version: 3.7
+          python-version: {{ cookiecutter.python_version }}
 
       - name: Install dependencies
         run: |
