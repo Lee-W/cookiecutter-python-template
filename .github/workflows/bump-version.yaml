@@ -36,5 +36,5 @@ jobs:
       - name: Push changes
         uses: Woile/github-push-action@master
         with:
-          github_token: {% raw %} ${{ secrets.PERSONAL_ACCESS_TOKEN }} {% endraw %}
+          github_token: '${{ secrets.PERSONAL_ACCESS_TOKEN }}'
           tags: "true"
