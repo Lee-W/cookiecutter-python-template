@@ -8,7 +8,7 @@ repos:
         args: [--markdown-linebreak-ext=md]
 
   - repo: https://github.com/Woile/commitizen
-    rev: v1.4.2
+    rev: v16.4.4
     hooks:
       - id: commitizen
         stages: [commit-msg]
