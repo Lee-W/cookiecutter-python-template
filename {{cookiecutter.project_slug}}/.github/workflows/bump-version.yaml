@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install pipenv invoke
-          inv env.init-dev
+          inv env.init-dev -w
 
       # do not failed when there is not versioning needed (e.g., document change)
       - name: Create bump
