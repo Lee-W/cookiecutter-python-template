@@ -1,0 +1,8 @@
+site_name: Cookiecutter Python Template
+nav:
+  - Home: README.md
+theme:
+  name: 'material'
+repo_url: https://github.com/Lee-W/cookiecutter-python-template
+remote_branch: gh-pages
+remote_name: origin

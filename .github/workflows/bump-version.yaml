@@ -24,14 +24,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          python -m pip install --pre -U poetry
+          poetry install
 
       # do not failed when there is not versioning needed (e.g., document change)
       - name: Create bump
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          cz bump --yes
+          poetry run cz bump --yes
 
       - name: Push changes
         uses: Woile/github-push-action@master
