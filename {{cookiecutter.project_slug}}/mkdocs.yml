@@ -1,0 +1,8 @@
+site_name: {{ cookiecutter.project_name }}
+nav:
+  - Home: README.md
+theme:
+  name: 'material'
+repo_url: {{ cookiecutter.github_url }}
+remote_branch: gh-pages
+remote_name: origin
