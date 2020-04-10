@@ -24,6 +24,9 @@ bandit = "*"
 commitizen = "*"
 coverage = {extras = ["toml"],version = "*"}
 pre-commit = "*"
+# documentation
+mkdocs = "*"
+mkdocs-material = "*"
 
 [packages]
 
