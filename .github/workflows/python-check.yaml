@@ -10,10 +10,10 @@ jobs:
       - name: Check out
         uses: actions/checkout@v2
 
-      - name: Set up Python
+      - name: Set up Python 3.7
         uses: actions/setup-python@v1
         with:
-          python-version: {{ cookiecutter.python_version }}
+          python-version: 3.7
 
       - name: Install dependencies
         run: |

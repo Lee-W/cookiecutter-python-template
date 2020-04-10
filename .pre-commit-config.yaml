@@ -31,8 +31,8 @@ repos:
         entry: inv style
         types: [python]
 
-      - id: package-check
-        name: package-check
+      - id: security-check
+        name: security-check
         stages: [push]
         language: system
         pass_filenames: false
