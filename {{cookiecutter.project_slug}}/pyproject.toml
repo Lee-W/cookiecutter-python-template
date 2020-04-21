@@ -1,6 +1,6 @@
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "{{ cookiecutter.version }}"
+version = "0.0.1"
 tag_format = "$version"
 
 [tool.coverage]
@@ -58,7 +58,7 @@ use_parentheses = true
 {%- if cookiecutter.dependency_management_tool=='poetry' -%}
 [tool.poetry]
 name = "cookiecutter-python-template"
-version = "1.0.0"
+version = "0.0.1"
 description = ""
 authors = ["Wei Lee <weilee.rx@gmail.com>"]
 license = "MIT"
