@@ -32,7 +32,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          poetry run cz bump --yes
+          poetry run inv git.bump
 
       - name: Push changes
         uses: Woile/github-push-action@master
