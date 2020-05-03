@@ -12,4 +12,4 @@ def commit(ctx):
 @task
 def bump(ctx):
     """bump version through commitizen"""
-    ctx.run(f"{VENV_PREFIX} cz bump --yes", warn=True)
+    ctx.run(f"{VENV_PREFIX} cz bump --yes --changelog", warn=True)
