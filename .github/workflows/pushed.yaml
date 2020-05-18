@@ -1,4 +1,4 @@
-name: python check
+name: New commit pushed
 
 on:
   push:
@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Set up Python 3.7
         uses: actions/setup-python@v1
@@ -24,10 +26,10 @@ jobs:
         run: |
           inv style
 
-      - name: Check package vulnerability
+      - name: Check vulnerability
         run: |
           inv secure
 
       - name: Run tests
         run: |
-          inv test
+          inv test -a
