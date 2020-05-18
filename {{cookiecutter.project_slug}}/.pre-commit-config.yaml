@@ -44,5 +44,5 @@ repos:
         stages: [push]
         language: system
         pass_filenames: false
-        entry: inv test
+        entry: inv test -a
         types: [python]

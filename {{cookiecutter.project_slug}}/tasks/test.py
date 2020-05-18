@@ -4,9 +4,12 @@ from tasks.common import VENV_PREFIX
 
 
 @task(default=True)
-def run(ctx):
+def run(ctx, allow_no_tests=False):
     """Run test cases"""
-    ctx.run(f"{VENV_PREFIX} pytest", pty=True)
+    result = ctx.run(f"{VENV_PREFIX} pytest", pty=True, warn=True)
+    if allow_no_tests and result.exited == 5:
+        exit(0)
+    exit(result.exited)
 
 
 @task
