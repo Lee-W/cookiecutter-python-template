@@ -1,6 +1,6 @@
 from invoke import task
 
-from tasks.common import COMMON_TARGETS_AS_STR, VENV_PREFIX
+from tasks.common import VENV_PREFIX
 
 
 @task

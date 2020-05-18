@@ -12,6 +12,4 @@ def run(ctx):
 @task
 def cov(ctx):
     """Run test covreage check"""
-    ctx.run(
-        f"{VENV_PREFIX} pytest --cov={{ cookiecutter.project_slug }} tests/", pty=True
-    )
+    ctx.run(f"{VENV_PREFIX} pytest --cov={{ cookiecutter.project_slug }} tests/", pty=True)

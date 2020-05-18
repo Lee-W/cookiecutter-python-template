@@ -12,6 +12,7 @@ pytest-cov = "*"
 pytest-mock = "*"
 pytest-xdist = "*"
 hypothesis = "*"
+coverage = {extras = ["toml"], version = "*"}
 # style
 black = "*"
 isort = "*"
@@ -22,7 +23,6 @@ pylint = "*"
 bandit = "*"
 # git
 commitizen = "*"
-coverage = {extras = ["toml"],version = "*"}
 pre-commit = "*"
 # documentation
 mkdocs = "*"

@@ -36,6 +36,7 @@ def commit_check(ctx):
     else:
         exit(result.exited)
 
+
 @task
 def pylint(ctx):
     """Check style through pylint"""

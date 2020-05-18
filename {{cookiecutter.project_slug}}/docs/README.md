@@ -13,4 +13,4 @@
 ## Contributing
 
 ## Authors
-{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>
+{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>

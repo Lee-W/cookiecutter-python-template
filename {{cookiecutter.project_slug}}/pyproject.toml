@@ -57,11 +57,11 @@ use_parentheses = true
 
 {%- if cookiecutter.dependency_management_tool=='poetry' -%}
 [tool.poetry]
-name = "cookiecutter-python-template"
+name = "{{ cookiecutter.project_slug }}"
 version = "0.0.1"
 description = ""
-authors = ["Wei Lee <weilee.rx@gmail.com>"]
-license = "MIT"
+authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
+license = "{{ cookiecutter.open_source_license }}"
 
 [tool.poetry.dependencies]
 python = "^3.7"
