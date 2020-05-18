@@ -1,7 +1,6 @@
-name: New commit pushed
+name: New commit pushed and receive pull request
 
-on:
-  push:
+on: [push, pull_request]
 
 jobs:
   check:
