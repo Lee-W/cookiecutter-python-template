@@ -1,0 +1,3 @@
+[bandit]
+targets: hooks
+exclude: tests

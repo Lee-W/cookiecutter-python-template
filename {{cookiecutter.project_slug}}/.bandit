@@ -1,0 +1,3 @@
+[bandit]
+targets: {{ cookiecutter.project_slug }}
+exclude: tests
