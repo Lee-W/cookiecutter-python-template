@@ -27,16 +27,26 @@ def isort_check(ctx):
     ctx.run(f"{VENV_PREFIX} isort --atomic --apply --check-only hooks/pre_gen_project.py tests/test_bake_project.py")
 
 
-@task(pre=[flake8, mypy, black_check, isort_check], default=True)
-def run(ctx):
-    """Check style throguh linter (Note that pylint is not included)"""
-    pass
+@task
+def commit_check(ctx):
+    """Check commit message through commitizen"""
+    result = ctx.run(f"{VENV_PREFIX} cz check --rev-range master..", warn=True)
+    if result.exited == 3:  # NO_COMMIT_FOUND
+        exit(0)
+    else:
+        exit(result.exited)
 
 
 @task
 def pylint(ctx):
     """Check style through pylint"""
     ctx.run(f"{VENV_PREFIX} pylint {COMMON_TARGETS_AS_STR}")
+
+
+@task(pre=[flake8, mypy, black_check, isort_check, commit_check], default=True)
+def run(ctx):
+    """Check style throguh linter (Note that pylint is not included)"""
+    pass
 
 
 @task
