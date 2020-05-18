@@ -6,11 +6,11 @@
 ### Prerequisites
 * [Python](https://www.python.org/downloads/)
 
-## Installing
+## Usage
 
-## Running test
 
 ## Contributing
+See [Contributing](contributing.md)
 
 ## Authors
 {{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>
