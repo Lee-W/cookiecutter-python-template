@@ -10,6 +10,14 @@ def commit(ctx):
 
 
 @task
-def bump(ctx):
+def bump(ctx, with_changelog=False):
     """bump version through commitizen"""
-    ctx.run(f"{VENV_PREFIX} cz bump --yes --changelog", warn=True)
+    argument = ""
+    if with_changelog:
+        argument += " --changelog"
+
+    result = ctx.run(f"{VENV_PREFIX} cz bump --yes{argument}", warn=True)
+    if result.exited == 3:  # NO_COMMIT_FOUND
+        exit(0)
+    else:
+        exit(result.exited)
