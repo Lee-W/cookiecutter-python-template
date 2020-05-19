@@ -36,7 +36,7 @@ jobs:
       - name: Push changes
         uses: Woile/github-push-action@master
         with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          github_token: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
           tags: "true"
 
   publish-github-page:
@@ -46,7 +46,7 @@ jobs:
         uses: actions/checkout@v2
       - uses: actions/checkout@v2
         with:
-          token: '${{ secrets.PERSONAL_ACCESS_TOKEN }}'
+          token: {% raw %}'${{ secrets.PERSONAL_ACCESS_TOKEN }}'{% endraw %}
           fetch-depth: 0
 
       - name: Set up Python {{ cookiecutter.python_version }}
@@ -66,6 +66,6 @@ jobs:
       - name: Push doc to Github Page
         uses: peaceiris/actions-gh-pages@v2
         env:
-          PERSONAL_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          PERSONAL_TOKEN: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: ./site
