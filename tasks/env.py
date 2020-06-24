@@ -27,9 +27,9 @@ def setup_pre_commit_hook(ctx):
     )
 
 
-@task(optional=["without-pre-commit"])
-def init_dev(ctx, without_pre_commit=False):
+@task(optional=["no-pre-commit"])
+def init_dev(ctx, no_pre_commit=False):
     """Install development dependencies and setup pre-commit hooks"""
-    ctx.run("poetry install ")
-    if not without_pre_commit:
+    ctx.run("poetry install")
+    if not no_pre_commit:
         setup_pre_commit_hook(ctx)

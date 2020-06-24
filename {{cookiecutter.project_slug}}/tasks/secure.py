@@ -7,7 +7,7 @@ from tasks.common import VENV_PREFIX
 def check_package(ctx):
     """Check package security"""
     {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
-    ctx.run("export PIPENV_PYUP_API_KEY='' && pipenv check")
+    ctx.run("pipenv check")
     {%- elif cookiecutter.dependency_management_tool == 'poetry' -%}
     ctx.run("poetry run safety", warn=True)
     {%- endif %}

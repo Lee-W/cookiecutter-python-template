@@ -34,13 +34,13 @@ def setup_pre_commit_hook(ctx):
     )
 
 
-@task(optional=["without-pre-commit"])
-def init_dev(ctx, without_pre_commit=False):
+@task(optional=["no-pre-commit"])
+def init_dev(ctx, no_pre_commit=False):
     """Install development dependencies and setup pre-commit hooks"""
     {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
     ctx.run("pipenv install --dev")
     {%- elif cookiecutter.dependency_management_tool == 'poetry' -%}
     ctx.run("poetry install")
     {%- endif %}
-    if not without_pre_commit:
+    if not no_pre_commit:
         setup_pre_commit_hook(ctx)

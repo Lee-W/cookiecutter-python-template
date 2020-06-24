@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install poetry invoke
-          inv env.init-dev -w
+          inv env.init-dev --no-pre-commit
 
       - name: Style check
         run: |

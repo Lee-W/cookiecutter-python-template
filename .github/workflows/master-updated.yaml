@@ -24,14 +24,14 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install poetry invoke
-          inv env.init-dev -w
+          inv env.init-dev --no-pre-commit
 
       # do not failed when there is not versioning needed (e.g., document change)
       - name: Create bump
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          inv git.bump
+          inv git.bump --changelog
 
       - name: Push changes
         uses: Woile/github-push-action@master
@@ -57,7 +57,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install poetry invoke
-          inv env.init-dev -w
+          inv env.init-dev --no-pre-commit
 
       - name: Build docs
         run: |

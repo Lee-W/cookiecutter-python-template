@@ -1,7 +1,7 @@
 (Thanks for sending a pull request! Please fill in the following content to let us know better about this change.)
 
 ## Types of changes
-Please remove the types that does not apply
+Please remove the types that does not apply to this change
 
 - **Bugfix**
 - **New feature**

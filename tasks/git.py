@@ -10,10 +10,10 @@ def commit(ctx):
 
 
 @task
-def bump(ctx, with_changelog=False):
+def bump(ctx, changelog=False):
     """bump version through commitizen"""
     argument = ""
-    if with_changelog:
+    if changelog:
         argument += " --changelog"
 
     result = ctx.run(f"{VENV_PREFIX} cz bump --yes{argument}", warn=True)
