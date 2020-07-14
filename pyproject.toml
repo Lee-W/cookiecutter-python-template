@@ -60,6 +60,17 @@ force_grid_wrap = 0
 use_parentheses = true
 skip = "{{cookiecutter.project_slug}}"
 
+[tool.pylint.messages_control]
+disable = [
+    "bad-continuation",
+    "missing-function-docstring",
+    "missing-module-docstring",
+    "invalid-name"
+]
+
+[tool.pylint.format]
+max-line-length = 88
+
 [tool.poetry]
 name = "cookiecutter-python-template"
 version = "0.2.0"

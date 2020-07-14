@@ -55,6 +55,17 @@ include_trailing_comma = true
 force_grid_wrap = 0
 use_parentheses = true
 
+[tool.pylint.messages_control]
+disable = [
+    "bad-continuation",
+    "missing-function-docstring",
+    "missing-module-docstring",
+    "invalid-name"
+]
+
+[tool.pylint.format]
+max-line-length = 88
+
 {%- if cookiecutter.dependency_management_tool=='poetry' -%}
 [tool.poetry]
 name = "{{ cookiecutter.project_slug }}"
