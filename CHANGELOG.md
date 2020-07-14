@@ -1,4 +1,10 @@
 # Changelog
+## 0.3.0 (2020-07-14)
+
+### Feat
+
+- **style**: use pyproject.toml to config pylint
+
 ## 0.2.0 (2020-07-13)
 
 ### Feat

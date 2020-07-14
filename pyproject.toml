@@ -1,6 +1,6 @@
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.2.0"
+version = "0.3.0"
 tag_format = "$version"
 version_files = [
     "cookiecutter.json",
@@ -73,7 +73,7 @@ max-line-length = 88
 
 [tool.poetry]
 name = "cookiecutter-python-template"
-version = "0.2.0"
+version = "0.3.0"
 description = ""
 authors = ["Wei Lee <weilee.rx@gmail.com>"]
 license = "MIT"
