@@ -1,4 +1,10 @@
 # Changelog
+## 0.4.0 (2020-07-24)
+
+### Feat
+
+- **readme**: add template version to readme
+
 ## 0.3.0 (2020-07-14)
 
 ### Feat

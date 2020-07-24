@@ -10,5 +10,5 @@
     "dependency_management_tool": ["pipenv", "poetry"],
     "use_strict_mypy_config": "n",
     "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
-    "_template_version": "0.3.0"
+    "_template_version": "0.4.0"
 }
