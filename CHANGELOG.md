@@ -1,4 +1,10 @@
 # Changelog
+## 0.5.0 (2020-08-16)
+
+### Feat
+
+- **readme**: add [PRs Welcome] and [Code style: black] badges
+
 ## 0.4.0 (2020-07-24)
 
 ### Feat
