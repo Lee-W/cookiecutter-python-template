@@ -7,6 +7,7 @@ on:
 
 jobs:
   bump_version:
+    if: "!startsWith(github.event.head_commit.message, 'bump:')"
     runs-on: ubuntu-latest
     name: "Bump version and create changelog with commitizen"
     steps:
@@ -15,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Create bump and changelog
-        uses: Woile/commitizen-action@master
+        uses: commitizen-tools/commitizen-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -29,10 +30,10 @@ jobs:
           token: '${{ secrets.PERSONAL_ACCESS_TOKEN }}'
           fetch-depth: 0
 
-      - name: Set up Python 3.7
+      - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
-          python-version: 3.7
+          python-version: 3.8
 
       - name: Install dependencies
         run: |

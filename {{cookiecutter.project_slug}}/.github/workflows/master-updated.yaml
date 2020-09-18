@@ -9,32 +9,14 @@ jobs:
   bump-version:
     if: "!startsWith(github.event.head_commit.message, 'bump:')"
     runs-on: ubuntu-latest
-
+    name: "Bump version and create changelog with commitizen"
     steps:
       - name: Check out
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - name: Set up Python {{ cookiecutter.python_version }}
-        uses: actions/setup-python@v1
-        with:
-          python-version: {{ cookiecutter.python_version }}
-
-      - name: Install dependencies
-        run: |
-          python -m pip install {% if cookiecutter.dependency_management_tool == 'pipenv' -%}pipenv{%- elif cookiecutter.dependency_management_tool == 'poetry' -%}poetry{% endif -%} invoke
-          inv env.init-dev --no-pre-commit
-
-      # do not failed when there is not versioning needed (e.g., document change)
-      - name: Create bump
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          inv git.bump
-
-      - name: Push changes
-        uses: Woile/github-push-action@master
+      - name: Create bump and changelog
+        uses: commitizen-tools/commitizen-action@master
         with:
           github_token: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
           tags: "true"
