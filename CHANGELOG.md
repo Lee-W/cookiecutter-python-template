@@ -1,4 +1,16 @@
 # Changelog
+## 0.6.0 (2020-09-18)
+
+### Feat
+
+- **github-action**: use  commitizen-tools/commitizen-action
+- **style**: update isort >= 5.0.0, pytest >= 6.0.0
+
+### Refactor
+
+- **pre-commit**: update pre-commit repo version
+- **github-template**: comment out unnecessary description
+
 ## 0.5.0 (2020-08-16)
 
 ### Feat
