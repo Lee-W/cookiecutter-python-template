@@ -24,7 +24,7 @@ def black_check(ctx):
 @task
 def isort_check(ctx):
     """Check style through isort"""
-    ctx.run(f"{VENV_PREFIX} isort --atomic --apply --check-only")
+    ctx.run(f"{VENV_PREFIX} isort --atomic --check-only .")
 
 
 @task
@@ -56,7 +56,7 @@ def black(ctx):
 
 @task
 def isort(ctx):
-    ctx.run(f"{VENV_PREFIX} isort --atomic --apply")
+    ctx.run(f"{VENV_PREFIX} isort --atomic .")
 
 
 @task(pre=[black, isort])

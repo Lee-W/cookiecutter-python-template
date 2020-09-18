@@ -2,6 +2,66 @@
 name = "cz_conventional_commits"
 version = "0.0.1"
 tag_format = "$version"
+{%- if cookiecutter.dependency_management_tool=='poetry' -%}
+version_files = [
+    "pyproject.toml:version"
+]
+{%- endif %}
+
+
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+
+[tool.isort]
+profile = "black"
+
+
+[tool.pylint]
+    [tool.pylint.messages_control]
+    disable = [
+        "bad-continuation",
+        "missing-function-docstring",
+        "missing-module-docstring",
+        "invalid-name"
+    ]
+
+    [tool.pylint.format]
+    max-line-length = 88
+
+
+[too.pytest.ini_options]
+minversion = "6.0"
+testpaths = "tests"
+addopts = "--strict-markers"
+norecursedirs = [
+    ".*",
+    "build",
+    "dist",
+    "CVS",
+    "_darcs",
+    "{arch}",
+    "*.egg",
+    "venv",
+    "env",
+    "virtualenv"
+]
+
 
 [tool.coverage]
     [tool.coverage.report]
@@ -30,42 +90,6 @@ tag_format = "$version"
         '*/tests/*'
     ]
 
-[tool.black]
-line-length = 88
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.eggs
-  | \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | _build
-  | buck-out
-  | build
-  | dist
-)/
-'''
-
-[tool.isort]
-line_length = 88
-multi_line_output = 3
-include_trailing_comma = true
-force_grid_wrap = 0
-use_parentheses = true
-
-[tool.pylint.messages_control]
-disable = [
-    "bad-continuation",
-    "missing-function-docstring",
-    "missing-module-docstring",
-    "invalid-name"
-]
-
-[tool.pylint.format]
-max-line-length = 88
-
 {%- if cookiecutter.dependency_management_tool=='poetry' -%}
 [tool.poetry]
 name = "{{ cookiecutter.project_slug }}"
@@ -81,24 +105,23 @@ python = "^{{ cookiecutter.python_version }}"
 # task management
 invoke = "^1.4.1"
 # test
-pytest = "^5.4.1"
+pytest = "^6.0.1"
 pytest-cov = "^2.8.1"
 pytest-mock = "^3.0.0"
 pytest-xdist = "^1.31.0"
 hypothesis = "^5.8.0"
-pytest-cookies = "^0.5.1"
+coverage = {extras = ["toml"], version = "^5.0.4"}
 # style
 flake8 = "^3.7.9"
 pylint = "^2.4.4"
 mypy = "^0.770"
-isort = "^4.3.21"
 black = "^19.10b0"
+isort = "^5.0.0"
 # security
 bandit = "^1.6.2"
 safety = "^1.8.7"
-coverage = "^5.0.4"
 # git
-commitizen = "^1.23.0"
+commitizen = "^2.4.0"
 pre-commit = "^2.2.0"
 # documentation
 mkdocs = "^1.1"
