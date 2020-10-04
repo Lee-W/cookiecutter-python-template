@@ -1,4 +1,10 @@
 # Changelog
+## 0.6.1 (2020-10-04)
+
+### Fix
+
+- **pytest-config**: fix pyproject.toml typo
+
 ## 0.6.0 (2020-09-18)
 
 ### Feat
