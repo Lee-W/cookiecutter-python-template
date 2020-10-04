@@ -45,7 +45,7 @@ profile = "black"
     max-line-length = 88
 
 
-[too.pytest.ini_options]
+[tool.pytest.ini_options]
 minversion = "6.0"
 testpaths = "tests"
 addopts = "--strict-markers"
