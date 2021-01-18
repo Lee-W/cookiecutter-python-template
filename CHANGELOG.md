@@ -1,4 +1,10 @@
 # Changelog
+## 0.6.2 (2021-01-18)
+
+### Fix
+
+- **poetry**: fix jinja2 space in pyproject.toml
+
 ## 0.6.1 (2020-10-04)
 
 ### Fix
