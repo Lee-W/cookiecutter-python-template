@@ -86,6 +86,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.7"
+py = "^1.10.0"
 
 [tool.poetry.dev-dependencies]
 # task management
