@@ -18,7 +18,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install {% if cookiecutter.dependency_management_tool == 'pipenv' -%}pipenv{%- elif cookiecutter.dependency_management_tool == 'poetry' -%}poetry{% endif -%} invoke
+          python -m pip install {% if cookiecutter.dependency_management_tool == 'pipenv' -%}pipenv{%- elif cookiecutter.dependency_management_tool == 'poetry' -%}poetry{% endif %} invoke
           inv env.init-dev --no-pre-commit
 
       - name: Style check
