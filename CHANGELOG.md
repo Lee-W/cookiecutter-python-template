@@ -1,4 +1,10 @@
 # Changelog
+## 0.6.3 (2021-01-20)
+
+### Fix
+
+- **github-action**: fix python-check typo
+
 ## 0.6.2 (2021-01-18)
 
 ### Fix
