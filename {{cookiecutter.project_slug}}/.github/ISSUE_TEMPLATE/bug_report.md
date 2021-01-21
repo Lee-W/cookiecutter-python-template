@@ -10,7 +10,7 @@ assignees: ""
 <!-- A clear and concise description of what the bug is. -->
 
 ## {{ cookiecutter.project_name }} version
-<!-- x.y.z -->
+<!-- x.y.z or commit hash -->
 
 ## Steps to Reproduce
 <!--
