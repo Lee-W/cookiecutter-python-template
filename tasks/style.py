@@ -24,7 +24,7 @@ def black_check(ctx):
 @task
 def isort_check(ctx):
     """Check style through isort"""
-    ctx.run(f"{VENV_PREFIX} isort --atomic --apply --check-only hooks/pre_gen_project.py tests/test_bake_project.py")
+    ctx.run(f"{VENV_PREFIX} isort --check-only hooks/pre_gen_project.py tests/test_bake_project.py")
 
 
 @task
@@ -57,7 +57,7 @@ def black(ctx):
 @task
 def isort(ctx):
     ctx.run(
-        f"{VENV_PREFIX} isort --atomic --apply hooks/pre_gen_project.py tests/test_bake_project.py"
+        f"{VENV_PREFIX} isort hooks/pre_gen_project.py tests/test_bake_project.py"
     )
 
 
