@@ -1,4 +1,11 @@
 # Changelog
+## 0.7.0 (2021-01-21)
+
+### Feat
+
+- **readme**: update link to reference to the exact version of this template
+- **github-actions**: add pypi-package publishing
+
 ## 0.6.3 (2021-01-20)
 
 ### Fix
