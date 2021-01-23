@@ -20,11 +20,9 @@ def init(ctx):
 def setup_pre_commit_hook(ctx):
     """Setup pre-commit hook to automate check before git commit and git push"""
     ctx.run("git init")
-    ctx.run(
-        f"{VENV_PREFIX} pre-commit install -t pre-commit & "
-        f"{VENV_PREFIX}  pre-commit install -t pre-push & "
-        f"{VENV_PREFIX} pre-commit install -t commit-msg"
-    )
+    ctx.run(f"{VENV_PREFIX} pre-commit install -t pre-commit")
+    ctx.run(f"{VENV_PREFIX} pre-commit install -t pre-push")
+    ctx.run(f"{VENV_PREFIX} pre-commit install -t commit-msg")
 
 
 @task(optional=["no-pre-commit"])
