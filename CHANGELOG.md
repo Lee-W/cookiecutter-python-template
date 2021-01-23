@@ -1,4 +1,10 @@
 # Changelog
+## 0.7.1 (2021-01-23)
+
+### Fix
+
+- **tasks**: run commands for installing pre-commit hooks sequentially
+
 ## 0.7.0 (2021-01-21)
 
 ### Feat
