@@ -1,4 +1,10 @@
 # Changelog
+## 0.7.2 (2021-01-26)
+
+### Fix
+
+- **license**: use correct BSD license name
+
 ## 0.7.1 (2021-01-23)
 
 ### Fix

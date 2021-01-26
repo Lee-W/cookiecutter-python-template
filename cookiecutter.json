@@ -11,5 +11,5 @@
     "use_strict_mypy_config": "n",
     "build_pypi_package": "n",
     "open_source_license": ["MIT license", "BSD 3-Clause license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
-    "_template_version": "0.7.1"
+    "_template_version": "0.7.2"
 }
