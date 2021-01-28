@@ -1,4 +1,10 @@
 # Changelog
+## 0.7.3 (2021-01-28)
+
+### Fix
+
+- **cookiecutter.json**: use https by default
+
 ## 0.7.2 (2021-01-26)
 
 ### Fix
