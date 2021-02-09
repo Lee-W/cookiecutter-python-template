@@ -29,7 +29,7 @@ def main():
         remove_publish_pypi_github_action()
 
     generate_docker_file(
-        "{{ cookiecutter.build_pypi_package }}" != "n",
+        "{{ cookiecutter.add_general_dockerfile }}" != "n",
         "{{ cookiecutter.python_version }}",
     )
 
