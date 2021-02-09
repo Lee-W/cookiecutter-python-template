@@ -17,7 +17,7 @@ def generate_docker_file(yes, python_version):
         with open("Dockerfile", "w") as wf:
             wf.write(docker_file_content)
             wf.close()
-    os.remove("Dockerfile_general")
+    # os.remove("Dockerfile_general")
 
 
 def main():
