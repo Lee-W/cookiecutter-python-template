@@ -7,9 +7,20 @@
     "author_name": "Wei Lee",
     "author_email": "weilee.rx@gmail.com",
     "python_version": "3.7",
-    "dependency_management_tool": ["pipenv", "poetry"],
+    "dependency_management_tool": [
+        "pipenv",
+        "poetry"
+    ],
     "use_strict_mypy_config": "n",
     "build_pypi_package": "n",
-    "open_source_license": ["MIT license", "BSD 3-Clause license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
+    "open_source_license": [
+        "MIT license",
+        "BSD 3-Clause license",
+        "ISC license",
+        "Apache Software License 2.0",
+        "GNU General Public License v3",
+        "Not open source"
+    ],
+    "add_general_dockerfile": "n",
     "_template_version": "0.7.3"
 }

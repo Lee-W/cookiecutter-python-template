@@ -1,0 +1,39 @@
+# git
+.git/
+.gitignore
+
+# git flow work flow
+.github/
+.pre-commit-config.yaml
+.pre-commit-hooks.yaml
+
+# virtual env
+.venv/
+
+# IDE related
+.vscode/
+
+# bandit
+.bandit
+
+# invoke tasks
+tasks/
+
+# python cache
+.pytest_cache/
+.mypy_cache/
+
+# tests
+pytest.ini
+tests/
+
+# licenses
+LICENSE
+
+# doc
+mkdocs.yaml
+mkdocs.yml
+*.md
+
+# setup file
+setup.cfg
