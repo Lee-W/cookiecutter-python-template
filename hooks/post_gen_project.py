@@ -14,7 +14,7 @@ def generate_docker_file(yes, python_version):
         with open("Dockerfile_general", "r") as rf:
             docker_file_content = rf.read().format(PYTHON_VERSION=python_version)
             rf.close()
-        with open("Dockerfile", "w") as wf:
+        with open("Dockerfile", "a") as wf:
             wf.write(docker_file_content)
             wf.close()
     # os.remove("Dockerfile_general")
