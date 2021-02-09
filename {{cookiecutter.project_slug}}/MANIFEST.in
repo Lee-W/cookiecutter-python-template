@@ -1,1 +1,2 @@
+include Dockerfile
 include Dockerfile_general
