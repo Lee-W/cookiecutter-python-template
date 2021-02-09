@@ -34,6 +34,3 @@ LICENSE
 mkdocs.yaml
 mkdocs.yml
 *.md
-
-# setup file
-setup.cfg
