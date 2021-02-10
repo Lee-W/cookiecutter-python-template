@@ -1,4 +1,27 @@
 # Changelog
+## 0.8.0 (2021-02-10)
+
+### Feat
+
+- **dockerize**: improve docker file
+- **dockerize**: improve docker file
+- **dockerize**: rewrite dockerfile template
+- **dockerize**: patch post hook
+- **dockerize**: add general docker file
+
+### Fix
+
+- **dockerize**: fix repo name
+- **dockerize**: improve docker build process
+- **dockerize**: rm manifest
+- **dockerize**: patch post hook
+- **dockerize**: patch post hook
+- **dockerize**: update manifest
+- **dockerize**: keep dockerfile
+- **dockerize**: move manifest
+- **dockerize**: add minifest for non-python file
+- **dockerize**: test do not remove dockerfile
+
 ## 0.7.3 (2021-01-28)
 
 ### Fix
