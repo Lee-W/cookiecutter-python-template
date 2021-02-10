@@ -19,6 +19,22 @@ def dist(ctx):
 {%- endif %}
 
 
+{% if "{{ cookiecutter.add_general_dockerfile }}" != "n" -%}
+@task
+def docker(ctx):
+    """Build docker image"""
+    {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
+    ctx.run("pipenv lock --keep-outdated --requirements > requirements.txt")
+    {%- elif cookiecutter.dependency_management_tool == 'poetry' -%}
+    ctx.run("poetry export -f requirements.txt -o requirements.txt")
+    {%- endif %}
+    user_name = "{{ cookiecutter.github_username.lower().replace(' ', '_').replace('-', '_') }}"
+    proj_name = "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}"
+    repo_name = f"{user_name}/{repo_name}"
+    ctx.run(f"docker build -t {repo_name}:latest .")
+{%- endif %}
+
+
 build_ns = Collection("build")
 build_ns.add_task(clean)
 {% if "{{ cookiecutter.build_pypi_package }}" != "n" -%}
