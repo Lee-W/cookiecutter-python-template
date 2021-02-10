@@ -30,7 +30,7 @@ def docker(ctx):
     {%- endif %}
     user_name = "{{ cookiecutter.github_username.lower().replace(' ', '_').replace('-', '_') }}"
     proj_name = "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}"
-    repo_name = f"{user_name}/{repo_name}"
+    repo_name = f"{user_name}/{proj_name}"
     ctx.run(f"docker build -t {repo_name}:latest .")
 {%- endif %}
 
