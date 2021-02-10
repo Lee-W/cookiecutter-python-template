@@ -1,10 +1,11 @@
 FROM python:{{ cookiecutter.python_version }}-slim-stretch
 
-ENV PYTHONUNBUFFERED=1
-ENV PYTHONFAULTHANDLER=1
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV USERNAME = {{ cookiecutter.github_username.lower().replace(' ', '_').replace('-', '_') }}
-ENV PATH=$PATH:/home/$USERNAME/.local/bin
+ARG USERNAME={{ cookiecutter.github_username.lower().replace(' ', '_').replace('-', '_') }}
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONFAULTHANDLER=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PATH=$PATH:/home/$USERNAME/.local/bin
 
 RUN useradd --create-home $USERNAME
 USER $USERNAME
