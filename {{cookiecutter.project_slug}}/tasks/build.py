@@ -40,3 +40,6 @@ build_ns.add_task(clean)
 {% if "{{ cookiecutter.build_pypi_package }}" != "n" -%}
 build_ns.add_task(dist)
 {%- endif %}
+{% if "{{ cookiecutter.add_general_dockerfile }}" != "n" -%}
+build_ns.add_task(docker)
+{%- endif %}
