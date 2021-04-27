@@ -12,7 +12,7 @@ git clone https://github.com/[YOUR GITHUB ACCOUNT]/{{ cookiecutter.project_slug 
 git remote add upstream "{{ cookiecutter.github_url }}"
 ```
 
-You can pull the latest code in master branch through `git pull upstream master` afterward.
+You can pull the latest code in {{ cookiecutter.default_branch }} branch through `git pull upstream {{ cookiecutter.default_branch }}` afterward.
 
 ### Step 4. Check out a branch for your new feature
 

@@ -30,7 +30,7 @@ def isort_check(ctx):
 @task
 def commit_check(ctx):
     """Check commit message through commitizen"""
-    result = ctx.run(f"{VENV_PREFIX} cz check --rev-range master..", warn=True)
+    result = ctx.run(f"{VENV_PREFIX} cz check --rev-range {{ cookiecutter.default_branch }}..", warn=True)
     if result.exited == 3:  # NO_COMMIT_FOUND
         exit(0)
     else:
