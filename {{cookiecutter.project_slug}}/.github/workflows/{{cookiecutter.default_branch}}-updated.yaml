@@ -1,9 +1,9 @@
-name: master branch updated
+name: {{ cookiecutter.default_branch }} branch updated
 
 on:
   push:
     branches:
-      - master
+      - {{ cookiecutter.default_branch }}
 
 jobs:
   bump-version:
@@ -12,7 +12,7 @@ jobs:
     name: "Bump version and create changelog with commitizen"
     steps:
       - name: Check out
-        uses: actions/checkout@v2
+        uses: actions/checkout@main
         with:
           fetch-depth: 0
       - name: Create bump and changelog
@@ -24,13 +24,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
-        uses: actions/checkout@v2
+        uses: actions/checkout@main
         with:
           token: {% raw %}'${{ secrets.PERSONAL_ACCESS_TOKEN }}'{% endraw %}
           fetch-depth: 0
 
       - name: Set up Python {{ cookiecutter.python_version }}
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@main
         with:
           python-version: {{ cookiecutter.python_version }}
 
@@ -43,8 +43,8 @@ jobs:
         run: |
           inv doc.build
 
-      - name: Push doc to Github Page
-        uses: peaceiris/actions-gh-pages@v2
+      - name: Push documentation to Github Page
+        uses: peaceiris/actions-gh-pages@main
         env:
           PERSONAL_TOKEN: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
           PUBLISH_BRANCH: gh-pages

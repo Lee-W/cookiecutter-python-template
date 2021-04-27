@@ -8,8 +8,12 @@
     "author_email": "weilee.rx@gmail.com",
     "python_version": "3.7",
     "dependency_management_tool": [
-        "pipenv",
-        "poetry"
+        "poetry",
+        "pipenv"
+    ],
+    "default_branch": [
+        "main",
+        "master"
     ],
     "use_strict_mypy_config": "n",
     "build_pypi_package": "n",
