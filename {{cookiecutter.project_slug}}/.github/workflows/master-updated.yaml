@@ -19,7 +19,6 @@ jobs:
         uses: commitizen-tools/commitizen-action@master
         with:
           github_token: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
-          tags: "true"
 
   publish-github-page:
     runs-on: ubuntu-latest
