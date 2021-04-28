@@ -19,6 +19,7 @@ jobs:
         uses: commitizen-tools/commitizen-action@master
         with:
           github_token: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
+          branch: {{ cookiecutter.default_branch }}
 
   publish-github-page:
     runs-on: ubuntu-latest
@@ -44,8 +45,8 @@ jobs:
           inv doc.build
 
       - name: Push documentation to Github Page
-        uses: peaceiris/actions-gh-pages@main
-        env:
-          PERSONAL_TOKEN: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./site
+        uses: peaceiris/actions-gh-pages@v3.8.0
+        with:
+          personal_token: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
+          publish_branch: gh-pages
+          publish_dir: ./site
