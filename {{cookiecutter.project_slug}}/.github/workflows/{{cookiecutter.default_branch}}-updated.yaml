@@ -15,6 +15,11 @@ jobs:
         uses: actions/checkout@main
         with:
           fetch-depth: 0
+      - name: Check out
+        uses: actions/checkout@v2
+        with:
+          token: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
+          fetch-depth: 0
       - name: Create bump and changelog
         uses: commitizen-tools/commitizen-action@master
         with:
