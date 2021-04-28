@@ -94,9 +94,11 @@ norecursedirs = [
 [tool.poetry]
 name = "{{ cookiecutter.project_slug }}"
 version = "0.0.1"
-description = ""
 authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
+description = "{{ cookiecutter.project_description }}"
 license = "{{ cookiecutter.open_source_license }}"
+readme = "docs/README.md"
+repository = "{{ cookiecutter.github_url }}"
 
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.python_version }}"
