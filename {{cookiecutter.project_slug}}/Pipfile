@@ -18,7 +18,7 @@ black = "*"
 isort = ">=5.0.0"
 flake8 = "*"
 mypy = "*"
-pylint = "*"
+pylint = ">=2.7.0"
 # security
 bandit = "*"
 # git
@@ -26,7 +26,7 @@ commitizen = "*"
 pre-commit = "*"
 # documentation
 mkdocs = "*"
-mkdocs-material = "*"
+mkdocs-material = ">=7.0.6"
 
 [packages]
 
