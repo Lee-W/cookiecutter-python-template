@@ -8,7 +8,7 @@ repos:
         args: [--markdown-linebreak-ext=md]
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: 2.17.4
+    rev: v2.17.4
     hooks:
       - id: commitizen
         stages: [commit-msg]
