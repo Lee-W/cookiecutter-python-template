@@ -97,7 +97,7 @@ pytest-cookies = "^0.5.1"
 coverage = "^5.0.4"
 # style
 flake8 = "^3.7.9"
-pylint = "^2.4.4"
+pylint = "^2.7.0"
 mypy = "^0.770"
 isort = "^5.0.0"
 black = "^19.10b0"
@@ -109,7 +109,7 @@ commitizen = "^2.4.0"
 pre-commit = "^2.2.0"
 # documentation
 mkdocs = "^1.1"
-mkdocs-material = "^5.0.1"
+mkdocs-material = "^7.0.6"
 
 [build-system]
 requires = ["poetry>=1.0.0"]
