@@ -9,7 +9,7 @@ def check_package(ctx):
     {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
     ctx.run("pipenv check")
     {%- elif cookiecutter.dependency_management_tool == 'poetry' -%}
-    ctx.run("poetry run safety", warn=True)
+    ctx.run("poetry run safety check", warn=True)
     {%- endif %}
 
 
