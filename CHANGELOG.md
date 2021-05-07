@@ -1,4 +1,20 @@
 # Changelog
+## 0.9.0 (2021-05-07)
+
+### Fix
+
+- **github-actions**: fix bump-version action
+- **github-actions**: fix gh-pages publishing action
+- **pre-commit**: fix commitizen version
+- **cookiecutter**: remove .mypy_cache when genreating template
+- **github-actions**: remove unused tag configuration in commitizen github actions
+- **mypy**: remove empty line between mypy config
+
+### Feat
+
+- **pyproject.toml**: add project metadata if poetry is used
+- support default branch name choices
+
 ## 0.8.0 (2021-02-10)
 
 ### Feat
