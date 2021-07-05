@@ -88,12 +88,12 @@ py = "^1.10.0"
 # task management
 invoke = "^1.4.1"
 # test
-pytest = "^5.4.1"
+pytest = "^6.2"
 pytest-cov = "^2.8.1"
 pytest-mock = "^3.0.0"
 pytest-xdist = "^1.31.0"
 hypothesis = "^5.8.0"
-pytest-cookies = "^0.5.1"
+pytest-cookies = "^0.6.1"
 coverage = "^5.0.4"
 # style
 flake8 = "^3.7.9"
