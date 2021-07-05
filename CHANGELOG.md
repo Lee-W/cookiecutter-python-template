@@ -1,4 +1,10 @@
 # Changelog
+## 0.9.1 (2021-07-05)
+
+### Fix
+
+- **tasks**: fix safety command
+
 ## 0.9.0 (2021-05-07)
 
 ### Fix
