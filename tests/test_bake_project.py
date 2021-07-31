@@ -1,6 +1,7 @@
-from typing import Dict, Tuple
-import pytest
 import subprocess
+from typing import Dict, Tuple
+
+import pytest
 
 
 def run_cmd(cmd: str) -> Tuple[bytes, bytes, int]:
