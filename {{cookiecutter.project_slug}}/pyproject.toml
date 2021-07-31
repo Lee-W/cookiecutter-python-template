@@ -47,7 +47,7 @@ profile = "black"
 
 [tool.mypy]
 files = [
-    "hooks",
+    "{{ cookiecutter.project_slug }}",
     "tests"
 ]
 ignore_missing_imports = true
@@ -55,9 +55,24 @@ follow_imports = "silent"
 warn_redundant_casts = true
 warn_unused_ignores = true
 warn_unused_configs = true
-disallow_any_generics = true
-disallow_subclassing_any = true
-warn_return_any = true
+{% if cookiecutter.use_strict_mypy_config == 'y' -%}
+    [[tool.mypy.overrides]]
+    files = ["{{ cookiecutter.project_slug }}.*"]
+    # Ensure full coverage
+    disallow_untyped_calls = true
+    disallow_untyped_defs = true
+    disallow_incomplete_defs = true
+    disallow_untyped_decorators = true
+    # Restrict dynamic typing
+    disallow_any_generics = true
+    disallow_subclassing_any = true
+    warn_return_any = true
+
+    [[tool.mypy.overrides]]
+    files = ["tests.*"]
+    disallow_untyped_defs = false
+    disallow_untyped_decorators = false
+{%- endif %}
 
 
 [tool.pytest.ini_options]
@@ -131,8 +146,8 @@ coverage = {extras = ["toml"], version = "^5.0.4"}
 # style
 flake8 = "^3.7.9"
 pylint = "^2.7.0"
-mypy = "^0.770"
-black = "^19.10b0"
+mypy = "^0.910"
+black = "^21.7b0"
 isort = "^5.0.0"
 # security
 bandit = "^1.6.2"

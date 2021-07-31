@@ -10,14 +10,12 @@ invoke = "*"
 pytest = ">=6.0.1"
 pytest-cov = "*"
 pytest-mock = "*"
-pytest-xdist = "*"
-hypothesis = "*"
 coverage = {extras = ["toml"], version = "*"}
 # style
 black = "*"
 isort = ">=5.0.0"
 flake8 = "*"
-mypy = "*"
+mypy = ">=0.910"
 pylint = ">=2.7.0"
 # security
 bandit = "*"
