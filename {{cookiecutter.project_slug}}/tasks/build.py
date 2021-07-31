@@ -19,7 +19,7 @@ def dist(ctx):
 {%- endif %}
 
 
-{% if "{{ cookiecutter.add_general_dockerfile }}" != "n" -%}
+{% if "{{ cookiecutter.build_docker_image }}" != "n" -%}
 @task
 def docker(ctx):
     """Build docker image"""
@@ -40,6 +40,6 @@ build_ns.add_task(clean)
 {% if "{{ cookiecutter.build_pypi_package }}" != "n" -%}
 build_ns.add_task(dist)
 {%- endif %}
-{% if "{{ cookiecutter.add_general_dockerfile }}" != "n" -%}
+{% if "{{ cookiecutter.build_docker_image }}" != "n" -%}
 build_ns.add_task(docker)
 {%- endif %}

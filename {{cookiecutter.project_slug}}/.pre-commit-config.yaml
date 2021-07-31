@@ -1,7 +1,7 @@
 default_stages: [push]
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.2.0
+    rev: v4.0.1
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace
@@ -9,9 +9,14 @@ repos:
       - id: check-case-conflict
       - id: check-merge-conflict
       - id: no-commit-to-branch
-
+  {% if "{{ cookiecutter.add_general_dockerfile }}" != "n" -%}
+  - repo: https://github.com/hadolint/hadolint
+    rev: v1.22.1
+    hooks:
+      - id: hadolint-docker
+  {%- endif %}
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v2.17.4
+    rev: v2.17.13
     hooks:
       - id: commitizen
         stages: [commit-msg]

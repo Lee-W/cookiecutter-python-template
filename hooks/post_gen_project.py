@@ -20,7 +20,7 @@ def main():
     if "{{ cookiecutter.build_pypi_package }}" == "n":
         remove_publish_pypi_github_action()
 
-    if "{{ cookiecutter.add_general_dockerfile }}" == "n":
+    if "{{ cookiecutter.build_docker_image }}" == "n":
         remove_docker_file()
 
 

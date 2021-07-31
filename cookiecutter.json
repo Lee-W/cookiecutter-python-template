@@ -17,6 +17,7 @@
     ],
     "use_strict_mypy_config": "n",
     "build_pypi_package": "n",
+    "build_docker_image": "n",
     "open_source_license": [
         "MIT license",
         "BSD 3-Clause license",
@@ -25,6 +26,5 @@
         "GNU General Public License v3",
         "Not open source"
     ],
-    "add_general_dockerfile": "n",
     "_template_version": "0.9.1"
 }
