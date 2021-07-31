@@ -1,4 +1,18 @@
 # Changelog
+## 1.0.0 (2021-07-31)
+
+### Fix
+
+- **docker**: rename add_general_dockerfile as build_docker_image and move hadolint to template from project root
+- **license**: fix end of line
+
+### Feat
+
+- **tasks/env**: add autoupdate to pre-commit
+- **pre-commit**: add check-case-conflict, check-merge-conflict, no-commit-to-branch and change style format stage to commit
+- **github-actions**: add workflow-dispatch to python-check
+- **mypy**: migrate configuration to pyproject.toml
+
 ## 0.9.1 (2021-07-05)
 
 ### Fix
