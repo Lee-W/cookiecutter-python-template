@@ -30,7 +30,8 @@ def setup_pre_commit_hook(ctx):
     ctx.run(
         f"{VENV_PREFIX} pre-commit install -t pre-commit & "
         f"{VENV_PREFIX} pre-commit install -t pre-push & "
-        f"{VENV_PREFIX} pre-commit install -t commit-msg"
+        f"{VENV_PREFIX} pre-commit install -t commit-msg &"
+        f"{VENV_PREFIX} pre-commit autoupdate"
     )
 
 
