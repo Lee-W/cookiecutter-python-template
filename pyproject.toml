@@ -45,6 +45,24 @@ skip = "{{cookiecutter.project_slug}}"
     max-line-length = 88
 
 
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = "tests"
+addopts = "--strict-markers"
+norecursedirs = [
+    ".*",
+    "build",
+    "dist",
+    "CVS",
+    "_darcs",
+    "{arch}",
+    "*.egg",
+    "venv",
+    "env",
+    "virtualenv"
+]
+
+
 [tool.coverage]
     [tool.coverage.report]
     show_missing = true
