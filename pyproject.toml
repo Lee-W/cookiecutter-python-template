@@ -134,7 +134,7 @@ coverage = "^5.0.4"
 # style
 flake8 = "^3.7.9"
 pylint = "^2.7.0"
-mypy = "^0.770"
+mypy = "^0.910"
 isort = "^5.0.0"
 black = "^19.10b0"
 # security
