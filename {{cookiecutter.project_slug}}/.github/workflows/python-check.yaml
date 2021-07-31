@@ -1,6 +1,6 @@
-name: New commit pushed and receive pull request
+name: New pull request received
 
-on: [push, pull_request]
+on: [pull_request, workflow_dispatch]
 
 jobs:
   check:
