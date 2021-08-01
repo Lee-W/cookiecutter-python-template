@@ -397,12 +397,13 @@
 </ul>
 </li>
 <li>General Python project Dockerfile</li>
+<li>Consolidate most of the tool configurations in <code>pyproject.toml</code></li>
 </ul>
 <h2 id="getting-started">Getting Started</h2>
 <h3 id="prerequisites">Prerequisites</h3>
 <ul>
 <li><a href="https://www.python.org/downloads/">Python</a></li>
-<li><a href="https://cookiecutter.readthedocs.io/en/1.7.0/">Cookiecutter</a></li>
+<li><a href="https://cookiecutter.readthedocs.io/">Cookiecutter</a></li>
 </ul>
 <h2 id="usage">Usage</h2>
 <pre><code class="language-sh">cookiecutter https://github.com/Lee-W/cookiecutter-python-template
@@ -410,12 +411,12 @@
 <ul>
 <li>Add required secrets to your GitHub repository secrets<ul>
 <li><code>PERSONAL_ACCESS_TOKEN</code>: GitHub personal access toekn<ul>
-<li>Read <a href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token">Creating a personal access token</a> to generate one</li>
+<li>Refer to <a href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token">Creating a personal access token</a> to generate one</li>
 </ul>
 </li>
 <li><code>pypi_password</code>: PyPI API token<ul>
 <li>required only if you set "build_pypi_package" to "y" during project creation</li>
-<li>Read <a href="https://pypi.org/help/#apitoken">How can I use API tokens to authenticate with PyPI?</a> to generate one. Note that username <code>__token__</code> has been setup in the project</li>
+<li>Refer to <a href="https://pypi.org/help/#apitoken">How can I use API tokens to authenticate with PyPI?</a> to generate one. Note that username <code>__token__</code> has been setup in the project</li>
 </ul>
 </li>
 </ul>
