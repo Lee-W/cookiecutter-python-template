@@ -24,7 +24,7 @@ git checkout -b [YOUR FEATURE]
 
 ```sh
 python -m pip install pipx
-python -m pipx install {% if cookiecutter.dependency_management_tool == 'pipenv' -%}pipenv{%- elif cookiecutter.dependency_management_tool == 'poetry' -%}poetry{% endif -%} invoke
+python -m pipx install {% if cookiecutter.dependency_management_tool == 'pipenv' -%}pipenv{%- elif cookiecutter.dependency_management_tool == 'poetry' -%}poetry{% endif %} invoke
 python -m pipx ensurepath
 ```
 
