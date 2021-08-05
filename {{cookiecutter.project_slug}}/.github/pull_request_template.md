@@ -15,7 +15,7 @@
 
 ## Checklist:
 - [ ] Add test cases to all the changes you introduce
-- [ ] Run `inv lint` locally to ensure all linter checks pass
+- [ ] Run `inv style` locally to ensure all linter checks pass
 - [ ] Run `inv test` locally to ensure all test cases pass
 - [ ] Run `inv secure` locally to ensure no major vulnerability is introduced
 - [ ] Update the documentation if necessary
