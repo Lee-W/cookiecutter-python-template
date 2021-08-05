@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: {% raw %}'${{ secrets.PERSONAL_ACCESS_TOKEN }}'{% endraw %}
-          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python
