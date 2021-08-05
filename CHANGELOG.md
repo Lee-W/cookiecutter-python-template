@@ -1,4 +1,18 @@
 # Changelog
+## 1.1.0 (2021-08-05)
+
+### Fix
+
+- **docs**: fix contirubting page missing space
+
+### Feat
+
+- **gitignore**: update gitignore content
+
+### Refactor
+
+- **github-actions**: remove redundant checkout
+
 ## 1.0.0 (2021-07-31)
 
 ### Fix
