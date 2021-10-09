@@ -1,4 +1,10 @@
 # Changelog
+## 1.1.2 (2021-10-09)
+
+### Fix
+
+- **mypy-config**: use module insetad files to specify overrides
+
 ## 1.1.1 (2021-08-08)
 
 ### Fix
