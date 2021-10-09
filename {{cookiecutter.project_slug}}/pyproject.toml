@@ -57,7 +57,7 @@ warn_unused_ignores = true
 warn_unused_configs = true
 {% if cookiecutter.use_strict_mypy_config == 'y' -%}
     [[tool.mypy.overrides]]
-    files = ["{{ cookiecutter.project_slug }}.*"]
+    module = ["{{ cookiecutter.project_slug }}.*"]
     # Ensure full coverage
     disallow_untyped_calls = true
     disallow_untyped_defs = true
@@ -69,7 +69,7 @@ warn_unused_configs = true
     warn_return_any = true
 
     [[tool.mypy.overrides]]
-    files = ["tests.*"]
+    module = ["tests.*"]
     disallow_untyped_defs = false
     disallow_untyped_decorators = false
 {%- endif %}
