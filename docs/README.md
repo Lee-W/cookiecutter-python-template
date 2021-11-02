@@ -39,8 +39,6 @@ cookiecutter https://github.com/Lee-W/cookiecutter-python-template
 ```
 
 * Add required secrets to your GitHub repository secrets
-    * `PERSONAL_ACCESS_TOKEN`: GitHub personal access toekn
-        * Refer to [Creating a personal access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) to generate one
     * `pypi_password`: PyPI API token
         * required only if you set "build_pypi_package" to "y" during project creation
         * Refer to [How can I use API tokens to authenticate with PyPI?](https://pypi.org/help/#apitoken) to generate one. Note that username `__token__` has been setup in the project
