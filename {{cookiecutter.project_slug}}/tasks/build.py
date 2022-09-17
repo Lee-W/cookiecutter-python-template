@@ -1,5 +1,8 @@
 from invoke import Collection, task
 
+{% if cookiecutter.dependency_management_tool == 'pipenv' -%}
+from tasks.common import VENV_PREFIX
+{% endif %}
 
 @task
 def clean(ctx):
