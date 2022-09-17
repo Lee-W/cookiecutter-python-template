@@ -11,6 +11,7 @@ def remove_publish_pypi_github_action():
 
 def remove_docker_file():
     os.remove("Dockerfile")
+    os.remove(".dockerignore")
 
 
 def main():
