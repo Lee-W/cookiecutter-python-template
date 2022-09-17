@@ -117,7 +117,7 @@ authors = ["Wei Lee <weilee.rx@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.10"
 py = "^1.10.0"
 
 [tool.poetry.dev-dependencies]
@@ -133,10 +133,10 @@ pytest-cookies = "^0.6.1"
 coverage = "^6.0b"
 # style
 flake8 = "^3.7.9"
-pylint = "^2.7.0"
+pylint = "^2.15.2"
 mypy = "^0.910"
 isort = "^5.0.0"
-black = "^19.10b0"
+black = "^22.8.0"
 # security
 bandit = "^1.6.2"
 safety = "^1.8.7"
