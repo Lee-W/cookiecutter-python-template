@@ -34,12 +34,12 @@
 ### Prerequisites
 
 * [Python](https://www.python.org/downloads/)
-* [Cookiecutter](https://cookiecutter.readthedocs.io/)
+* [cruft](https://cruft.github.io/cruft/)
 
 ## Usage
 
 ```sh
-cookiecutter https://github.com/Lee-W/cookiecutter-python-template
+cruft create https://github.com/Lee-W/cookiecutter-python-template
 ```
 
 * Add required secrets to your GitHub repository secrets
