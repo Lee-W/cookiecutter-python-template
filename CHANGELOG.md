@@ -1,4 +1,10 @@
 # Changelog
+## 1.2.1 (2022-09-17)
+
+### Fix
+
+- **tasks/build**: fix missing import when pipenv is used
+
 ## 1.2.0 (2022-09-17)
 
 ### Feat
