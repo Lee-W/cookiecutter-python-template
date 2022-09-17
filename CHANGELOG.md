@@ -1,4 +1,14 @@
 # Changelog
+## 1.2.0 (2022-09-17)
+
+### Feat
+
+- **github-actions**: replace md issue template with yaml
+
+### Fix
+
+- **hooks**: remove .dockerfile if Docker setup is not choosen
+
 ## 1.1.2 (2021-10-09)
 
 ### Fix
