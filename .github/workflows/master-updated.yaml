@@ -16,6 +16,7 @@ jobs:
         with:
           fetch-depth: 0
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          persist-credentials: false
       - name: Create bump and changelog
         uses: commitizen-tools/commitizen-action@master
         with:
