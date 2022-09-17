@@ -1,4 +1,16 @@
 # Changelog
+## 1.3.0 (2022-09-17)
+
+### Feat
+
+- **project-root**: upgrade project-root python version to 3.10 and upgrade deps
+
+### Fix
+
+- **github-actions**: set persist-credentials to false for check-out actions
+- **github-actions**: use personal access token to replace github token
+- **tasks/style**: fix commit check command
+
 ## 1.2.1 (2022-09-17)
 
 ### Fix
