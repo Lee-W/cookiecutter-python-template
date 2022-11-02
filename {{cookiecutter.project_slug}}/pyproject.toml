@@ -145,13 +145,13 @@ hypothesis = "^5.8.0"
 coverage = {extras = ["toml"], version = "^5.0.4"}
 # style
 flake8 = "^3.7.9"
-pylint = "^2.7.0"
+pylint = "^2.15.2"
 mypy = "^0.910"
 black = "^22.10.0"
 isort = "^5.0.0"
 # security
 bandit = "^1.6.2"
-safety = "^1.8.7"
+pip-audit = "^2.4.5"
 # git
 commitizen = "^2.4.0"
 pre-commit = "^2.2.0"

@@ -6,11 +6,7 @@ from tasks.common import VENV_PREFIX
 @task
 def check_package(ctx):
     """Check package security"""
-    {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
-    ctx.run("pipenv check")
-    {%- elif cookiecutter.dependency_management_tool == 'poetry' -%}
-    ctx.run("poetry run safety check", warn=True)
-    {%- endif %}
+    ctx.run(f"{VENV_PREFIX} pip-audit", warn=True)
 
 
 @task
