@@ -138,7 +138,7 @@ isort = "^5.0.0"
 black = "^22.8.0"
 # security
 bandit = "^1.6.2"
-safety = "^1.8.7"
+pip-audit = "^2.4.5"
 # git
 commitizen = "^2.4.0"
 pre-commit = "^2.2.0"

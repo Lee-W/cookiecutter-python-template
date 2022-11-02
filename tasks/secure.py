@@ -6,7 +6,7 @@ from tasks.common import VENV_PREFIX
 @task
 def check_package(ctx):
     """Check package security"""
-    ctx.run(f"{VENV_PREFIX} safety check")
+    ctx.run(f"{VENV_PREFIX} pip-audit")
 
 
 @task
