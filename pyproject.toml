@@ -61,7 +61,7 @@ skip = "{{cookiecutter.project_slug}}"
 
 
 [tool.pytest.ini_options]
-minversion = "6.0"
+minversion = "7.2.0"
 testpaths = "tests"
 addopts = "--strict-markers"
 norecursedirs = [
@@ -118,16 +118,15 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-py = "^1.10.0"
 
 [tool.poetry.dev-dependencies]
 # task management
 invoke = "^1.4.1"
 # test
-pytest = "^6.2"
+pytest = "^7.2.0"
 pytest-cov = "^2.8.1"
 pytest-mock = "^3.0.0"
-pytest-xdist = "^1.31.0"
+pytest-xdist = "^3.0.2"
 hypothesis = "^5.8.0"
 pytest-cookies = "^0.6.1"
 coverage = "^6.0b"
