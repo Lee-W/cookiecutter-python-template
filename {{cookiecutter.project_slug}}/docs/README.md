@@ -1,7 +1,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=flat-square)](https://conventionalcommits.org)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Github Actions]({{ cookiecutter.github_url }}/actions/workflows/python-check.yaml/badge.svg)]({{ cookiecutter.github_url }}/wayback-machine-saver/actions/workflows/python-check.yaml)
+[![Github Actions]({{ cookiecutter.github_url }}/actions/workflows/python-check.yaml/badge.svg)]({{ cookiecutter.github_url }}/actions/workflows/python-check.yaml)
 {% if cookiecutter.build_pypi_package != "n" %}
 [![PyPI Package latest release](https://img.shields.io/pypi/v/{{ cookiecutter.project_slug }}.svg?style=flat-square)](https://pypi.org/project/{{ cookiecutter.project_slug }}/)
 [![PyPI Package download count (per month)](https://img.shields.io/pypi/dm/{{ cookiecutter.project_slug }}?style=flat-square)](https://pypi.org/project/{{ cookiecutter.project_slug }}/)

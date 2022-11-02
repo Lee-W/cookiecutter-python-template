@@ -12,11 +12,12 @@ jobs:
     name: "Bump version and create changelog with commitizen"
     steps:
       - name: Check out
-        uses: actions/checkout@v2
+        uses: actions/checkout@main
         with:
           token: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
           fetch-depth: 0
           persist-credentials: false
+
       - name: Create bump and changelog
         uses: commitizen-tools/commitizen-action@master
         with:
@@ -35,7 +36,7 @@ jobs:
       - name: Set up Python {{ cookiecutter.python_version }}
         uses: actions/setup-python@main
         with:
-          python-version: {{ cookiecutter.python_version }}
+          python-version: "{{ cookiecutter.python_version }}"
 
       - name: Install dependencies
         run: |
