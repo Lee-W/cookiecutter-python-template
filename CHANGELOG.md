@@ -1,4 +1,16 @@
 # Changelog
+## 1.4.0 (2022-11-24)
+
+### Feat
+
+- replace safety with pip-audit
+- **poetry**: pin pytest to >= 7.2.0 for resolving the security issue caused by "py"
+
+### Fix
+
+- **pre-commit**: remove outdated cookiecutter.add_general_dockerfile and replace it with build_docker_image option
+- fix various minor errors
+
 ## 1.3.0 (2022-09-17)
 
 ### Feat
