@@ -5,7 +5,7 @@ from tasks.common import VENV_PREFIX
 
 @task
 def clean(ctx):
-    """Remove virtual environement"""
+    """Remove virtual environment"""
     {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
     ctx.run("pipenv --rm", warn=True)
     {%- elif cookiecutter.dependency_management_tool == 'poetry' -%}

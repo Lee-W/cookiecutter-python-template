@@ -29,7 +29,7 @@ def default_context() -> Dict[str, str]:
         "github_url": "https://github.com/author/test_python_project",
         "github_username": "author",
         "open_source_license": "GNU General Public License v3",
-        "project_description": "Short Descirption for Python Project",
+        "project_description": "Short Description for Python Project",
         "project_name": "Test Python Project",
         "project_slug": "test_python_project",
         "python_version": "3.7",
