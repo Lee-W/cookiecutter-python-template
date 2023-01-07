@@ -47,7 +47,7 @@ def pylint(ctx):
 
 @task(pre=[flake8, mypy, black_check, isort_check, commit_check], default=True)
 def run(ctx):
-    """Check style throguh linter (Note that pylint is not included)"""
+    """Check style through linter (Note that pylint is not included)"""
     pass
 
 
@@ -63,5 +63,5 @@ def isort(ctx):
 
 @task(pre=[black, isort])
 def reformat(ctx):
-    """Reformat python files throguh black and isort"""
+    """Reformat python files through black and isort"""
     pass

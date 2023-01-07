@@ -37,13 +37,13 @@
 
 ### Fix
 
-- **hooks**: remove .dockerfile if Docker setup is not choosen
+- **hooks**: remove .dockerfile if Docker setup is not chosen
 
 ## 1.1.2 (2021-10-09)
 
 ### Fix
 
-- **mypy-config**: use module insetad files to specify overrides
+- **mypy-config**: use module instead files to specify overrides
 
 ## 1.1.1 (2021-08-08)
 
@@ -55,7 +55,7 @@
 
 ### Fix
 
-- **docs**: fix contirubting page missing space
+- **docs**: fix contributing page missing space
 
 ### Feat
 
@@ -92,7 +92,7 @@
 - **github-actions**: fix bump-version action
 - **github-actions**: fix gh-pages publishing action
 - **pre-commit**: fix commitizen version
-- **cookiecutter**: remove .mypy_cache when genreating template
+- **cookiecutter**: remove .mypy_cache when generating template
 - **github-actions**: remove unused tag configuration in commitizen github actions
 - **mypy**: remove empty line between mypy config
 
@@ -121,7 +121,7 @@
 - **dockerize**: update manifest
 - **dockerize**: keep dockerfile
 - **dockerize**: move manifest
-- **dockerize**: add minifest for non-python file
+- **dockerize**: add manifest for non-python file
 - **dockerize**: test do not remove dockerfile
 
 ## 0.7.3 (2021-01-28)
@@ -219,7 +219,7 @@
 - split contributing into separate documentation
 - **tasks**: add doc task
 - **tasks/test**: allow no tests for test task
-- **tasks**: add commit-check and enforce bandit when running secuirty heck
+- **tasks**: add commit-check and enforce bandit when running security heck
 - **dependency**: support choosing poetry as management tool
 - **project-root**: apply template best practices to root
 - **mypy**: add stricter version of mypy config
