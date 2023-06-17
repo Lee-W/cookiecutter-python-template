@@ -1,4 +1,10 @@
 # Changelog
+## 1.5.0 (2023-06-17)
+
+### Feat
+
+- introduce ruff and pre-commit hooks
+
 ## 1.4.0 (2022-11-24)
 
 ### Feat
