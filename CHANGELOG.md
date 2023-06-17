@@ -1,4 +1,10 @@
 # Changelog
+## 1.6.0 (2023-06-17)
+
+### Feat
+
+- add dependabot setup
+
 ## 1.5.0 (2023-06-17)
 
 ### Feat
