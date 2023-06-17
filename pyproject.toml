@@ -8,25 +8,6 @@ version_files = [
 ]
 
 
-[tool.black]
-line-length = 88
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.eggs
-  | \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | _build
-  | buck-out
-  | build
-  | dist
-)/
-'''
-
-
 [tool.mypy]
 files = [
     "hooks",
@@ -42,22 +23,19 @@ disallow_subclassing_any = true
 warn_return_any = true
 
 
-[tool.isort]
-profile = "black"
-skip = "{{cookiecutter.project_slug}}"
+[tool.ruff]
+line-length = 88
+ignore = [
+    "E501",
+    "D1",
+    "D415",
+]
 
+[tool.ruff.isort]
+known-first-party = ["commitizen", "tests"]
 
-[tool.pylint]
-    [tool.pylint.messages_control]
-    disable = [
-        "bad-continuation",
-        "missing-function-docstring",
-        "missing-module-docstring",
-        "invalid-name"
-    ]
-
-    [tool.pylint.format]
-    max-line-length = 88
+[tool.ruff.pydocstyle]
+convention = "google"
 
 
 [tool.pytest.ini_options]
@@ -131,10 +109,8 @@ hypothesis = "^5.8.0"
 pytest-cookies = "^0.6.1"
 coverage = "^6.0b"
 # style
-flake8 = "^3.7.9"
-pylint = "^2.15.2"
+ruff = "^0.0.262"
 mypy = "^0.910"
-isort = "^5.0.0"
 black = "^22.8.0"
 # security
 bandit = "^1.6.2"

@@ -4,9 +4,9 @@ from tasks.common import COMMON_TARGETS_AS_STR, VENV_PREFIX
 
 
 @task
-def flake8(ctx):
-    """Check style through flake8"""
-    ctx.run(f"{VENV_PREFIX} flake8 --config=setup.cfg")
+def ruff(ctx):
+    """Check style through ruff"""
+    ctx.run(f"{VENV_PREFIX} ruff {COMMON_TARGETS_AS_STR}")
 
 
 @task
@@ -22,30 +22,12 @@ def black_check(ctx):
 
 
 @task
-def isort_check(ctx):
-    """Check style through isort"""
-    ctx.run(
-        f"{VENV_PREFIX} isort --check-only hooks/pre_gen_project.py tests/test_bake_project.py"
-    )
-
-
-@task
 def commit_check(ctx, remote="origin"):
     """Check commit message through commitizen"""
-    result = ctx.run(f"{VENV_PREFIX} cz check --rev-range {remote}/master..", warn=True)
-    if result.exited == 3:  # NO_COMMIT_FOUND
-        exit(0)
-    else:
-        exit(result.exited)
+    ctx.run(f"{VENV_PREFIX} cz -nr 3 check --rev-range {remote}/master..", warn=True)
 
 
-@task
-def pylint(ctx):
-    """Check style through pylint"""
-    ctx.run(f"{VENV_PREFIX} pylint {COMMON_TARGETS_AS_STR}")
-
-
-@task(pre=[flake8, mypy, black_check, isort_check, commit_check], default=True)
+@task(pre=[ruff, mypy, black_check, commit_check], default=True)
 def run(ctx):
     """Check style through linter (Note that pylint is not included)"""
     pass
@@ -56,12 +38,7 @@ def black(ctx):
     ctx.run(f"{VENV_PREFIX} black {COMMON_TARGETS_AS_STR}")
 
 
-@task
-def isort(ctx):
-    ctx.run(f"{VENV_PREFIX} isort hooks/pre_gen_project.py tests/test_bake_project.py")
-
-
-@task(pre=[black, isort])
+@task(pre=[black, ruff])
 def reformat(ctx):
     """Reformat python files through black and isort"""
     pass

@@ -5,32 +5,29 @@ verify_ssl = true
 
 [dev-packages]
 # task management
-invoke = "*"
+invoke = ">=1.4.1"
 # test
-pytest = ">=6.0.1"
-pytest-cov = "*"
-pytest-mock = "*"
-coverage = {extras = ["toml"], version = "*"}
+pytest = ">=7.2.0"
+pytest-cov = ">=2.8.1"
+pytest-mock = ">=3.0.0"
+pytest-xdist = ">=1.31.0"
+hypothesis = ">=5.8.0"
+coverage = {extras = ["toml"], version = ">=5.0.4"}
 # style
-black = "*"
-isort = ">=5.0.0"
-flake8 = "*"
+ruff = ">=0.0.262"
+black = ">=22.10.0"
 mypy = ">=0.910"
-pylint = ">=2.7.0"
 # security
-bandit = "*"
-pip-audit = "*"
+bandit = ">=1.6.2"
+pip-audit = ">=2.4.5"
 # git
-commitizen = "*"
-pre-commit = "*"
+commitizen = ">=3.0.0"
+pre-commit = ">=2.2.0"
 # documentation
-mkdocs = "*"
+mkdocs = ">=1.1"
 mkdocs-material = ">=7.0.6"
 
 [packages]
-
-[pipenv]
-allow_prereleases = true
 
 [requires]
 python_version = "{{ cookiecutter.python_version }}"

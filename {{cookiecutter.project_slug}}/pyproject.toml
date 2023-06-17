@@ -9,40 +9,19 @@ version_files = [
 {%- endif %}
 
 
-[tool.black]
+[tool.ruff]
 line-length = 88
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.eggs
-  | \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | _build
-  | buck-out
-  | build
-  | dist
-)/
-'''
+ignore = [
+    "E501",
+    "D1",
+    "D415",
+]
 
+[tool.ruff.isort]
+known-first-party = ["tests"]
 
-[tool.isort]
-profile = "black"
-
-
-[tool.pylint]
-    [tool.pylint.messages_control]
-    disable = [
-        "bad-continuation",
-        "missing-function-docstring",
-        "missing-module-docstring",
-        "invalid-name"
-    ]
-
-    [tool.pylint.format]
-    max-line-length = 88
+[tool.ruff.pydocstyle]
+convention = "google"
 
 
 [tool.mypy]
@@ -144,22 +123,20 @@ pytest-xdist = "^1.31.0"
 hypothesis = "^5.8.0"
 coverage = {extras = ["toml"], version = "^5.0.4"}
 # style
-flake8 = "^3.7.9"
-pylint = "^2.15.2"
+ruff = "^0.0.262"
 mypy = "^0.910"
-black = "^22.10.0"
-isort = "^5.0.0"
+black = ">=22.10.0"
 # security
 bandit = "^1.6.2"
 pip-audit = "^2.4.5"
 # git
-commitizen = "^2.4.0"
+commitizen = "^3.0.0"
 pre-commit = "^2.2.0"
 # documentation
 mkdocs = "^1.1"
 mkdocs-material = "^7.0.6"
 
 [build-system]
-requires = ["poetry>=1.0.0"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 {%- endif %}
