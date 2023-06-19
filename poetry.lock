@@ -467,34 +467,35 @@ lxml = ["lxml"]
 
 [[package]]
 name = "hypothesis"
-version = "5.49.0"
+version = "6.79.1"
 description = "A library for property-based testing"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 files = [
-    {file = "hypothesis-5.49.0-py3-none-any.whl", hash = "sha256:e91111f2f01abf2566041c4c86366aa7f08bfd5b3d858cc77a545fcf67df335e"},
-    {file = "hypothesis-5.49.0.tar.gz", hash = "sha256:36a4d5587c34193125d654b61bf9284e24a227d1edd339c49143378658a10c7d"},
+    {file = "hypothesis-6.79.1-py3-none-any.whl", hash = "sha256:7a0b8ca178f16720e96f11e96b71b6139db0e30727e9cf8bd8e3059710393fc7"},
+    {file = "hypothesis-6.79.1.tar.gz", hash = "sha256:de8fb599fc855d3006236ab58cd0edafd099d63837225aad848dac22e239475b"},
 ]
 
 [package.dependencies]
 attrs = ">=19.2.0"
+exceptiongroup = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 sortedcontainers = ">=2.1.0,<3.0.0"
 
 [package.extras]
-all = ["backports.zoneinfo (>=0.2.1)", "black (>=19.10b0)", "click (>=7.0)", "django (>=2.2)", "dpcontracts (>=0.4)", "importlib-metadata", "importlib-resources (>=3.3.0)", "lark-parser (>=0.6.5)", "libcst (>=0.3.16)", "numpy (>=1.9.0)", "pandas (>=0.25)", "pytest (>=4.3)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "tzdata (>=2020.4)"]
-cli = ["black (>=19.10b0)", "click (>=7.0)"]
+all = ["backports.zoneinfo (>=0.2.1)", "black (>=19.10b0)", "click (>=7.0)", "django (>=3.2)", "dpcontracts (>=0.4)", "importlib-metadata (>=3.6)", "lark (>=0.10.1)", "libcst (>=0.3.16)", "numpy (>=1.16.0)", "pandas (>=1.1)", "pytest (>=4.6)", "python-dateutil (>=1.4)", "pytz (>=2014.1)", "redis (>=3.0.0)", "rich (>=9.0.0)", "tzdata (>=2023.3)"]
+cli = ["black (>=19.10b0)", "click (>=7.0)", "rich (>=9.0.0)"]
 codemods = ["libcst (>=0.3.16)"]
 dateutil = ["python-dateutil (>=1.4)"]
-django = ["django (>=2.2)", "pytz (>=2014.1)"]
+django = ["django (>=3.2)"]
 dpcontracts = ["dpcontracts (>=0.4)"]
 ghostwriter = ["black (>=19.10b0)"]
-lark = ["lark-parser (>=0.6.5)"]
-numpy = ["numpy (>=1.9.0)"]
-pandas = ["pandas (>=0.25)"]
-pytest = ["pytest (>=4.3)"]
+lark = ["lark (>=0.10.1)"]
+numpy = ["numpy (>=1.16.0)"]
+pandas = ["pandas (>=1.1)"]
+pytest = ["pytest (>=4.6)"]
 pytz = ["pytz (>=2014.1)"]
 redis = ["redis (>=3.0.0)"]
-zoneinfo = ["backports.zoneinfo (>=0.2.1)", "importlib-resources (>=3.3.0)", "tzdata (>=2020.4)"]
+zoneinfo = ["backports.zoneinfo (>=0.2.1)", "tzdata (>=2023.3)"]
 
 [[package]]
 name = "identify"
@@ -1616,4 +1617,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "0f84a7b833d0c15843a8057dcaf1008667975d0278e21907c04ab4691b28f375"
+content-hash = "fe6305ea673cd99a30d5e33b873690dbfa62dcb0c338d711bc3f8ba7f15f8469"
