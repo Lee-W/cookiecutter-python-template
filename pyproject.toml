@@ -106,7 +106,7 @@ pytest-cov = "^2.8.1"
 pytest-mock = "^3.0.0"
 pytest-xdist = "^3.0.2"
 hypothesis = "^5.8.0"
-pytest-cookies = "^0.6.1"
+pytest-cookies = "^0.7.0"
 coverage = "^6.0b"
 # style
 ruff = "^0.0.262"

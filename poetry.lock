@@ -1145,18 +1145,18 @@ testing = ["argcomplete", "attrs (>=19.2.0)", "hypothesis (>=3.56)", "mock", "no
 
 [[package]]
 name = "pytest-cookies"
-version = "0.6.1"
+version = "0.7.0"
 description = "The pytest plugin for your Cookiecutter templates. 🍪"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 files = [
-    {file = "pytest-cookies-0.6.1.tar.gz", hash = "sha256:94c41ad914d420b57bc31d58ab2c0b103322c11d07d13b8d245c85fa9b069714"},
-    {file = "pytest_cookies-0.6.1-py3-none-any.whl", hash = "sha256:2e2383c12a321753676c8944fb75b3c8ccac70fce58e27d6b201e1a3ff3dab27"},
+    {file = "pytest-cookies-0.7.0.tar.gz", hash = "sha256:1aaa6b4def8238d0d1709d3d773b423351bfb671c1e3438664d824e0859d6308"},
+    {file = "pytest_cookies-0.7.0-py3-none-any.whl", hash = "sha256:52770f090d77b16428f6a24a208e6be76addb2e33458035714087b4de49389ea"},
 ]
 
 [package.dependencies]
-cookiecutter = ">=1.4.0"
-pytest = ">=3.3.0"
+cookiecutter = ">=2.1.0"
+pytest = ">=3.9.0"
 
 [[package]]
 name = "pytest-cov"
@@ -1622,4 +1622,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "4e3acded05d03b56a7baeb9a4caebb3755e277a15cc3e07fccc7c645c3fc7498"
+content-hash = "877fc6af344b956d74a99e5597323b9566013124358e63c0ec71b20b5b68956d"
