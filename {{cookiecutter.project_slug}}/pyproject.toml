@@ -124,7 +124,7 @@ hypothesis = "^5.8.0"
 coverage = {extras = ["toml"], version = "^5.0.4"}
 # style
 ruff = "^0.0.262"
-mypy = "^0.910"
+mypy = "^1.4"
 black = ">=22.10.0"
 # security
 bandit = "^1.6.2"
