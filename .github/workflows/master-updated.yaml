@@ -33,7 +33,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python 3.10
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
@@ -49,6 +49,6 @@ jobs:
       - name: Push doc to Github Page
         uses: peaceiris/actions-gh-pages@v3
         env:
-          PERSONAL_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./site
+          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./site
