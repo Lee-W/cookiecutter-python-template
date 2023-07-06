@@ -5,7 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 # task management
-invoke = ">=1.4.1"
+invoke = ">=2.1.3"
 # test
 pytest = ">=7.2.0"
 pytest-cov = ">=2.8.1"
@@ -16,7 +16,7 @@ coverage = {extras = ["toml"], version = ">=5.0.4"}
 # style
 ruff = ">=0.0.262"
 black = ">=22.10.0"
-mypy = ">=0.910"
+mypy = ">=1.4"
 # security
 bandit = ">=1.6.2"
 pip-audit = ">=2.4.5"

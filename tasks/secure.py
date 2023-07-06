@@ -17,5 +17,5 @@ def bandit(ctx):
 
 @task(pre=[check_package, bandit], default=True)
 def run(ctx):
-    """Check security check through safety and bandit"""
+    """Check security check through pip-audit and bandit"""
     pass
