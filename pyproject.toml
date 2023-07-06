@@ -1,6 +1,6 @@
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "1.5.0"
+version = "1.7.0"
 tag_format = "$version"
 version_files = [
     "cookiecutter.json",
@@ -89,7 +89,7 @@ markers = [
 
 [tool.poetry]
 name = "cookiecutter-python-template"
-version = "1.5.0"
+version = "1.7.0"
 description = ""
 authors = ["Wei Lee <weilee.rx@gmail.com>"]
 license = "MIT"
@@ -99,7 +99,7 @@ python = "^3.10"
 
 [tool.poetry.dev-dependencies]
 # task management
-invoke = "^1.4.1"
+invoke = "^2.1.3"
 # test
 pytest = "^7.2.0"
 pytest-cov = "^2.8.1"
@@ -110,7 +110,7 @@ pytest-cookies = "^0.6.1"
 coverage = "^6.0b"
 # style
 ruff = "^0.0.262"
-mypy = "^0.910"
+mypy = "^1.4"
 black = "^22.8.0"
 # security
 bandit = "^1.6.2"
@@ -123,5 +123,5 @@ mkdocs = "^1.1"
 mkdocs-material = "^7.0.6"
 
 [build-system]
-requires = ["poetry>=1.5.0"]
+requires = ["poetry>=1.7.0"]
 build-backend = "poetry.masonry.api"

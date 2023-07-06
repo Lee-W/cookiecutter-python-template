@@ -1,4 +1,21 @@
 # Changelog
+## 1.7.0 (2023-06-24)
+
+### Feat
+
+- upgrade invoke version to 2.1.3
+- upgrade mypy to >= 1.4
+
+### Fix
+
+- **secure**: fix doc string typo
+
+## 1.6.0 (2023-06-17)
+
+### Feat
+
+- add dependabot setup
+
 ## 1.5.0 (2023-06-17)
 
 ### Feat
