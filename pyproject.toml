@@ -120,7 +120,7 @@ commitizen = "^2.4.0"
 pre-commit = "^3.3.3"
 # documentation
 mkdocs = "^1.1"
-mkdocs-material = "^7.0.6"
+mkdocs-material = "^9.1.19"
 
 [build-system]
 requires = ["poetry>=1.7.0"]
