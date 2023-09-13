@@ -109,7 +109,7 @@ hypothesis = "^6.81.2"
 pytest-cookies = "^0.6.1"
 coverage = "^6.0b"
 # style
-ruff = "^0.0.262"
+ruff = "^0.0.289"
 mypy = "^1.4"
 black = "^22.8.0"
 # security
