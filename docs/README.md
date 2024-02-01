@@ -14,7 +14,6 @@
 * Test thought [pytest](https://docs.pytest.org/en/) with the following supports
     * [pytest-cov](https://github.com/pytest-dev/pytest-cov): generate test coverage repo
     * [pytest-mock](https://github.com/pytest-dev/pytest-mock/): mocking
-    * [pytest-xdist](https://github.com/pytest-dev/pytest-xdist): distributed testing
 * [commitizen](https://commitizen-tools.github.io/commitizen/):
     * regulate git commit convention
     * bump project version
