@@ -19,12 +19,10 @@
 
 ## Usage
 
-
 ## Contributing
 See [Contributing](contributing.md)
 
 ## Authors
 {{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>
-
 
 Created from [Lee-W/cookiecutter-python-template](https://github.com/Lee-W/cookiecutter-python-template/tree/{{ cookiecutter._template_version }}) version {{ cookiecutter._template_version }}
