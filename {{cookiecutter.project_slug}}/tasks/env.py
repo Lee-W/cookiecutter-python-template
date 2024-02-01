@@ -1,10 +1,11 @@
 from invoke import task
+from invoke.context import Context
 
 from tasks.common import VENV_PREFIX
 
 
 @task
-def clean(ctx):
+def clean(ctx: Context) -> None:
     """Remove virtual environment"""
     {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
     ctx.run("pipenv --rm", warn=True)
@@ -14,7 +15,7 @@ def clean(ctx):
 
 
 @task
-def init(ctx):
+def init(ctx: Context) -> None:
     """Install production dependencies"""
     {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
     ctx.run("pipenv install --deploy")
@@ -24,7 +25,7 @@ def init(ctx):
 
 
 @task
-def setup_pre_commit_hook(ctx):
+def setup_pre_commit_hook(ctx: Context) -> None:
     """Setup pre-commit hook to automate check before git commit and git push"""
     ctx.run("git init")
     ctx.run(
@@ -36,7 +37,7 @@ def setup_pre_commit_hook(ctx):
 
 
 @task(optional=["no-pre-commit"])
-def init_dev(ctx, no_pre_commit=False):
+def init_dev(ctx: Context, no_pre_commit: bool = False) -> None:
     """Install development dependencies and setup pre-commit hooks"""
     {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
     ctx.run("pipenv install --dev")

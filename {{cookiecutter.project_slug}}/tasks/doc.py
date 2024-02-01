@@ -1,10 +1,11 @@
 from invoke import task
+from invoke.context import Context
 
 from tasks.common import VENV_PREFIX
 
 
 @task(optional=["clean"])
-def build(ctx, clean=True):
+def build(ctx: Context, clean: bool = True) -> None:
     """Build documentation locally"""
     argument = ""
     if clean:
@@ -14,12 +15,12 @@ def build(ctx, clean=True):
 
 
 @task(default=True)
-def serve(ctx):
+def serve(ctx: Context) -> None:
     """Run local server"""
     ctx.run(f"{VENV_PREFIX} mkdocs serve")
 
 
 @task
-def deploy(ctx):
+def deploy(ctx: Context) -> None:
     """Deploy to github page"""
     ctx.run(f"{VENV_PREFIX} mkdocs gh-deploy")
