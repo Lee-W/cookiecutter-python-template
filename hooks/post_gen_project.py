@@ -1,20 +1,20 @@
 import os
 
 
-def remove_pipfile():
+def remove_pipfile() -> None:
     os.remove("Pipfile")
 
 
-def remove_publish_pypi_github_action():
+def remove_publish_pypi_github_action() -> None:
     os.remove(".github/workflows/python-publish.yaml")
 
 
-def remove_docker_file():
+def remove_docker_file() -> None:
     os.remove("Dockerfile")
     os.remove(".dockerignore")
 
 
-def main():
+def main() -> None:
     if "{{ cookiecutter.dependency_management_tool }}" != "pipenv":
         remove_pipfile()
 
