@@ -10,6 +10,7 @@ version_files = [
 
 [tool.mypy]
 files = [
+    "tasks",
     "hooks",
     "tests"
 ]

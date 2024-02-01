@@ -1,10 +1,11 @@
 from invoke import task
+from invoke.context import Context
 
 from tasks.common import VENV_PREFIX
 
 
 @task(default=True)
-def run(ctx, run_slow_tests=False):
+def run(ctx: Context, run_slow_tests=False) -> None:
     """Run test cases"""
     args = ""
     if not run_slow_tests:
