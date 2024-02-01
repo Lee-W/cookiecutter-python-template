@@ -7,12 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
-        uses: actions/checkout@main
+        uses: actions/checkout@4
         with:
           fetch-depth: 0
 
       - name: Set up Python {{ cookiecutter.python_version }}
-        uses: actions/setup-python@main
+        uses: actions/setup-python@4
         with:
           python-version: "{{ cookiecutter.python_version }}"
 
