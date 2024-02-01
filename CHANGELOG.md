@@ -1,4 +1,12 @@
 # Changelog
+## 1.8.0 (2024-02-01)
+
+### Feat
+
+- **pre-commit**: add actionlint
+- **dependency**: upgrade dev tools versions and remove pytest-xdist, hypothesis which might not be needed in every project
+- **github-actions**: pin action versions
+
 ## 1.7.0 (2023-06-24)
 
 ### Feat
