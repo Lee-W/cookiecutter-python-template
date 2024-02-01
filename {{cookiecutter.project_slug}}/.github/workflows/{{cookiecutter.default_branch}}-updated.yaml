@@ -12,7 +12,7 @@ jobs:
     name: "Bump version and create changelog with commitizen"
     steps:
       - name: Check out
-        uses: actions/checkout@main
+        uses: actions/checkout@4
         with:
           token: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
           fetch-depth: 0
@@ -28,13 +28,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
-        uses: actions/checkout@main
+        uses: actions/checkout@4
         with:
           token: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
           fetch-depth: 0
 
       - name: Set up Python {{ cookiecutter.python_version }}
-        uses: actions/setup-python@main
+        uses: actions/setup-python@4
         with:
           python-version: "{{ cookiecutter.python_version }}"
 
