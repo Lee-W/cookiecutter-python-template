@@ -1,4 +1,10 @@
 # Changelog
+## 1.8.1 (2024-02-17)
+
+### Fix
+
+- **workflows**: change actions version
+
 ## 1.8.0 (2024-02-01)
 
 ### Feat

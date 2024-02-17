@@ -1,6 +1,6 @@
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "1.8.0"
+version = "1.8.1"
 tag_format = "$version"
 version_files = [
     "cookiecutter.json",
@@ -90,7 +90,7 @@ markers = [
 
 [tool.poetry]
 name = "cookiecutter-python-template"
-version = "1.8.0"
+version = "1.8.1"
 description = ""
 authors = ["Wei Lee <weilee.rx@gmail.com>"]
 license = "MIT"
@@ -110,7 +110,7 @@ pytest-cookies = "^0.6.1"
 coverage = "^7.4.1"
 # style
 ruff = "^0.1.15"
-mypy = "^1.8.0"
+mypy = "^1.8.1"
 black = "^24.1.1"
 # security
 bandit = "^1.6.2"
@@ -123,5 +123,5 @@ mkdocs = "^1.5.3"
 mkdocs-material = "^9.5.6"
 
 [build-system]
-requires = ["poetry>=1.8.0"]
+requires = ["poetry>=1.8.1"]
 build-backend = "poetry.masonry.api"
