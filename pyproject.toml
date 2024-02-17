@@ -110,7 +110,7 @@ pytest-cookies = "^0.6.1"
 coverage = "^7.4.1"
 # style
 ruff = "^0.1.15"
-mypy = "^1.8.1"
+mypy = "^1.8.0"
 black = "^24.1.1"
 # security
 bandit = "^1.6.2"
