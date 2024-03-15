@@ -116,7 +116,7 @@ black = "^24.1.1"
 bandit = "^1.6.2"
 pip-audit = "^2.4.5"
 # git
-commitizen = "^3.13.0"
+commitizen = "^3.18.4"
 pre-commit = "^3.5.0"
 # documentation
 mkdocs = "^1.5.3"
