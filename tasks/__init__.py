@@ -1,4 +1,4 @@
-from invoke import Collection
+from invoke.collection import Collection
 
 from tasks import doc, env, git, secure, style, test
 from tasks.build import build_ns

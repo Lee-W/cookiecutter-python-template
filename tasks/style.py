@@ -1,4 +1,4 @@
-from invoke import task
+from invoke.tasks import task
 from invoke.context import Context
 
 from tasks.common import COMMON_TARGETS_AS_STR, VENV_PREFIX
@@ -23,7 +23,7 @@ def black_check(ctx: Context) -> None:
 
 
 @task
-def commit_check(ctx: Context, remote: str="origin") -> None:
+def commit_check(ctx: Context, remote: str = "origin") -> None:
     """Check commit message through commitizen"""
     ctx.run(f"{VENV_PREFIX} cz -nr 3 check --rev-range {remote}/master..", warn=True)
 
