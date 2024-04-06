@@ -1,4 +1,13 @@
 # Changelog
+## 1.9.0 (2024-04-06)
+
+### Feat
+
+- **github-actions**: add github-actions to detect cruft template update
+- **dockerfile**: pin pip version
+- **deps**: upgrade pre-commit to >= 3.0.0 for actionlint
+- **github-actions**: run pre-commit hooks on github action
+
 ## 1.8.1 (2024-02-17)
 
 ### Fix
