@@ -1,5 +1,7 @@
 from invoke.collection import Collection
+from invoke.common import VENV_PREFIX
 from invoke.context import Context
+from invoke.tasks import task
 
 from tasks import doc, env, git, secure, style, test
 from tasks.build import build_ns
