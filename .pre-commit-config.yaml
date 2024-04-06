@@ -46,7 +46,7 @@ repos:
         args: ["--write-changes", "--ignore-words-list", "asend"]
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.13.0
+    rev: v3.21.3
     hooks:
       - id: commitizen
       - id: commitizen-branch
@@ -55,7 +55,7 @@ repos:
           - push
 
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.6.26
+    rev: v1.6.27
     hooks:
       - id: actionlint
 
