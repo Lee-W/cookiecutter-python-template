@@ -55,7 +55,7 @@ warn_unused_configs = true
 
 
 [tool.pytest.ini_options]
-minversion = "7.2.0"
+minversion = "8.0.0"
 testpaths = "tests"
 addopts = "--strict-markers"
 norecursedirs = [
