@@ -8,7 +8,7 @@ from tasks.common import VENV_PREFIX
 def clean(ctx: Context) -> None:
     """Remove virtual environment"""
     # TODO
-    ctx.run("poetry env remove 3.7", warn=True)
+    ctx.run("poetry env remove 3.12", warn=True)
 
 
 @task
