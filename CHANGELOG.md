@@ -1,4 +1,10 @@
 # Changelog
+## 1.9.2 (2024-04-06)
+
+### Fix
+
+- **github-actions**: skip no-commit-to-branch in CI which causes false negative when bumping version
+
 ## 1.9.1 (2024-04-06)
 
 ### Fix
