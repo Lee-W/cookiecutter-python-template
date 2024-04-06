@@ -1,6 +1,6 @@
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "1.9.0"
+version = "1.9.1"
 tag_format = "$version"
 version_files = [
     "cookiecutter.json",
@@ -90,7 +90,7 @@ markers = [
 
 [tool.poetry]
 name = "cookiecutter-python-template"
-version = "1.9.0"
+version = "1.9.1"
 description = ""
 authors = ["Wei Lee <weilee.rx@gmail.com>"]
 license = "MIT"
@@ -123,5 +123,5 @@ mkdocs = "^1.5.3"
 mkdocs-material = "^9.5.6"
 
 [build-system]
-requires = ["poetry>=1.9.0"]
+requires = ["poetry>=1.9.1"]
 build-backend = "poetry.masonry.api"

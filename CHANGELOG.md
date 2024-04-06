@@ -1,4 +1,10 @@
 # Changelog
+## 1.9.1 (2024-04-06)
+
+### Fix
+
+- **tasks**: fix import error
+
 ## 1.9.0 (2024-04-06)
 
 ### Feat
