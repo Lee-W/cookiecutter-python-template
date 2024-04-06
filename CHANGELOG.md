@@ -1,4 +1,10 @@
 # Changelog
+## 1.9.3 (2024-04-06)
+
+### Fix
+
+- **tasks**: fix missing hook-stage in run-pre-commit-hooks task
+
 ## 1.9.2 (2024-04-06)
 
 ### Fix
