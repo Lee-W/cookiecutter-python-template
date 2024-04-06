@@ -10,7 +10,7 @@ from tasks.common import VENV_PREFIX
 @task
 def run_pre_commit_hooks(context: Context) -> None:
     """Run pre-commit hooks on all files"""
-    context.run(f"{VENV_PREFIX} pre-commit run --all-files")
+    context.run(f"{VENV_PREFIX} pre-commit run --all-files --hook-stage pre-push")
 
 
 ns = Collection()

@@ -32,4 +32,4 @@ jobs:
 
       - name: Run pre-commit hooks
         run: |
-          SKIP=no-commit-to-branch inv run-pre-commit-hooks
+          SKIP=no-commit-to-branch,commitizen-branch inv run-pre-commit-hooks
