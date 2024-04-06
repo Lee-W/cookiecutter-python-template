@@ -3,7 +3,7 @@ name: Publish Python package to PyPI
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 jobs:
   publish-pypi-package:
