@@ -1,5 +1,4 @@
 from invoke.collection import Collection
-from invoke.common import VENV_PREFIX
 from invoke.context import Context
 from invoke.tasks import task
 
