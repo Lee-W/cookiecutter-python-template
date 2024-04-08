@@ -103,7 +103,7 @@ python = "^3.12"
 invoke = "^2.2.0"
 # test
 pytest = "^8.0.0"
-pytest-cov = "^4.1.0"
+pytest-cov = "^5.0.0"
 pytest-mock = "^3.0.0"
 pytest-xdist = "^3.0.2"
 pytest-cookies = "^0.6.1"
