@@ -111,7 +111,7 @@ coverage = "^7.4.1"
 # style
 ruff = "^0.3.7"
 mypy = "^1.8.0"
-black = "^24.1.1"
+black = "^24.4.0"
 # security
 bandit = "^1.6.2"
 pip-audit = "^2.4.5"
