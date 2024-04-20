@@ -1,4 +1,10 @@
 # Changelog
+## 1.10.0 (2024-04-20)
+
+### Feat
+
+- upgrade ruff related config due to ruff upgrade
+
 ## 1.9.3 (2024-04-06)
 
 ### Fix
