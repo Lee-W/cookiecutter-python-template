@@ -26,16 +26,18 @@ warn_return_any = true
 
 [tool.ruff]
 line-length = 88
+
+[tool.ruff.lint]
 ignore = [
     "E501",
     "D1",
     "D415",
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["tests"]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
 

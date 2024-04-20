@@ -70,7 +70,7 @@ repos:
         stages: [commit]
         language: system
         pass_filenames: false
-        entry: inv style.reformat
+        entry: inv style.format
         types: [python]
 
       - id: style-check

@@ -7,7 +7,7 @@ from tasks.common import COMMON_TARGETS_AS_STR, VENV_PREFIX
 @task
 def ruff(ctx: Context) -> None:
     """Check style through ruff"""
-    ctx.run(f"{VENV_PREFIX} ruff {COMMON_TARGETS_AS_STR}")
+    ctx.run(f"{VENV_PREFIX} ruff check {COMMON_TARGETS_AS_STR}")
 
 
 @task
@@ -36,10 +36,17 @@ def run(ctx: Context) -> None:
 
 @task
 def black(ctx: Context) -> None:
+    """Format Python code through Black"""
     ctx.run(f"{VENV_PREFIX} black {COMMON_TARGETS_AS_STR}")
 
 
-@task(pre=[ruff, black])
-def reformat(ctx: Context) -> None:
+@task
+def ruff_format(ctx: Context) -> None:
+    """Format Python code through ruff"""
+    ctx.run(f"{VENV_PREFIX} ruff format {COMMON_TARGETS_AS_STR}")
+
+
+@task(pre=[black, ruff_format])
+def format(ctx: Context) -> None:
     """Reformat python files through black and ruff"""
     pass
