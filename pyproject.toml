@@ -119,7 +119,7 @@ bandit = "^1.6.2"
 pip-audit = "^2.7.3"
 # git
 commitizen = "^3.25.0"
-pre-commit = "^3.5.0"
+pre-commit = "^3.7.1"
 # documentation
 mkdocs = "^1.5.3"
 mkdocs-material = "^9.5.18"
