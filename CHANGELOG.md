@@ -1,4 +1,10 @@
 # Changelog
+## 1.10.1 (2024-05-28)
+
+### Fix
+
+- **pre-commit**: fix pre-commit-config missing venv
+
 ## 1.10.0 (2024-04-20)
 
 ### Feat
