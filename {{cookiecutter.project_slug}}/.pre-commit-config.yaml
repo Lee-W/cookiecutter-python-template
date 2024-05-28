@@ -70,7 +70,7 @@ repos:
         stages: [commit]
         language: system
         pass_filenames: false
-        entry: inv style.format
+        entry: {{ cookiecutter.dependency_management_tool }} run inv style.format
         types: [python]
 
       - id: style-check
@@ -78,7 +78,7 @@ repos:
         stages: [push]
         language: system
         pass_filenames: false
-        entry: inv style
+        entry: {{ cookiecutter.dependency_management_tool }} run inv style
         types: [python]
 
       - id: security-check
@@ -86,7 +86,7 @@ repos:
         stages: [push]
         language: system
         pass_filenames: false
-        entry: inv secure
+        entry: {{ cookiecutter.dependency_management_tool }} run inv secure
         types: [python]
 
       - id: test
@@ -94,5 +94,5 @@ repos:
         stages: [push]
         language: system
         pass_filenames: false
-        entry: inv test -a
+        entry: {{ cookiecutter.dependency_management_tool }} run inv test -a
         types: [python]
