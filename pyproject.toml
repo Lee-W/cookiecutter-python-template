@@ -115,7 +115,7 @@ ruff = "^0.4.7"
 mypy = "^1.10.0"
 black = "^24.4.2"
 # security
-bandit = "^1.6.2"
+bandit = "^1.7.9"
 pip-audit = "^2.7.3"
 # git
 commitizen = "^3.25.0"
