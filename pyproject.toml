@@ -111,7 +111,7 @@ pytest-xdist = "^3.6.1"
 pytest-cookies = "^0.6.1"
 coverage = "^7.5.1"
 # style
-ruff = "^0.4.9"
+ruff = "^0.4.10"
 mypy = "^1.10.0"
 black = "^24.4.2"
 # security
