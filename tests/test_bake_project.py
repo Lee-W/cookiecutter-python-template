@@ -18,7 +18,7 @@ def run_cmd(cmd: str) -> tuple[bytes, bytes, int]:
     return stdout, stderr, return_code
 
 
-@pytest.fixture()
+@pytest.fixture
 def default_context() -> dict[str, str]:
     return {
         "author_email": "author@example.com",
@@ -38,7 +38,30 @@ def default_context() -> dict[str, str]:
     }
 
 
-def test_bake_project(cookies, default_context):
+@pytest.mark.parametrize("use_strict_mypy_config", ["n", "y"])
+@pytest.mark.parametrize("python_version", ["3.9", "3.10", "3.11", "3.12", "3.13"])
+@pytest.mark.parametrize("dependency_management_tool", ["poetry", "pipenv"])
+@pytest.mark.parametrize("default_branch", ["main", "master"])
+@pytest.mark.parametrize("build_pypi_package", ["n", "y"])
+@pytest.mark.parametrize("build_docker_image", ["n", "y"])
+def test_bake_project(
+    cookies,
+    default_context,
+    build_docker_image,
+    build_pypi_package,
+    default_branch,
+    dependency_management_tool,
+    python_version,
+    use_strict_mypy_config,
+):
+    context = default_context
+    context["build_docker_image"] = build_docker_image
+    context["build_pypi_package"] = build_pypi_package
+    context["default_branch"] = default_branch
+    context["dependency_management_tool"] = dependency_management_tool
+    context["python_version"] = python_version
+    context["use_strict_mypy_config"] = use_strict_mypy_config
+
     result = cookies.bake(extra_context=default_context)
 
     assert result.exit_code == 0
@@ -47,22 +70,46 @@ def test_bake_project(cookies, default_context):
     assert result.project_path.is_dir()
 
 
-@pytest.mark.slow()
-def test_project_setup(cookies, default_context):
+@pytest.mark.slow
+@pytest.mark.parametrize("use_strict_mypy_config", ["n", "y"])
+@pytest.mark.parametrize("python_version", ["3.9", "3.10", "3.11", "3.12", "3.13"])
+@pytest.mark.parametrize("dependency_management_tool", ["poetry", "pipenv"])
+@pytest.mark.parametrize("default_branch", ["main", "master"])
+@pytest.mark.parametrize("build_pypi_package", ["n", "y"])
+@pytest.mark.parametrize("build_docker_image", ["n", "y"])
+def test_project_setup(
+    cookies,
+    default_context,
+    build_docker_image,
+    build_pypi_package,
+    default_branch,
+    dependency_management_tool,
+    python_version,
+    use_strict_mypy_config,
+):
     result = cookies.bake(extra_context=default_context)
+    context = default_context
+    context["build_docker_image"] = build_docker_image
+    context["build_pypi_package"] = build_pypi_package
+    context["default_branch"] = default_branch
+    context["dependency_management_tool"] = dependency_management_tool
+    context["python_version"] = python_version
+    context["use_strict_mypy_config"] = use_strict_mypy_config
 
     assert result.exit_code == 0
     assert result.exception is None
 
     with result.project.as_cwd():
-        _, __, exit_code = run_cmd("poetry run inv env.init-dev")
+        _, __, exit_code = run_cmd(f"{dependency_management_tool} run inv env.init-dev")
         assert exit_code == 0
 
-        _, __, exit_code = run_cmd("poetry run inv style")
+        _, __, exit_code = run_cmd(f"{dependency_management_tool} run inv style")
         assert exit_code == 0
 
         run_cmd("git add .")
-        _, __, exit_code = run_cmd("SKIP=no-commit-to-branch poetry run pre-commit run --all-files")
+        _, __, exit_code = run_cmd(
+            f"SKIP=no-commit-to-branch {dependency_management_tool} run pre-commit run --all-files"
+        )
         assert exit_code == 0
 
-        run_cmd(f"poetry env remove {default_context['python_version']}")
+        run_cmd(f"poetry env remove {python_version}")
