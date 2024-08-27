@@ -1,6 +1,7 @@
-from invoke.tasks import task
-from invoke.context import Context
+from __future__ import annotations
 
+from invoke.context import Context
+from invoke.tasks import task
 
 from tasks.common import VENV_PREFIX
 
@@ -12,10 +13,7 @@ def commit(ctx: Context) -> None:
 
 
 @task
-def bump(ctx: Context, changelog=False) -> None:
-    """bump version through commitizen"""
-    argument = ""
-    if changelog:
-        argument += " --changelog"
-
-    ctx.run(f"{VENV_PREFIX} cz bump -nr 3 --yes{argument}", warn=True)
+def bump(ctx: Context, changelog: bool = False) -> None:
+    """Bump version through commitizen"""
+    arguments = " --changelog" if changelog else ""
+    ctx.run(f"{VENV_PREFIX} cz bump -nr 3 --yes{arguments}", warn=True)

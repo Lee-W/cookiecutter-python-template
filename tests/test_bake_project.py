@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import subprocess
-from typing import Dict, Tuple
 
 import pytest
 
 
-def run_cmd(cmd: str) -> Tuple[bytes, bytes, int]:
+def run_cmd(cmd: str) -> tuple[bytes, bytes, int]:
     process = subprocess.Popen(
         cmd,
         shell=True,
@@ -17,8 +18,8 @@ def run_cmd(cmd: str) -> Tuple[bytes, bytes, int]:
     return stdout, stderr, return_code
 
 
-@pytest.fixture
-def default_context() -> Dict[str, str]:
+@pytest.fixture()
+def default_context() -> dict[str, str]:
     return {
         "author_email": "author@example.com",
         "author_name": "author",
@@ -32,7 +33,7 @@ def default_context() -> Dict[str, str]:
         "project_description": "Short Description for Python Project",
         "project_name": "Test Python Project",
         "project_slug": "test_python_project",
-        "python_version": "3.7",
+        "python_version": "3.8",
         "use_strict_mypy_config": "n",
     }
 
@@ -46,7 +47,7 @@ def test_bake_project(cookies, default_context):
     assert result.project.isdir()
 
 
-@pytest.mark.slow
+@pytest.mark.slow()
 def test_project_setup(cookies, default_context):
     result = cookies.bake(extra_context=default_context)
 

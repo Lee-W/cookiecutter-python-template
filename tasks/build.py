@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 from invoke.collection import Collection
-from invoke.tasks import task
 from invoke.context import Context
+from invoke.tasks import task
 
 
 @task
