@@ -52,8 +52,8 @@ jobs:
       - name: Run update if available
         if: steps.check.outputs.has_changes == '1'
         run: |
-          git config --global user.email {% raw %}"{{ cookiecutter.author_email }}"}{% endraw %}
-          git config --global user.name {% raw %}"{{ cookiecutter.author_name }}"{% endraw %}
+          git config --global user.email "{{ cookiecutter.author_email }}"
+          git config --global user.name "{{ cookiecutter.author_name }}"
 
           cruft update --skip-apply-ask --refresh-private-variables
           git restore --staged .
