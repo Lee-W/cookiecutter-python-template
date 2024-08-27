@@ -40,7 +40,7 @@ def init_dev(ctx: Context, no_pre_commit: bool = False) -> None:
     {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
     ctx.run("pipenv install --dev")
     {%- elif cookiecutter.dependency_management_tool == 'poetry' -%}
-    ctx.run("poetry install")
+    ctx.run("poetry install --with dev")
     {%- endif %}
     if not no_pre_commit:
         setup_pre_commit_hook(ctx)
