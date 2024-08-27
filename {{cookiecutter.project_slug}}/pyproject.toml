@@ -1,59 +1,63 @@
 [tool.commitizen]
-name = "cz_conventional_commits"
-version = "0.0.1"
-tag_format = "$version"
+
 {% if cookiecutter.dependency_management_tool=='poetry' -%}
-version_files = [
-    "pyproject.toml:version"
-]
+
 {%- endif %}
 
 
-[tool.ruff]
-line-length = 88
-
-[tool.ruff.lint]
-ignore = [
-    "E501",
-    "D1",
-    "D415",
-]
-
-[tool.ruff.lint.isort]
-known-first-party = ["tests"]
-
-[tool.ruff.lint.pydocstyle]
-convention = "google"
-
-
+name = "cz_conventional_commits"
+version = "0.0.1"
+tag_format = "$version"
+version_files = ["pyproject.toml:version"]
 [tool.mypy]
-files = [
-    "{{ cookiecutter.project_slug }}",
-    "tests"
-]
+
+{% if cookiecutter.use_strict_mypy_config == 'y' -%}
+files = ["{{ cookiecutter.project_slug }}", "tests"]
 ignore_missing_imports = true
 follow_imports = "silent"
 warn_redundant_casts = true
 warn_unused_ignores = true
 warn_unused_configs = true
-{% if cookiecutter.use_strict_mypy_config == 'y' -%}
-    [[tool.mypy.overrides]]
-    module = ["{{ cookiecutter.project_slug }}.*"]
-    # Ensure full coverage
-    disallow_untyped_calls = true
-    disallow_untyped_defs = true
-    disallow_incomplete_defs = true
-    disallow_untyped_decorators = true
-    # Restrict dynamic typing
-    disallow_any_generics = true
-    disallow_subclassing_any = true
-    warn_return_any = true
+[[tool.mypy.overrides]]
+module = ["{{ cookiecutter.project_slug }}.*"]
+# Ensure full coverage
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
+# Restrict dynamic typing
+disallow_any_generics = true
+disallow_subclassing_any = true
+warn_return_any = true
 
-    [[tool.mypy.overrides]]
-    module = ["tests.*"]
-    disallow_untyped_defs = false
-    disallow_untyped_decorators = false
+[[tool.mypy.overrides]]
+
 {%- endif %}
+
+
+module = ["tests.*"]
+disallow_untyped_defs = false
+disallow_untyped_decorators = false
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+extend-select = [
+    "I",     # Missing required import (auto-fixable)
+    "UP",    # Pyupgrade
+    "PT",    # flake8-pytest-style rules
+    "TID25", # flake8-tidy-imports rules
+]
+
+ignore = ["E501", "D1", "D415"]
+
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
+combine-as-imports = true
+known-first-party = ["tests"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 
 [tool.pytest.ini_options]
@@ -70,38 +74,33 @@ norecursedirs = [
     "*.egg",
     "venv",
     "env",
-    "virtualenv"
+    "virtualenv",
 ]
 
 
 [tool.coverage]
-    [tool.coverage.report]
-    show_missing = true
-    exclude_lines = [
-        # Have to re-enable the standard pragma
-        'pragma: no cover',
+[tool.coverage.report]
 
-        # Don't complain about missing debug-only code:
-        'def __repr__',
-        'if self\.debug',
-
-        # Don't complain if tests don't hit defensive assertion code:
-        'raise AssertionError',
-        'raise NotImplementedError',
-
-        # Don't complain if non-runnable code isn't run:
-        'if 0:',
-        'if __name__ == .__main__.:'
-    ]
-    omit = [
-        'env/*',
-        'venv/*',
-        '*/virtualenv/*',
-        '*/virtualenvs/*',
-        '*/tests/*'
-    ]
 
 {% if cookiecutter.dependency_management_tool=='poetry' -%}
+show_missing = true
+exclude_lines = [
+    # Have to re-enable the standard pragma
+    'pragma: no cover',
+
+    # Don't complain about missing debug-only code:
+    'def __repr__',
+    'if self\.debug',
+
+    # Don't complain if tests don't hit defensive assertion code:
+    'raise AssertionError',
+    'raise NotImplementedError',
+
+    # Don't complain if non-runnable code isn't run:
+    'if 0:',
+    'if __name__ == .__main__.:',
+]
+omit = ['env/*', 'venv/*', '*/virtualenv/*', '*/virtualenvs/*', '*/tests/*']
 [tool.poetry]
 name = "{{ cookiecutter.project_slug }}"
 version = "0.0.1"
@@ -118,25 +117,25 @@ python = "^{{ cookiecutter.python_version }}"
 # task management
 invoke = "^2.2.0"
 # test
-pytest = "^8.0.0"
-pytest-cov = "^2.8.1"
-pytest-mock = "^3.0.0"
-coverage = {extras = ["toml"], version = "^7.4.1"}
+pytest = "^8.3.2"
+pytest-cov = "^5.0.0"
+pytest-mock = "^3.6.1"
+coverage = { extras = ["toml"], version = "^7.6.1" }
 # style
-ruff = "^0.1.15"
-black = ">=24.1.1"
-mypy = "^1.8.0"
+ruff = "^0.6.2"
+mypy = "^1.11.1"
 # security
-bandit = "^1.6.2"
-pip-audit = "^2.4.5"
+bandit = "^1.7.9"
+pip-audit = "^2.7.3"
 # git
-commitizen = "^3.0.0"
-pre-commit = "^3.0.0"
+commitizen = "^3.29.0"
+pre-commit = "^3.8.0"
 # documentation
-mkdocs = "^1.1"
-mkdocs-material = "^7.0.6"
+mkdocs = "^1.5.3"
+mkdocs-material = "^9.5.32"
 
 [build-system]
-requires = ["poetry>=1.7.0"]
-build-backend = "poetry.core.masonry.api"
+
 {%- endif %}
+requires = ["poetry>=1.10.1"]
+build-backend = "poetry.core.masonry.api"
