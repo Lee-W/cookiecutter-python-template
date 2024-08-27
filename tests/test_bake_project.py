@@ -33,7 +33,7 @@ def default_context() -> dict[str, str]:
         "project_description": "Short Description for Python Project",
         "project_name": "Test Python Project",
         "project_slug": "test_python_project",
-        "python_version": "3.8",
+        "python_version": "3.9",
         "use_strict_mypy_config": "n",
     }
 

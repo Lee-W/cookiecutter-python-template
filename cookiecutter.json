@@ -6,7 +6,7 @@
     "github_url": "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}",
     "author_name": "Wei Lee",
     "author_email": "weilee.rx@gmail.com",
-    "python_version": "3.8",
+    "python_version": "3.9",
     "dependency_management_tool": [
         "poetry",
         "pipenv"
