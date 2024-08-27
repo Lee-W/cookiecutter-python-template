@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from invoke.context import Context
 from invoke.tasks import task
 
@@ -7,11 +9,8 @@ from tasks.common import VENV_PREFIX
 @task(optional=["clean"])
 def build(ctx: Context, clean: bool = True) -> None:
     """Build documentation locally"""
-    argument = ""
-    if clean:
-        argument += " --clean"
-
-    ctx.run(f"{VENV_PREFIX} mkdocs build {argument}")
+    arguments = " --clean" if clean else ""
+    ctx.run(f"{VENV_PREFIX} mkdocs build {arguments}")
 
 
 @task(default=True)

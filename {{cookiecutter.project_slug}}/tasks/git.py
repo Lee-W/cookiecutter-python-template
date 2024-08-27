@@ -15,12 +15,5 @@ def commit(ctx: Context) -> None:
 @task
 def bump(ctx: Context, changelog: bool = False) -> None:
     """bump version through commitizen"""
-    argument = ""
-    if changelog:
-        argument += " --changelog"
-
-    result = ctx.run(f"{VENV_PREFIX} cz bump --yes{argument}", warn=True)
-    if result.exited == 3:  # NO_COMMIT_FOUND
-        exit(0)
-    else:
-        exit(result.exited)
+    arguments = " --changelog" if changelog else ""
+    ctx.run(f"{VENV_PREFIX} cz bump -nr 3 --yes{arguments}", warn=True)
