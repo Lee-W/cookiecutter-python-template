@@ -14,7 +14,7 @@ repos:
       - id: check-useless-excludes
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       - id: check-vcs-permalinks
       - id: end-of-file-fixer
@@ -28,13 +28,13 @@ repos:
       - id: detect-private-key
 
   - repo: https://github.com/asottile/blacken-docs
-    rev: 1.16.0
+    rev: 1.18.0
     hooks:
       - id: blacken-docs
         additional_dependencies: [black>=24.1.1]
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.3.0
     hooks:
       - id: codespell
         name: Run codespell to check for common misspellings in files
@@ -42,15 +42,15 @@ repos:
         types: [text]
         args: ["--write-changes", "--ignore-words-list", "asend"]
 
-  {% if cookiecutter.build_docker_image != "n" -%}
+{% if cookiecutter.build_docker_image != "n" -%}
   - repo: https://github.com/hadolint/hadolint
     rev: v1.22.1
     hooks:
       - id: hadolint-docker
-  {%- endif %}
+{%- endif %}
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.14.0
+    rev: v3.29.0
     hooks:
       - id: commitizen
       - id: commitizen-branch
@@ -59,7 +59,7 @@ repos:
           - push
 
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.6.26
+    rev: v1.7.1
     hooks:
       - id: actionlint
 
