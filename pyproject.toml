@@ -90,7 +90,7 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.12"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 # task management
 invoke = "^2.2.0"
 # test
