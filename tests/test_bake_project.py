@@ -43,8 +43,8 @@ def test_bake_project(cookies, default_context):
 
     assert result.exit_code == 0
     assert result.exception is None
-    assert result.project.basename == "test_python_project"
-    assert result.project.isdir()
+    assert result.project_path.name == "test_python_project"
+    assert result.project_path.is_dir()
 
 
 @pytest.mark.slow()
@@ -62,7 +62,7 @@ def test_project_setup(cookies, default_context):
         assert exit_code == 0
 
         run_cmd("git add .")
-        _, __, exit_code = run_cmd("poetry run pre-commit run --all-files")
+        _, __, exit_code = run_cmd("SKIP=no-commit-to-branch poetry run pre-commit run --all-files")
         assert exit_code == 0
 
         run_cmd(f"poetry env remove {default_context['python_version']}")
