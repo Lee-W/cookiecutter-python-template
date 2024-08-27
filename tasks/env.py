@@ -15,7 +15,7 @@ def clean(ctx: Context) -> None:
 @task
 def init(ctx: Context) -> None:
     """Install production dependencies"""
-    ctx.run("poetry install --no-dev")
+    ctx.run("poetry install --without dev")
 
 
 @task
@@ -29,6 +29,6 @@ def setup_pre_commit_hook(ctx: Context) -> None:
 @task(optional=["no-pre-commit"])
 def init_dev(ctx: Context, no_pre_commit=False) -> None:
     """Install development dependencies and setup pre-commit hooks"""
-    ctx.run("poetry install")
+    ctx.run("poetry install --with dev")
     if not no_pre_commit:
         setup_pre_commit_hook(ctx)
