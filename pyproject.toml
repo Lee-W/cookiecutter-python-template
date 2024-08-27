@@ -2,18 +2,11 @@
 name = "cz_conventional_commits"
 version = "1.10.1"
 tag_format = "$version"
-version_files = [
-    "cookiecutter.json",
-    "pyproject.toml"
-]
+version_files = ["cookiecutter.json", "pyproject.toml"]
 
 
 [tool.mypy]
-files = [
-    "tasks",
-    "hooks",
-    "tests"
-]
+files = ["tasks", "hooks", "tests"]
 ignore_missing_imports = true
 follow_imports = "silent"
 warn_redundant_casts = true
@@ -25,16 +18,22 @@ warn_return_any = true
 
 
 [tool.ruff]
-line-length = 88
+line-length = 110
 
 [tool.ruff.lint]
-ignore = [
-    "E501",
-    "D1",
-    "D415",
+extend-select = [
+    "I",     # Missing required import (auto-fixable)
+    "UP",    # Pyupgrade
+    "ISC",   # Checks for implicit literal string concatenation (auto-fixable)
+    "PT",    # flake8-pytest-style rules
+    "TID25", # flake8-tidy-imports rules
 ]
 
+ignore = ["E501", "D1", "D415"]
+
 [tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
+combine-as-imports = true
 known-first-party = ["tests"]
 
 [tool.ruff.lint.pydocstyle]
@@ -55,11 +54,9 @@ norecursedirs = [
     "*.egg",
     "venv",
     "env",
-    "virtualenv"
+    "virtualenv",
 ]
-markers = [
-    "slow"
-]
+markers = ["slow"]
 
 
 [tool.coverage]
@@ -79,21 +76,15 @@ markers = [
 
         # Don't complain if non-runnable code isn't run:
         'if 0:',
-        'if __name__ == .__main__.:'
+        'if __name__ == .__main__.:',
     ]
-    omit = [
-        'env/*',
-        'venv/*',
-        '*/virtualenv/*',
-        '*/virtualenvs/*',
-        '*/tests/*'
-    ]
+    omit = ['env/*', 'venv/*', '*/virtualenv/*', '*/virtualenvs/*', '*/tests/*']
 
 
 [tool.poetry]
 name = "cookiecutter-python-template"
 version = "1.10.1"
-description = ""
+description = " Python Project template that supports PyPI publishment and basic docker image "
 authors = ["Wei Lee <weilee.rx@gmail.com>"]
 license = "MIT"
 
@@ -109,11 +100,10 @@ pytest-cov = "^5.0.0"
 pytest-mock = "^3.0.0"
 pytest-xdist = "^3.6.1"
 pytest-cookies = "^0.6.1"
-coverage = "^7.6.1"
+coverage = {extras = ["toml"], version = "^7.6.1"}
 # style
 ruff = "^0.6.2"
 mypy = "^1.11.1"
-black = "^24.8.0"
 # security
 bandit = "^1.7.9"
 pip-audit = "^2.7.3"
