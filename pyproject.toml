@@ -1,6 +1,6 @@
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "1.10.1"
+version = "1.11.0"
 tag_format = "$version"
 version_files = ["cookiecutter.json", "pyproject.toml"]
 
@@ -82,7 +82,7 @@ omit = ['env/*', 'venv/*', '*/virtualenv/*', '*/virtualenvs/*', '*/tests/*']
 
 [tool.poetry]
 name = "cookiecutter-python-template"
-version = "1.10.1"
+version = "1.11.0"
 description = " Python Project template that supports PyPI publishment and basic docker image "
 authors = ["Wei Lee <weilee.rx@gmail.com>"]
 license = "MIT"
@@ -114,5 +114,5 @@ mkdocs = "^1.5.3"
 mkdocs-material = "^9.5.33"
 
 [build-system]
-requires = ["poetry>=1.10.1"]
+requires = ["poetry>=1.11.0"]
 build-backend = "poetry.masonry.api"

@@ -1,4 +1,22 @@
 # Changelog
+## 1.11.0 (2024-08-28)
+
+### Feat
+
+- update poetry dependencies syntax with latest group syntax
+- change default python version to 3.9
+- **github-acitons**: change dependabot check to weekly
+- remove black and update project dev dependencies
+
+### Fix
+
+- **github-actions**: replace deprecated @master pypa/gh-action-pypi-publish with @release/v1
+- **github-actions**: fix cruft-update action render error
+
+### Refactor
+
+- **tasks**: simplify arguments
+
 ## 1.10.1 (2024-05-28)
 
 ### Fix
