@@ -107,7 +107,7 @@ mypy = "^1.11.1"
 bandit = "^1.7.9"
 pip-audit = "^2.7.3"
 # git
-commitizen = "^3.29.0"
+commitizen = "^3.29.1"
 pre-commit = "^3.8.0"
 # documentation
 mkdocs = "^1.6.1"
