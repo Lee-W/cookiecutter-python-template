@@ -104,7 +104,7 @@ coverage = { extras = ["toml"], version = "^7.6.1" }
 ruff = "^0.6.5"
 mypy = "^1.11.1"
 # security
-bandit = "^1.7.9"
+bandit = "^1.7.10"
 pip-audit = "^2.7.3"
 # git
 commitizen = "^3.29.0"
