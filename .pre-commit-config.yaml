@@ -4,8 +4,8 @@ default_install_hook_types:
   - pre-push
 
 default_stages:
-  - commit
-  - push
+  - pre-commit
+  - pre-push
 
 repos:
   - repo: meta
@@ -57,7 +57,7 @@ repos:
       - id: commitizen-branch
         stages:
           - post-commit
-          - push
+          - pre-push
 
   - repo: https://github.com/rhysd/actionlint
     rev: v1.7.1
@@ -68,7 +68,7 @@ repos:
     hooks:
       - id: style-reformat
         name: style-reformat
-        stages: [commit]
+        stages: [pre-commit]
         language: system
         pass_filenames: false
         entry: inv style.format
@@ -76,7 +76,7 @@ repos:
 
       - id: style-check
         name: style-check
-        stages: [push]
+        stages: [pre-push]
         language: system
         pass_filenames: false
         entry: inv style
@@ -84,7 +84,7 @@ repos:
 
       - id: security-check
         name: security-check
-        stages: [push]
+        stages: [pre-push]
         language: system
         pass_filenames: false
         entry: inv secure
@@ -92,7 +92,7 @@ repos:
 
       - id: test
         name: test
-        stages: [push]
+        stages: [pre-push]
         language: system
         pass_filenames: false
         entry: inv test
