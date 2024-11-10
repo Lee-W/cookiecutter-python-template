@@ -1,9 +1,9 @@
-name: master branch updated
+name: main branch updated
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   bump_version:

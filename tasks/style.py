@@ -22,7 +22,7 @@ def mypy(ctx: Context) -> None:
 @task
 def commit_check(ctx: Context, remote: str = "origin") -> None:
     """Check commit message through commitizen"""
-    ctx.run(f"{VENV_PREFIX} cz -nr 3 check --rev-range {remote}/master..", warn=True)
+    ctx.run(f"{VENV_PREFIX} cz -nr 3 check --rev-range {remote}/main..", warn=True)
 
 
 @task(pre=[ruff, mypy, commit_check], default=True)
