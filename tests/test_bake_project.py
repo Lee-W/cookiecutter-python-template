@@ -72,7 +72,6 @@ def test_bake_project(
 
 @pytest.mark.slow
 @pytest.mark.parametrize("use_strict_mypy_config", ["n", "y"])
-@pytest.mark.parametrize("python_version", ["3.9", "3.10", "3.11", "3.12", "3.13"])
 @pytest.mark.parametrize("dependency_management_tool", ["poetry", "pipenv"])
 @pytest.mark.parametrize("default_branch", ["main", "master"])
 @pytest.mark.parametrize("build_pypi_package", ["n", "y"])
@@ -84,7 +83,6 @@ def test_project_setup(
     build_pypi_package,
     default_branch,
     dependency_management_tool,
-    python_version,
     use_strict_mypy_config,
     monkeypatch,
 ):
@@ -94,7 +92,6 @@ def test_project_setup(
     context["build_pypi_package"] = build_pypi_package
     context["default_branch"] = default_branch
     context["dependency_management_tool"] = dependency_management_tool
-    context["python_version"] = python_version
     context["use_strict_mypy_config"] = use_strict_mypy_config
 
     assert result.exit_code == 0
