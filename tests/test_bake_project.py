@@ -5,7 +5,7 @@ import subprocess
 import pytest
 
 
-def run_cmd(cmd: str) -> tuple[bytes, bytes, int]:
+def run_cmd(cmd: str) -> tuple[str, str, int]:
     process = subprocess.Popen(
         cmd,
         shell=True,
@@ -15,7 +15,7 @@ def run_cmd(cmd: str) -> tuple[bytes, bytes, int]:
     )
     stdout, stderr = process.communicate()
     return_code = process.returncode
-    return stdout, stderr, return_code
+    return stdout.decode("utf-8"), stderr.decode("utf-8"), return_code
 
 
 @pytest.fixture
@@ -99,16 +99,22 @@ def test_project_setup(
 
     monkeypatch.chdir(result.project_path)
 
-    _, __, exit_code = run_cmd(f"{dependency_management_tool} run inv env.init-dev")
+    stdout, stderr, exit_code = run_cmd(f"{dependency_management_tool} run inv env.init-dev")
+    print(stdout)
+    print(stderr)
     assert exit_code == 0
 
-    _, __, exit_code = run_cmd(f"{dependency_management_tool} run inv style")
+    stdout, stderr, exit_code = run_cmd(f"{dependency_management_tool} run inv style")
+    print(stdout)
+    print(stderr)
     assert exit_code == 0
 
     run_cmd("git add .")
-    _, __, exit_code = run_cmd(
+    stdout, stderr, exit_code = run_cmd(
         f"SKIP=no-commit-to-branch {dependency_management_tool} run pre-commit run --all-files"
     )
+    print(stdout)
+    print(stderr)
     assert exit_code == 0
 
     run_cmd("rm -rf .venv")
