@@ -54,9 +54,10 @@ repos:
     rev: v3.29.0
     hooks:
       - id: commitizen
+        stages:
+          - commit-msg
       - id: commitizen-branch
         stages:
-          - post-commit
           - pre-push
 
   - repo: https://github.com/rhysd/actionlint
