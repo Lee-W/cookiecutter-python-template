@@ -1,3 +1,33 @@
+[project]
+name = "cookiecutter-python-template"
+version = "1.11.0"
+description = "Python Project template that supports PyPI publishment and basic docker image"
+readme = "docs/README.md"
+requires-python = ">=3.9"
+authors = [{ "name" = "Wei Lee", "email" = "weilee.rx@gmail.com" }]
+license = { text = "LICENSE" }
+
+
+[dependency-groups]
+dev = ["invoke>=2.2.0"]
+test = [
+    "pytest-cookies>=0.7.0",
+    "pytest-cov>=6.0.0",
+    "pytest-mock>=3.14.0",
+    "pytest-xdist>=3.6.1",
+    "pytest>=8.3.3",
+    "coverage[toml]>=7.6.4",
+]
+style = ["ruff>=0.7.3", "mypy>=1.13.0"]
+security = ["bandit>=1.7.10", "pip-audit>=2.7.3"]
+doc = ["mkdocs-material>=9.5.44", "mkdocs>=1.6.1"]
+git = ["commitizen>=3.30.1", "pre-commit>=4.0.1"]
+
+
+[tool.uv]
+default-groups = ["dev", "test", "style", "security", "git", "doc"]
+
+
 [tool.commitizen]
 name = "cz_conventional_commits"
 version = "1.11.0"
@@ -78,41 +108,3 @@ exclude_lines = [
     'if __name__ == .__main__.:',
 ]
 omit = ['env/*', 'venv/*', '*/virtualenv/*', '*/virtualenvs/*', '*/tests/*']
-
-
-[tool.poetry]
-name = "cookiecutter-python-template"
-version = "1.11.0"
-description = " Python Project template that supports PyPI publishment and basic docker image "
-authors = ["Wei Lee <weilee.rx@gmail.com>"]
-license = "MIT"
-
-[tool.poetry.dependencies]
-python = "^3.12"
-
-[tool.poetry.group.dev.dependencies]
-# task management
-invoke = "^2.2.0"
-# test
-pytest = "^8.3.3"
-pytest-cov = "^5.0.0"
-pytest-mock = "^3.0.0"
-pytest-xdist = "^3.6.1"
-pytest-cookies = "^0.6.1"
-coverage = { extras = ["toml"], version = "^7.6.1" }
-# style
-ruff = "^0.6.5"
-mypy = "^1.11.1"
-# security
-bandit = "^1.7.9"
-pip-audit = "^2.7.3"
-# git
-commitizen = "^3.29.0"
-pre-commit = "^3.8.0"
-# documentation
-mkdocs = "^1.6.1"
-mkdocs-material = "^9.5.34"
-
-[build-system]
-requires = ["poetry>=1.11.0"]
-build-backend = "poetry.masonry.api"

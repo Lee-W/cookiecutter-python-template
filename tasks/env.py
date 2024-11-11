@@ -9,13 +9,13 @@ from tasks.common import VENV_PREFIX
 @task
 def clean(ctx: Context) -> None:
     """Remove virtual environment"""
-    ctx.run("poetry env remove 3.12", warn=True)
+    ctx.run("rm -rf .venv", warn=True)
 
 
 @task
 def init(ctx: Context) -> None:
-    """Install production dependencies"""
-    ctx.run("poetry install --without dev")
+    """Install all dependencies"""
+    ctx.run("uv sync")
 
 
 @task
@@ -29,6 +29,6 @@ def setup_pre_commit_hook(ctx: Context) -> None:
 @task(optional=["no-pre-commit"])
 def init_dev(ctx: Context, no_pre_commit=False) -> None:
     """Install development dependencies and setup pre-commit hooks"""
-    ctx.run("poetry install --with dev")
+    init(ctx)
     if not no_pre_commit:
         setup_pre_commit_hook(ctx)
