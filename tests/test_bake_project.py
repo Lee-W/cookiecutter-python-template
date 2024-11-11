@@ -86,6 +86,7 @@ def test_project_setup(
     dependency_management_tool,
     python_version,
     use_strict_mypy_config,
+    monkeypatch,
 ):
     result = cookies.bake(extra_context=default_context)
     context = default_context
@@ -99,17 +100,18 @@ def test_project_setup(
     assert result.exit_code == 0
     assert result.exception is None
 
-    with result.project.as_cwd():
-        _, __, exit_code = run_cmd(f"{dependency_management_tool} run inv env.init-dev")
-        assert exit_code == 0
+    monkeypatch.chdir(result.project_path)
 
-        _, __, exit_code = run_cmd(f"{dependency_management_tool} run inv style")
-        assert exit_code == 0
+    _, __, exit_code = run_cmd(f"{dependency_management_tool} run inv env.init-dev")
+    assert exit_code == 0
 
-        run_cmd("git add .")
-        _, __, exit_code = run_cmd(
-            f"SKIP=no-commit-to-branch {dependency_management_tool} run pre-commit run --all-files"
-        )
-        assert exit_code == 0
+    _, __, exit_code = run_cmd(f"{dependency_management_tool} run inv style")
+    assert exit_code == 0
 
-        run_cmd(f"poetry env remove {python_version}")
+    run_cmd("git add .")
+    _, __, exit_code = run_cmd(
+        f"SKIP=no-commit-to-branch {dependency_management_tool} run pre-commit run --all-files"
+    )
+    assert exit_code == 0
+
+    run_cmd("rm -rf .venv")
