@@ -72,7 +72,7 @@ repos:
         stages: [pre-commit]
         language: system
         pass_filenames: false
-        entry: inv style.format
+        entry: uv run inv style.format
         types: [python]
 
       - id: style-check
@@ -80,7 +80,7 @@ repos:
         stages: [pre-push]
         language: system
         pass_filenames: false
-        entry: inv style
+        entry: uv run inv style
         types: [python]
 
       - id: security-check
@@ -88,7 +88,7 @@ repos:
         stages: [pre-push]
         language: system
         pass_filenames: false
-        entry: inv secure
+        entry: uv run inv secure
         types: [python]
 
       - id: test
@@ -96,5 +96,5 @@ repos:
         stages: [pre-push]
         language: system
         pass_filenames: false
-        entry: inv test
+        entry: uv run inv test
         types: [python]
