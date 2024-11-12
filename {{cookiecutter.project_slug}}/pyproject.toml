@@ -4,33 +4,30 @@ version = "0.0.1"
 tag_format = "$version"
 version_files = ["pyproject.toml:version"]
 
+
 [tool.mypy]
-
-
-{% if cookiecutter.use_strict_mypy_config -%}
 files = ["{{ cookiecutter.project_slug }}", "tests"]
 ignore_missing_imports = true
 follow_imports = "silent"
 warn_redundant_casts = true
 warn_unused_ignores = true
 warn_unused_configs = true
+
 [[tool.mypy.overrides]]
 module = ["tests.*"]
 disallow_untyped_defs = false
 disallow_untyped_decorators = false
+{% if cookiecutter.use_strict_mypy_config -%}
 # Ensure full coverage
 disallow_untyped_calls = true
-disallow_untyped_defs = true
 disallow_incomplete_defs = true
-disallow_untyped_decorators = true
 # Restrict dynamic typing
-
-{%- endif %}
-
-
 disallow_any_generics = true
 disallow_subclassing_any = true
 warn_return_any = true
+{%- endif %}
+
+
 [tool.ruff]
 line-length = 110
 
@@ -73,10 +70,6 @@ norecursedirs = [
 
 [tool.coverage]
 [tool.coverage.report]
-
-
-
-{% if cookiecutter.dependency_management_tool=='poetry' -%}
 show_missing = true
 exclude_lines = [
     # Have to re-enable the standard pragma
@@ -95,6 +88,9 @@ exclude_lines = [
     'if __name__ == .__main__.:',
 ]
 omit = ['env/*', 'venv/*', '*/virtualenv/*', '*/virtualenvs/*', '*/tests/*']
+
+
+{% if cookiecutter.dependency_management_tool=='poetry' -%}
 [tool.poetry]
 name = "{{ cookiecutter.project_slug }}"
 version = "0.0.1"
@@ -129,8 +125,6 @@ mkdocs = "^1.5.3"
 mkdocs-material = "^9.5.32"
 
 [build-system]
-
-
 {%- endif %}
 requires = ["poetry>=1.10.1"]
 build-backend = "poetry.core.masonry.api"
