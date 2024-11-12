@@ -24,13 +24,13 @@ def main() -> None:
     if "{{ cookiecutter.dependency_management_tool }}" != "pipenv":
         remove_pipfile()
 
-    if "{{ cookiecutter.build_pypi_package }}" == "n":
+    if "{{ cookiecutter.build_pypi_package }}" == str(False):
         remove_publish_pypi_github_action()
 
-    if "{{ cookiecutter.build_docker_image }}" == "n":
+    if "{{ cookiecutter.build_docker_image }}" == str(False):
         remove_docker_file()
 
-    if "{{ cookiecutter.auto_detect_update_from_cruft_template }}" == "n":
+    if "{{ cookiecutter.auto_detect_update_from_cruft_template }}" == str(False):
         remove_cruft_update_action()
 
 

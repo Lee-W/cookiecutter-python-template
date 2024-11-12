@@ -13,7 +13,7 @@ def clean(ctx: Context) -> None:
     ctx.run("git clean -Xdf")
 
 
-{% if "{{ cookiecutter.build_pypi_package }}" != "n" -%}
+{% if "{{ cookiecutter.build_pypi_package }}" -%}
 @task
 def dist(ctx: Context) -> None:
     """Build distribution"""
@@ -25,7 +25,7 @@ def dist(ctx: Context) -> None:
 {%- endif %}
 
 
-{% if "{{ cookiecutter.build_docker_image }}" != "n" -%}
+{% if "{{ cookiecutter.build_docker_image }}" -%}
 @task
 def docker(ctx: Context) -> None:
     """Build docker image"""
@@ -43,9 +43,9 @@ def docker(ctx: Context) -> None:
 
 build_ns = Collection("build")
 build_ns.add_task(clean)  # type: ignore[arg-type]
-{% if "{{ cookiecutter.build_pypi_package }}" != "n" -%}
+{% if "{{ cookiecutter.build_pypi_package }}" -%}
 build_ns.add_task(dist)  # type: ignore[arg-type]
 {%- endif %}
-{% if "{{ cookiecutter.build_docker_image }}" != "n" -%}
+{% if "{{ cookiecutter.build_docker_image }}" -%}
 build_ns.add_task(docker)  # type: ignore[arg-type]
 {%- endif %}
