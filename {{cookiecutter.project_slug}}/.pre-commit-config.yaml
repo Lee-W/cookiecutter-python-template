@@ -4,8 +4,8 @@ default_install_hook_types:
   - pre-push
 
 default_stages:
-  - commit
-  - push
+  - pre-commit
+  - pre-push
 
 repos:
   - repo: meta
@@ -44,15 +44,14 @@ repos:
       - id: codespell
         name: Run codespell to check for common misspellings in files
         language: python
-        files: "content/posts/|content/pages/"
         types: [text]
         args: ["--write-changes", "--ignore-words", "spelling_wordlist.txt"]
-  {% if cookiecutter.build_docker_image %}
+{% if cookiecutter.build_docker_image %}
   - repo: https://github.com/hadolint/hadolint
     rev: v1.22.1
     hooks:
       - id: hadolint-docker
-  {%- endif %}
+{%- endif %}
 
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v3.29.0
@@ -72,7 +71,7 @@ repos:
     hooks:
       - id: style-reformat
         name: style-reformat
-        stages: [commit]
+        stages: [pre-commit]
         language: system
         pass_filenames: false
         entry: {{ cookiecutter.dependency_management_tool }} run inv style.format
@@ -80,7 +79,7 @@ repos:
 
       - id: style-check
         name: style-check
-        stages: [push]
+        stages: [pre-push]
         language: system
         pass_filenames: false
         entry: {{ cookiecutter.dependency_management_tool }} run inv style
@@ -88,7 +87,7 @@ repos:
 
       - id: security-check
         name: security-check
-        stages: [push]
+        stages: [pre-push]
         language: system
         pass_filenames: false
         entry: {{ cookiecutter.dependency_management_tool }} run inv secure
@@ -96,7 +95,7 @@ repos:
 
       - id: test
         name: test
-        stages: [push]
+        stages: [pre-push]
         language: system
         pass_filenames: false
         entry: {{ cookiecutter.dependency_management_tool }} run inv test -a
