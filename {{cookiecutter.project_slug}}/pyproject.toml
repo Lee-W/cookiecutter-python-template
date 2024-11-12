@@ -5,50 +5,52 @@ tag_format = "$version"
 version_files = ["pyproject.toml:version"]
 
 [tool.mypy]
+
+
+{% if cookiecutter.use_strict_mypy_config -%}
 files = ["{{ cookiecutter.project_slug }}", "tests"]
 ignore_missing_imports = true
 follow_imports = "silent"
 warn_redundant_casts = true
 warn_unused_ignores = true
 warn_unused_configs = true
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+disallow_untyped_defs = false
+disallow_untyped_decorators = false
+# Ensure full coverage
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
+# Restrict dynamic typing
 
-{% if cookiecutter.use_strict_mypy_config == 'y' -%}
-    [[tool.mypy.overrides]]
-    module = ["tests.*"]
-    disallow_untyped_defs = false
-    disallow_untyped_decorators = false
-    # Ensure full coverage
-    disallow_untyped_calls = true
-    disallow_untyped_defs = true
-    disallow_incomplete_defs = true
-    disallow_untyped_decorators = true
-    # Restrict dynamic typing
-    disallow_any_generics = true
-    disallow_subclassing_any = true
-    warn_return_any = true
 {%- endif %}
 
 
+disallow_any_generics = true
+disallow_subclassing_any = true
+warn_return_any = true
 [tool.ruff]
 line-length = 110
 
-    [tool.ruff.lint]
-    extend-select = [
-        "I",     # Missing required import (auto-fixable)
-        "UP",    # Pyupgrade
-        "PT",    # flake8-pytest-style rules
-        "TID25", # flake8-tidy-imports rules
-    ]
+[tool.ruff.lint]
+extend-select = [
+    "I",     # Missing required import (auto-fixable)
+    "UP",    # Pyupgrade
+    "PT",    # flake8-pytest-style rules
+    "TID25", # flake8-tidy-imports rules
+]
 
-    ignore = ["E501", "D1", "D415"]
+ignore = ["E501", "D1", "D415"]
 
-    [tool.ruff.lint.isort]
-    required-imports = ["from __future__ import annotations"]
-    combine-as-imports = true
-    known-first-party = ["tests"]
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
+combine-as-imports = true
+known-first-party = ["tests"]
 
-    [tool.ruff.lint.pydocstyle]
-    convention = "google"
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 
 [tool.pytest.ini_options]
@@ -70,28 +72,29 @@ norecursedirs = [
 
 
 [tool.coverage]
-    [tool.coverage.report]
-    show_missing = true
-    exclude_lines = [
-        # Have to re-enable the standard pragma
-        'pragma: no cover',
+[tool.coverage.report]
 
-        # Don't complain about missing debug-only code:
-        'def __repr__',
-        'if self\.debug',
-
-        # Don't complain if tests don't hit defensive assertion code:
-        'raise AssertionError',
-        'raise NotImplementedError',
-
-        # Don't complain if non-runnable code isn't run:
-        'if 0:',
-        'if __name__ == .__main__.:',
-    ]
-    omit = ['env/*', 'venv/*', '*/virtualenv/*', '*/virtualenvs/*', '*/tests/*']
 
 
 {% if cookiecutter.dependency_management_tool=='poetry' -%}
+show_missing = true
+exclude_lines = [
+    # Have to re-enable the standard pragma
+    'pragma: no cover',
+
+    # Don't complain about missing debug-only code:
+    'def __repr__',
+    'if self\.debug',
+
+    # Don't complain if tests don't hit defensive assertion code:
+    'raise AssertionError',
+    'raise NotImplementedError',
+
+    # Don't complain if non-runnable code isn't run:
+    'if 0:',
+    'if __name__ == .__main__.:',
+]
+omit = ['env/*', 'venv/*', '*/virtualenv/*', '*/virtualenvs/*', '*/tests/*']
 [tool.poetry]
 name = "{{ cookiecutter.project_slug }}"
 version = "0.0.1"
@@ -127,6 +130,7 @@ mkdocs-material = "^9.5.32"
 
 [build-system]
 
+
+{%- endif %}
 requires = ["poetry>=1.10.1"]
 build-backend = "poetry.core.masonry.api"
-{%- endif %}
