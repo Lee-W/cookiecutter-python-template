@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import os
 import subprocess
+from unittest import mock
 
 import pytest
 
@@ -76,6 +78,7 @@ def test_bake_project(
 @pytest.mark.parametrize("default_branch", ["main", "master"])
 @pytest.mark.parametrize("build_pypi_package", [False, True])
 @pytest.mark.parametrize("build_docker_image", [False, True])
+@mock.patch.dict(os.environ, {"PIPENV_IGNORE_VIRTUALENVS": "1"})
 def test_project_setup(
     cookies,
     default_context,
