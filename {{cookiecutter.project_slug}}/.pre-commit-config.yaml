@@ -47,13 +47,12 @@ repos:
         files: "content/posts/|content/pages/"
         types: [text]
         args: ["--write-changes", "--ignore-words", "spelling_wordlist.txt"]
-
-{% if cookiecutter.build_docker_image -%}
+  {% if cookiecutter.build_docker_image %}
   - repo: https://github.com/hadolint/hadolint
     rev: v1.22.1
     hooks:
       - id: hadolint-docker
-{%- endif %}
+  {%- endif %}
 
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v3.29.0
