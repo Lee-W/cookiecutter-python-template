@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@{{ cookiecutter._actions_checkout_version }}
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@{{ cookiecutter._actions_setup_python_version }}
         with:
           python-version: "{{ cookiecutter.python_version }}"
 

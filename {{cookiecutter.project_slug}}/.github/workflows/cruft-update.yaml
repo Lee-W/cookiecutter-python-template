@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@{{ cookiecutter._actions_checkout_version }}
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@{{ cookiecutter._actions_setup_python_version }}
         with:
           python-version: "3.10"
 
