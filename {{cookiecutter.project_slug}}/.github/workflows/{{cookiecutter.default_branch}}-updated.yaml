@@ -38,10 +38,10 @@ jobs:
         with:
           python-version: "{{ cookiecutter.python_version }}"
 
-      - name: Install dependencies
+      - name: Install doc dependencies
         run: |
           python -m pip install -U pip {% if cookiecutter.dependency_management_tool == 'pipenv' -%}pipenv{%- elif cookiecutter.dependency_management_tool == 'poetry' -%}poetry{% endif %} invoke
-          inv env.init-dev --no-pre-commit
+          inv env.init-dev --groups-to-install doc
 
       - name: Build docs
         run: |
