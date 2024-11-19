@@ -9,7 +9,7 @@ jobs:
   publish-pypi-package:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@{{ cookiecutter._actions_checkout_version }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
