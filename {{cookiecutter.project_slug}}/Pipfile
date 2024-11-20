@@ -6,29 +6,29 @@ verify_ssl = true
 [packages]
 
 [dev-packages]
-invoke = ">=2.2.0"
+invoke = ">={{ cookiecutter._package_versions.invoke }}"
 
 [test]
-pytest = ">=8.3.2"
-pytest-cov = ">=5.0.0"
-pytest-mock = ">=3.6.1"
-coverage = {extras = ["toml"], version = ">=7.6.1"}
+pytest = ">={{ cookiecutter._package_versions.pytest }}"
+pytest-cov = ">={{ cookiecutter._package_versions.pytest_cov }}"
+pytest-mock = ">={{ cookiecutter._package_versions.pytest_mock }}"
+coverage = {extras = ["toml"], version = ">={{ cookiecutter._package_versions.coverage }}"}
 
 [style]
-ruff = ">=0.6.2"
-mypy = ">=1.11.1"
+ruff = ">={{ cookiecutter._package_versions.ruff }}"
+mypy = ">={{ cookiecutter._package_versions.mypy }}"
 
 [security]
-bandit = ">=1.7.9"
-pip-audit = ">=2.3.3"
+bandit = ">={{ cookiecutter._package_versions.bandit }}"
+pip-audit = ">={{ cookiecutter._package_versions.pip_audit }}"
 
 [git]
-commitizen = ">=3.29.0"
-pre-commit = ">=3.8.0"
+commitizen = ">={{ cookiecutter._package_versions.commitizen }}"
+pre-commit = ">={{ cookiecutter._package_versions.pre_commit }}"
 
 [doc]
-mkdocs = ">=1.5.3"
-mkdocs-material = ">=9.5.32"
+mkdocs = ">={{ cookiecutter._package_versions.mkdocs }}"
+mkdocs-material = ">={{ cookiecutter._package_versions.mkdocs_material }}"
 
 [requires]
 python_version = "{{ cookiecutter.python_version }}"
