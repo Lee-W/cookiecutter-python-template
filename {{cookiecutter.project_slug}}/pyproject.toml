@@ -100,6 +100,7 @@ description = "{{ cookiecutter.project_description }}"
 license = "{{ cookiecutter.open_source_license }}"
 readme = "docs/README.md"
 repository = "{{ cookiecutter.github_url }}"
+package-mode = {% if cookiecutter.build_pypi_package %}true{% else %}false{% endif %}
 
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.python_version }}"
