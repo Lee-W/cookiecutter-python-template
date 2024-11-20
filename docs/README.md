@@ -6,9 +6,12 @@
 
 ## Features
 
-* [pipenv](https://pipenv.pypa.io/en/latest/) or [poetry](https://python-poetry.org/): dependency and virtual environment management
+* Dependency and virtual environment management (one of the following based on user choice)
+    * [uv](https://docs.astral.sh/uv/)
+    * [pipenv](https://pipenv.pypa.io/en/latest/)
+    * [poetry](https://python-poetry.org/)
 * Coding style
-    * [ruff](https://github.com/astral-sh/ruff): check coding style and format it
+    * [ruff](https://docs.astral.sh/ruff/): check coding style and format it
     * [mypy](http://mypy-lang.org/): check static typing
 * Test thought [pytest](https://docs.pytest.org/en/) with the following plugins
     * [pytest-cov](https://github.com/pytest-dev/pytest-cov): generate test coverage repo
