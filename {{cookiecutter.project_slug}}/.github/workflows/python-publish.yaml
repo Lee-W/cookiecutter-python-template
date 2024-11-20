@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@{{ cookiecutter._actions_checkout_version }}
 {% if cookiecutter.dependency_management_tool == "uv" %}
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@{{ cookiecutter._setup_uv_version }}
         with:
           enable-cache: true
           version: "latest"
