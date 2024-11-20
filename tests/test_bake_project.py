@@ -42,7 +42,7 @@ def default_context() -> dict[str, str]:
 
 @pytest.mark.parametrize("use_strict_mypy_config", [False, True])
 @pytest.mark.parametrize("python_version", ["3.9", "3.10", "3.11", "3.12", "3.13"])
-@pytest.mark.parametrize("dependency_management_tool", ["poetry", "pipenv"])
+@pytest.mark.parametrize("dependency_management_tool", ["uv", "poetry", "pipenv"])
 @pytest.mark.parametrize("default_branch", ["main", "master"])
 @pytest.mark.parametrize("build_pypi_package", [False, True])
 @pytest.mark.parametrize("build_docker_image", [False, True])
@@ -74,7 +74,7 @@ def test_bake_project(
 
 @pytest.mark.slow
 @pytest.mark.parametrize("use_strict_mypy_config", [False, True])
-@pytest.mark.parametrize("dependency_management_tool", ["poetry", "pipenv"])
+@pytest.mark.parametrize("dependency_management_tool", ["uv", "poetry", "pipenv"])
 @pytest.mark.parametrize("default_branch", ["main", "master"])
 @pytest.mark.parametrize("build_pypi_package", [False, True])
 @pytest.mark.parametrize("build_docker_image", [False, True])
