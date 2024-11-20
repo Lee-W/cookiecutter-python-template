@@ -37,5 +37,20 @@
     "_template_version": "1.11.0",
     "_actions_checkout_version": "v4",
     "_actions_setup_python_version": "v5",
-    "_setup_uv_version": "v3"
+    "_setup_uv_version": "v3",
+    "_package_versions": {
+        "invoke": "2.2.0",
+        "pytest": "8.3.3",
+        "coverage": "7.6.7",
+        "pytest_cov": "6.0.0",
+        "pytest_mock": "3.14.0",
+        "mypy": "1.13.0",
+        "ruff": "0.7.4",
+        "bandit": "1.7.10",
+        "pip_audit": "2.7.3",
+        "commitizen": "3.31.0",
+        "pre_commit": "4.0.1",
+        "mkdocs": "1.6.1",
+        "mkdocs_material": "9.5.45"
+    }
 }
