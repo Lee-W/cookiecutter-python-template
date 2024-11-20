@@ -9,20 +9,24 @@ from tasks.common import VENV_PREFIX
 @task
 def clean(ctx: Context) -> None:
     """Remove virtual environment"""
-    {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
-    ctx.run("pipenv --rm", warn=True)
-    {%- elif cookiecutter.dependency_management_tool == 'poetry' -%}
+    {% if cookiecutter.dependency_management_tool == "uv" -%}
+    ctx.run("rm -rf .venv", warn=True)
+    {%- elif cookiecutter.dependency_management_tool == "poetry" -%}
     ctx.run("poetry env remove {{ cookiecutter.python_version }}", warn=True)
+    {%- elif cookiecutter.dependency_management_tool == "pipenv" -%}
+    ctx.run("pipenv --rm", warn=True)
     {%- endif %}
 
 
 @task
 def init(ctx: Context) -> None:
     """Install production dependencies"""
-    {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
-    ctx.run("pipenv install --deploy")
-    {%- elif cookiecutter.dependency_management_tool == 'poetry' -%}
+    {% if cookiecutter.dependency_management_tool == "uv" -%}
+    ctx.run("uv sync --no-dev")
+    {%- elif cookiecutter.dependency_management_tool == "poetry" -%}
     ctx.run("poetry install --no-dev")
+    {%- elif cookiecutter.dependency_management_tool == "pipenv" -%}
+    ctx.run("pipenv install --deploy")
     {%- endif %}
 
 
@@ -41,10 +45,14 @@ def init_dev(
     no_pre_commit: bool = False,
 ) -> None:
     """Install development dependencies and setup pre-commit hooks"""
-    {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
-    ctx.run(f"pipenv install --categories {groups_to_install}")
-    {%- elif cookiecutter.dependency_management_tool == 'poetry' -%}
+    {% if cookiecutter.dependency_management_tool == "uv" -%}
+    groups_args = " --group ".join(groups_to_install.split(","))
+    groups_args = f"--group {groups_args}"
+    ctx.run(f"uv sync {groups_args}")
+    {%- elif cookiecutter.dependency_management_tool == "poetry" -%}
     ctx.run(f"poetry install --with {groups_to_install}")
+    {%- elif cookiecutter.dependency_management_tool == "pipenv" -%}
+    ctx.run(f"pipenv install --categories {groups_to_install}")
     {%- endif %}
     if not no_pre_commit:
         setup_pre_commit_hook(ctx)

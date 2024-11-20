@@ -32,7 +32,18 @@ jobs:
         with:
           token: {% raw %}${{ secrets.PERSONAL_ACCESS_TOKEN }}{% endraw %}
           fetch-depth: 0
+{% if cookiecutter.dependency_management_tool == "uv" %}
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+          version: "latest"
 
+      - name: Install doc dependencies
+        run: |
+          uv tool install invoke
+          inv env.init-dev --groups-to-install doc
+{%- else %}
       - name: Set up Python {{ cookiecutter.python_version }}
         uses: actions/setup-python@{{ cookiecutter._actions_setup_python_version }}
         with:
@@ -42,7 +53,7 @@ jobs:
         run: |
           python -m pip install -U pip {{ cookiecutter.dependency_management_tool }} invoke
           inv env.init-dev --groups-to-install doc
-
+{% endif %}
       - name: Build docs
         run: |
           inv doc.build

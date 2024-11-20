@@ -1,3 +1,92 @@
+{% if cookiecutter.dependency_management_tool == "poetry" -%}
+[tool.poetry]
+name = "{{ cookiecutter.project_slug }}"
+version = "0.0.1"
+authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
+description = "{{ cookiecutter.project_description }}"
+license = "{{ cookiecutter.open_source_license }}"
+readme = "docs/README.md"
+repository = "{{ cookiecutter.github_url }}"
+package-mode = {% if cookiecutter.build_pypi_package %}true{% else %}false{% endif %}
+
+[tool.poetry.dependencies]
+python = "^{{ cookiecutter.python_version }}"
+
+[tool.poetry.group.dev.dependencies]
+invoke = "^2.2.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.2"
+pytest-cov = "^5.0.0"
+pytest-mock = "^3.6.1"
+coverage = { extras = ["toml"], version = "^7.6.1" }
+
+[tool.poetry.group.style.dependencies]
+ruff = "^0.6.2"
+mypy = "^1.11.1"
+
+[tool.poetry.group.security.dependencies]
+bandit = "^1.7.9"
+pip-audit = "^2.7.3"
+
+[tool.poetry.group.git.dependencies]
+commitizen = "^3.29.0"
+pre-commit = "^3.8.0"
+
+[tool.poetry.group.doc.dependencies]
+mkdocs = "^1.5.3"
+mkdocs-material = "^9.5.32"
+{% elif cookiecutter.dependency_management_tool == "uv" -%}
+[project]
+name = "{{ cookiecutter.project_slug }}"
+version = "0.1.0"
+authors = [
+    { name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.author_email }}" },
+]
+description = "{{ cookiecutter.project_description }}"
+license = {file = "LICENSE"}
+readme = "docs/README.md"
+requires-python = ">={{ cookiecutter.python_version }}"
+
+[dependency-groups]
+dev = [
+    "invoke>=2.2.0",
+]
+test = [
+    "coverage[toml]>=7.6.7",
+    "pytest>=8.3.3",
+    "pytest-cov>=6.0.0",
+    "pytest-mock>=3.14.0",
+]
+style = [
+    "mypy>=1.13.0",
+    "ruff>=0.7.4",
+]
+security = [
+    "bandit>=1.7.10",
+    "pip-audit>=2.7.3",
+]
+git = [
+    "commitizen>=3.31.0",
+    "pre-commit>=4.0.1",
+]
+doc = [
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.5.45",
+]
+{%- endif %}
+
+{% if cookiecutter.build_pypi_package -%}
+[build-system]
+{% if cookiecutter.dependency_management_tool == "poetry" -%}
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+{% elif cookiecutter.dependency_management_tool == "uv" -%}
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+{%- endif %}
+{%- endif %}
+
 [tool.commitizen]
 name = "cz_conventional_commits"
 version = "0.0.1"
@@ -26,7 +115,6 @@ disallow_any_generics = true
 disallow_subclassing_any = true
 warn_return_any = true
 {%- endif %}
-
 
 
 [tool.ruff]
@@ -89,48 +177,3 @@ exclude_lines = [
     'if __name__ == .__main__.:',
 ]
 omit = ['env/*', 'venv/*', '*/virtualenv/*', '*/virtualenvs/*', '*/tests/*']
-
-
-{% if cookiecutter.dependency_management_tool=='poetry' -%}
-[tool.poetry]
-name = "{{ cookiecutter.project_slug }}"
-version = "0.0.1"
-authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
-description = "{{ cookiecutter.project_description }}"
-license = "{{ cookiecutter.open_source_license }}"
-readme = "docs/README.md"
-repository = "{{ cookiecutter.github_url }}"
-package-mode = {% if cookiecutter.build_pypi_package %}true{% else %}false{% endif %}
-
-[tool.poetry.dependencies]
-python = "^{{ cookiecutter.python_version }}"
-
-[tool.poetry.group.dev.dependencies]
-invoke = "^2.2.0"
-
-[tool.poetry.group.test.dependencies]
-pytest = "^8.3.2"
-pytest-cov = "^5.0.0"
-pytest-mock = "^3.6.1"
-coverage = { extras = ["toml"], version = "^7.6.1" }
-
-[tool.poetry.group.style.dependencies]
-ruff = "^0.6.2"
-mypy = "^1.11.1"
-
-[tool.poetry.group.security.dependencies]
-bandit = "^1.7.9"
-pip-audit = "^2.7.3"
-
-[tool.poetry.group.git.dependencies]
-commitizen = "^3.29.0"
-pre-commit = "^3.8.0"
-
-[tool.poetry.group.doc.dependencies]
-mkdocs = "^1.5.3"
-mkdocs-material = "^9.5.32"
-
-[build-system]
-requires = ["poetry>=1.10.1"]
-build-backend = "poetry.core.masonry.api"
-{%- endif %}

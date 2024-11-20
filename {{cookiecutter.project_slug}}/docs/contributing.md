@@ -23,12 +23,21 @@ git checkout -b [YOUR FEATURE]
 ### Step 5. Install prerequisite
 
 ```sh
+{% if cookiecutter.dependency_management_tool == "uv" -%}
+python -m pip install uv
+uv tools install invoke
+{% else %}
 python -m pip install pipx
 python -m pipx install {{ cookiecutter.dependency_management_tool }} invoke
 python -m pipx ensurepath
+{%- endif %}
 ```
 
+{% if cookiecutter.dependency_management_tool == "uv" %}
+* [uv tools](https://docs.astral.sh/uv/guides/tools/): for python tool management
+{% else %}
 * [pipx](https://github.com/pipxproject/pipx): for python tool management
+{%- endif %}
 {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
 * [pipenv](https://github.com/pypa/pipenv): for dependency management
 {%- elif cookiecutter.dependency_management_tool == 'poetry' -%}
