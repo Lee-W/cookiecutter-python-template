@@ -26,14 +26,24 @@ jobs:
             title: Reject new updates detected with Cruft
     steps:
       - uses: actions/checkout@{{ cookiecutter._actions_checkout_version }}
+{% if cookiecutter.dependency_management_tool == "uv" %}
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+          version: "latest"
 
+      - name: Install Cruft
+        run: |
+          uv tool install cruft
+{%- else %}
       - uses: actions/setup-python@{{ cookiecutter._actions_setup_python_version }}
         with:
           python-version: "{{ cookiecutter.python_version }}"
 
       - name: Install Cruft
         run: pip3 install cruft
-
+{% endif %}
       - name: Check if update is available
         continue-on-error: false
         id: check

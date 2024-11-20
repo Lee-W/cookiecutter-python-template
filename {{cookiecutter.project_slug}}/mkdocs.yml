@@ -3,7 +3,7 @@ nav:
   - Home: README.md
   - Contributing: contributing.md
 theme:
-  name: 'material'
+  name: "material"
 repo_url: {{ cookiecutter.github_url }}
 remote_branch: gh-pages
 remote_name: origin
