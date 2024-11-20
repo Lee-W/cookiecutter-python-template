@@ -17,10 +17,12 @@ def clean(ctx: Context) -> None:
 @task
 def dist(ctx: Context) -> None:
     """Build distribution"""
-    {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
-    ctx.run(f"{VENV_PREFIX} python setup.py sdist bdist_wheel")
-    {%- elif cookiecutter.dependency_management_tool == 'poetry' -%}
+    {% if cookiecutter.dependency_management_tool == "uv" -%}
+    ctx.run("uv build")
+    {%- elif cookiecutter.dependency_management_tool == "poetry" -%}
     ctx.run("poetry build")
+    {%- elif cookiecutter.dependency_management_tool == "pipenv" -%}
+    ctx.run(f"{VENV_PREFIX} python setup.py sdist bdist_wheel")
     {%- endif %}
 {%- endif %}
 
@@ -29,10 +31,12 @@ def dist(ctx: Context) -> None:
 @task
 def docker(ctx: Context) -> None:
     """Build docker image"""
-    {% if cookiecutter.dependency_management_tool == 'pipenv' -%}
-    ctx.run("pipenv lock --keep-outdated --requirements > requirements.txt")
-    {%- elif cookiecutter.dependency_management_tool == 'poetry' -%}
+    {% if cookiecutter.dependency_management_tool == "uv" -%}
+    ctx.run("uv export --format requirements-txt > requirements.txt")
+    {%- elif cookiecutter.dependency_management_tool == "poetry" -%}
     ctx.run("poetry export -f requirements.txt -o requirements.txt")
+    {%- elif cookiecutter.dependency_management_tool == "pipenv" -%}
+    ctx.run("pipenv lock --keep-outdated --requirements > requirements.txt")
     {%- endif %}
     user_name = "{{ cookiecutter.github_username.lower().replace(' ', '_').replace('-', '_') }}"
     proj_name = "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}"
