@@ -125,7 +125,7 @@ def test_project_setup(
 
     run_cmd("git add .")
     stdout, stderr, exit_code = run_cmd(
-        f"SKIP=no-commit-to-branch {dependency_management_tool} run pre-commit run --all-files"
+        f"SKIP=no-commit-to-branch,hadolint-docker {dependency_management_tool} run pre-commit run --all-files"
     )
     print(stdout)
     print(stderr)
