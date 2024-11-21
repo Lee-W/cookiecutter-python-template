@@ -41,11 +41,12 @@ jobs:
       - name: Install dependencies
         run: |
           uv --version
+          uv tool install invoke
           uv sync --group dev --group doc
 
       - name: Build docs
         run: |
-          uv run inv doc.build
+          inv doc.build
 
       - name: Push doc to Github Page
         uses: peaceiris/actions-gh-pages@v4

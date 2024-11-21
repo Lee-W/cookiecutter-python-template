@@ -29,12 +29,13 @@ jobs:
       - name: Install dependencies
         run: |
           uv --version
+          uv tool install invoke
           uv sync --no-group doc
 
       - name: Run pre-commit hooks
         run: |
-          SKIP=no-commit-to-branch,commitizen-branch uv run inv run-pre-commit-hooks
+          SKIP=no-commit-to-branch,commitizen-branch inv run-pre-commit-hooks
 
       - name: Run slow tests
         run: |
-          uv run inv test --run-slow-tests
+          inv test --run-slow-tests
