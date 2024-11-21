@@ -19,6 +19,7 @@ test = [
     "coverage[toml]>=7.6.4",
     "pipenv>=2024.4.0",
     "poetry>=1.8.4",
+    "uv>=0.5.4",
 ]
 style = ["ruff>=0.7.3", "mypy>=1.13.0"]
 security = ["bandit>=1.7.10", "pip-audit>=2.7.3"]
