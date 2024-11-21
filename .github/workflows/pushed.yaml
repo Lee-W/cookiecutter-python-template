@@ -12,7 +12,11 @@ on:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        platform: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.platform }}
     steps:
       - name: Check out
         uses: actions/checkout@v4
@@ -26,15 +30,19 @@ jobs:
           enable-cache: true
           version: "latest"
 
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
       - name: Install dependencies
         run: |
           uv --version
+          uv tool install invoke
           uv sync --no-group doc
 
       - name: Run pre-commit hooks
         run: |
-          SKIP=no-commit-to-branch,commitizen-branch uv run inv run-pre-commit-hooks
+          SKIP='no-commit-to-branch,commitizen-branch' inv run-pre-commit-hooks
 
       - name: Run slow tests
         run: |
-          uv run inv test --run-slow-tests
+          inv test --run-slow-tests
