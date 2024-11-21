@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 import subprocess
+import sys
 from unittest import mock
 
 import pytest
@@ -95,6 +96,10 @@ def test_project_setup(
     monkeypatch,
 ):
     context = default_context
+
+    version_info = sys.version_info
+    context["python_version"] = f"{version_info[0]}.{version_info[1]}"
+    context["build_docker_image"] = build_docker_image
     context["build_docker_image"] = build_docker_image
     context["build_pypi_package"] = build_pypi_package
     context["default_branch"] = default_branch
