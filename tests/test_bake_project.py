@@ -6,6 +6,11 @@ from unittest import mock
 
 import pytest
 
+TRUE_AND_FALSE = (True, False)
+SUPPORTED_BRANCH_NAMES = ("main", "master")
+SUPPORTED_DEP_TOOLS = ("uv", "poetry", "pipenv")
+SUPPORTED_PYTHON_VERSIONS = ("3.9", "3.10", "3.11", "3.12", "3.13")
+
 
 def run_cmd(cmd: str) -> tuple[str, str, int]:
     process = subprocess.Popen(
@@ -40,12 +45,12 @@ def default_context() -> dict[str, str]:
     }
 
 
-@pytest.mark.parametrize("use_strict_mypy_config", [False, True])
-@pytest.mark.parametrize("python_version", ["3.9", "3.10", "3.11", "3.12", "3.13"])
-@pytest.mark.parametrize("dependency_management_tool", ["uv", "poetry", "pipenv"])
-@pytest.mark.parametrize("default_branch", ["main", "master"])
-@pytest.mark.parametrize("build_pypi_package", [False, True])
-@pytest.mark.parametrize("build_docker_image", [False, True])
+@pytest.mark.parametrize("use_strict_mypy_config", TRUE_AND_FALSE)
+@pytest.mark.parametrize("python_version", SUPPORTED_PYTHON_VERSIONS)
+@pytest.mark.parametrize("dependency_management_tool", SUPPORTED_DEP_TOOLS)
+@pytest.mark.parametrize("default_branch", SUPPORTED_BRANCH_NAMES)
+@pytest.mark.parametrize("build_pypi_package", TRUE_AND_FALSE)
+@pytest.mark.parametrize("build_docker_image", TRUE_AND_FALSE)
 def test_bake_project(
     cookies,
     default_context,
@@ -73,11 +78,11 @@ def test_bake_project(
 
 
 @pytest.mark.slow
-@pytest.mark.parametrize("use_strict_mypy_config", [False, True])
-@pytest.mark.parametrize("dependency_management_tool", ["uv", "poetry", "pipenv"])
-@pytest.mark.parametrize("default_branch", ["main", "master"])
-@pytest.mark.parametrize("build_pypi_package", [False, True])
-@pytest.mark.parametrize("build_docker_image", [False, True])
+@pytest.mark.parametrize("use_strict_mypy_config", TRUE_AND_FALSE)
+@pytest.mark.parametrize("dependency_management_tool", SUPPORTED_DEP_TOOLS)
+@pytest.mark.parametrize("default_branch", SUPPORTED_BRANCH_NAMES)
+@pytest.mark.parametrize("build_pypi_package", TRUE_AND_FALSE)
+@pytest.mark.parametrize("build_docker_image", TRUE_AND_FALSE)
 @mock.patch.dict(os.environ, {"PIPENV_IGNORE_VIRTUALENVS": "1"})
 def test_project_setup(
     cookies,
@@ -89,13 +94,14 @@ def test_project_setup(
     use_strict_mypy_config,
     monkeypatch,
 ):
-    result = cookies.bake(extra_context=default_context)
     context = default_context
     context["build_docker_image"] = build_docker_image
     context["build_pypi_package"] = build_pypi_package
     context["default_branch"] = default_branch
     context["dependency_management_tool"] = dependency_management_tool
     context["use_strict_mypy_config"] = use_strict_mypy_config
+
+    result = cookies.bake(extra_context=default_context)
 
     assert result.exit_code == 0
     assert result.exception is None
