@@ -32,11 +32,11 @@ def dist(ctx: Context) -> None:
 def docker(ctx: Context) -> None:
     """Build docker image"""
     {% if cookiecutter.dependency_management_tool == "uv" -%}
-    ctx.run("uv export --format requirements-txt > requirements.txt")
+    ctx.run("uv lock")
     {%- elif cookiecutter.dependency_management_tool == "poetry" -%}
     ctx.run("poetry export -f requirements.txt -o requirements.txt")
     {%- elif cookiecutter.dependency_management_tool == "pipenv" -%}
-    ctx.run("pipenv lock --keep-outdated --requirements > requirements.txt")
+    ctx.run("pipenv lock && pipenv requirements")
     {%- endif %}
     user_name = "{{ cookiecutter.github_username.lower().replace(' ', '_').replace('-', '_') }}"
     proj_name = "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}"
