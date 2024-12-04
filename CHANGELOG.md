@@ -22,8 +22,8 @@
 
 ### Refactor
 
-- extract package verison as varaiable and manage them in cookiecutter.json
-- **github-actions**: extract setup-version and manage it throught _setup_uv_version variable
+- extract package version as variable and manage them in cookiecutter.json
+- **github-actions**: extract setup-version and manage it through _setup_uv_version variable
 - simplify unnecessay cookiecutter.dependency_management_tool comparing
 - **github-actions**: unify actions/setup-python version
 - **github-actions**: unify actions/checkout version
