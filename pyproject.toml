@@ -1,6 +1,6 @@
 [project]
 name = "cookiecutter-python-template"
-version = "1.11.0"
+version = "2.0.0"
 description = "Python Project template that supports PyPI publishment and basic docker image"
 readme = "docs/README.md"
 requires-python = ">=3.9"
@@ -33,7 +33,7 @@ default-groups = ["dev", "test", "style", "security", "git", "doc"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "1.11.0"
+version = "2.0.0"
 tag_format = "$version"
 version_files = ["cookiecutter.json", "pyproject.toml"]
 

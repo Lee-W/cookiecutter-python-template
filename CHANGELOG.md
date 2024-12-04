@@ -1,4 +1,33 @@
 # Changelog
+## 2.0.0 (2024-12-04)
+
+### Feat
+
+- **docker**: add uv support
+- migrate pre-commit config
+- **dependency_management_tool**: add uv support
+- **poetry**: add package-mode support
+- **github-actions**: make cruft-update python version configurable
+- group Pipfile, pyproject.toml dependencies
+- **pre-commit**: migrate pre-commit config
+- **cookiecutter**: make python version a choice
+- **cookiecutter**: Use boolean variable in cookiecutter.json
+- **pre-commit**: add markdownlint and spellcheck
+- **spellcheck**: initialize spelling worklist
+
+### Fix
+
+- **Dockerfile**: fix hadolint warning
+- **pyproject.toml**: fix format
+
+### Refactor
+
+- extract package verison as varaiable and manage them in cookiecutter.json
+- **github-actions**: extract setup-version and manage it throught _setup_uv_version variable
+- simplify unnecessay cookiecutter.dependency_management_tool comparing
+- **github-actions**: unify actions/setup-python version
+- **github-actions**: unify actions/checkout version
+
 ## 1.11.0 (2024-08-28)
 
 ### Feat
