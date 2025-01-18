@@ -24,6 +24,7 @@ def init(ctx: Context) -> None:
     {% if cookiecutter.dependency_management_tool == "uv" -%}
     ctx.run("uv sync --no-dev")
     {%- elif cookiecutter.dependency_management_tool == "poetry" -%}
+    ctx.run("poetry self add poetry-plugin-export")
     ctx.run("poetry install --no-dev")
     {%- elif cookiecutter.dependency_management_tool == "pipenv" -%}
     ctx.run("pipenv install --deploy")
@@ -50,6 +51,7 @@ def init_dev(
     groups_args = f"--group {groups_args}"
     ctx.run(f"uv sync {groups_args}")
     {%- elif cookiecutter.dependency_management_tool == "poetry" -%}
+    ctx.run("poetry self add poetry-plugin-export")
     ctx.run(f"poetry install --with {groups_to_install}")
     {%- elif cookiecutter.dependency_management_tool == "pipenv" -%}
     ctx.run(f"pipenv install --categories {groups_to_install}")
