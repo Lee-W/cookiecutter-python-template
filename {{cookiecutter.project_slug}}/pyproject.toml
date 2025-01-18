@@ -1,42 +1,3 @@
-{% if cookiecutter.dependency_management_tool == "poetry" -%}
-[tool.poetry]
-name = "{{ cookiecutter.project_slug }}"
-version = "0.0.1"
-authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
-description = "{{ cookiecutter.project_description }}"
-license = "{{ cookiecutter.open_source_license }}"
-readme = "docs/README.md"
-repository = "{{ cookiecutter.github_url }}"
-package-mode = {% if cookiecutter.build_pypi_package %}true{% else %}false{% endif %}
-
-[tool.poetry.dependencies]
-python = "^{{ cookiecutter.python_version }}"
-
-[tool.poetry.group.dev.dependencies]
-invoke = "^{{ cookiecutter._package_versions.invoke }}"
-
-[tool.poetry.group.test.dependencies]
-pytest = "^{{ cookiecutter._package_versions.pytest }}"
-pytest-cov = "^{{ cookiecutter._package_versions.pytest_cov }}"
-pytest-mock = "^{{ cookiecutter._package_versions.pytest_mock }}"
-coverage = { extras = ["toml"], version = "^{{ cookiecutter._package_versions.coverage }}" }
-
-[tool.poetry.group.style.dependencies]
-ruff = "^{{ cookiecutter._package_versions.ruff }}"
-mypy = "^{{ cookiecutter._package_versions.mypy }}"
-
-[tool.poetry.group.security.dependencies]
-bandit = "^{{ cookiecutter._package_versions.bandit }}"
-pip-audit = "^{{ cookiecutter._package_versions.pip_audit }}"
-
-[tool.poetry.group.git.dependencies]
-commitizen = "^{{ cookiecutter._package_versions.commitizen }}"
-pre-commit = "^{{ cookiecutter._package_versions.pre_commit }}"
-
-[tool.poetry.group.doc.dependencies]
-mkdocs = "^{{ cookiecutter._package_versions.mkdocs }}"
-mkdocs-material = "^{{ cookiecutter._package_versions.mkdocs_material }}"
-{% elif cookiecutter.dependency_management_tool == "uv" -%}
 [project]
 name = "{{ cookiecutter.project_slug }}"
 version = "0.1.0"
@@ -46,8 +7,15 @@ authors = [
 description = "{{ cookiecutter.project_description }}"
 license = {file = "LICENSE"}
 readme = "docs/README.md"
-requires-python = ">={{ cookiecutter.python_version }}"
+requires-python = ">={{ cookiecutter.python_version }},<4.0"
 
+[project.urls]
+Documentation = "{{ cookiecutter.github_url }}/blob/docs/README.md"
+Repository = "{{ cookiecutter.github_url }}"
+Issues = "{{ cookiecutter.github_url }}/issues"
+Changelog = "{{ cookiecutter.github_url }}/blob/{{ cookiecutter.default_branch }}/CHANGELOG.md"
+
+{% if cookiecutter.dependency_management_tool != "poetry" -%}
 [dependency-groups]
 dev = [
     "invoke>={{ cookiecutter._package_versions.invoke }}",
@@ -74,12 +42,41 @@ doc = [
     "mkdocs>={{ cookiecutter._package_versions.mkdocs }}",
     "mkdocs-material>={{ cookiecutter._package_versions.mkdocs_material }}",
 ]
+{% else -%}
+[tool.poetry]
+requires-poetry = ">=2.0"
+package-mode = {% if cookiecutter.build_pypi_package %}true{% else %}false{% endif %}
+
+[tool.poetry.group.dev.dependencies]
+invoke = "^{{ cookiecutter._package_versions.invoke }}"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^{{ cookiecutter._package_versions.pytest }}"
+pytest-cov = "^{{ cookiecutter._package_versions.pytest_cov }}"
+pytest-mock = "^{{ cookiecutter._package_versions.pytest_mock }}"
+coverage = { extras = ["toml"], version = "^{{ cookiecutter._package_versions.coverage }}" }
+
+[tool.poetry.group.style.dependencies]
+ruff = "^{{ cookiecutter._package_versions.ruff }}"
+mypy = "^{{ cookiecutter._package_versions.mypy }}"
+
+[tool.poetry.group.security.dependencies]
+bandit = "^{{ cookiecutter._package_versions.bandit }}"
+pip-audit = "^{{ cookiecutter._package_versions.pip_audit }}"
+
+[tool.poetry.group.git.dependencies]
+commitizen = "^{{ cookiecutter._package_versions.commitizen }}"
+pre-commit = "^{{ cookiecutter._package_versions.pre_commit }}"
+
+[tool.poetry.group.doc.dependencies]
+mkdocs = "^{{ cookiecutter._package_versions.mkdocs }}"
+mkdocs-material = "^{{ cookiecutter._package_versions.mkdocs_material }}"
 {%- endif %}
 
 {% if cookiecutter.build_pypi_package -%}
 [build-system]
 {% if cookiecutter.dependency_management_tool == "poetry" -%}
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0"]
 build-backend = "poetry.core.masonry.api"
 {% elif cookiecutter.dependency_management_tool == "uv" -%}
 requires = ["hatchling"]
