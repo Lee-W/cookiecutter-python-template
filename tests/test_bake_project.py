@@ -84,7 +84,7 @@ def test_bake_project(
 @pytest.mark.parametrize("default_branch", SUPPORTED_BRANCH_NAMES)
 @pytest.mark.parametrize("build_pypi_package", TRUE_AND_FALSE)
 @pytest.mark.parametrize("build_docker_image", TRUE_AND_FALSE)
-@mock.patch.dict(os.environ, {"PIPENV_IGNORE_VIRTUALENVS": "1"})
+@mock.patch.dict(os.environ, {"PIPENV_IGNORE_VIRTUALENVS": "1", "POETRY_VIRTUALENVS_IN_PROJECT": "true"})
 def test_project_setup(
     cookies,
     default_context,
@@ -131,4 +131,5 @@ def test_project_setup(
     print(stderr)
     assert exit_code == 0
 
-    run_cmd("rm -rf .venv")
+    if dependency_management_tool == "uv":
+        run_cmd("rm -rf .venv")
