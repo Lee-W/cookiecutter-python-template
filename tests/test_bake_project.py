@@ -113,23 +113,13 @@ def test_project_setup(
 
     monkeypatch.chdir(result.project_path)
 
-    stdout, stderr, exit_code = run_cmd(f"{dependency_management_tool} run inv env.init-dev")
-    print(stdout)
-    print(stderr)
-    assert exit_code == 0
-
-    stdout, stderr, exit_code = run_cmd(f"{dependency_management_tool} run inv style")
-    print(stdout)
-    print(stderr)
-    assert exit_code == 0
-
-    run_cmd("git add .")
-    stdout, stderr, exit_code = run_cmd(
-        f"SKIP=no-commit-to-branch,hadolint-docker {dependency_management_tool} run pre-commit run --all-files"
-    )
-    print(stdout)
-    print(stderr)
-    assert exit_code == 0
-
-    if dependency_management_tool == "uv":
-        run_cmd("rm -rf .venv")
+    for command in [
+        f"{dependency_management_tool} run inv env.init-dev",
+        f"{dependency_management_tool} run inv style",
+        f"git add . && SKIP=no-commit-to-branch,hadolint-docker {dependency_management_tool} run pre-commit run --all-files",
+        f"{dependency_management_tool} run inv env.clean",
+    ]:
+        stdout, stderr, exit_code = run_cmd(command)
+        print(stdout)
+        print(stderr)
+        assert exit_code == 0
