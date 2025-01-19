@@ -1,4 +1,10 @@
 # Changelog
+## 3.0.0 (2025-01-19)
+
+### Feat
+
+- **poetry**: update to poetry >= 2.0 spec
+
 ## 2.0.0 (2024-12-04)
 
 ### Feat
