@@ -1,3 +1,14 @@
+{#- Single place that decides how pre-commit invokes the project task runner -#}
+{%- if cookiecutter.task_runner == "invoke" -%}
+{%- set run_task = cookiecutter.dependency_management_tool ~ " run inv" -%}
+{%- set dot = "." -%}
+{%- elif cookiecutter.task_runner == "poethepoet" -%}
+{%- set run_task = cookiecutter.dependency_management_tool ~ " run poe" -%}
+{%- set dot = "-" -%}
+{%- else -%}
+{%- set run_task = "just" -%}
+{%- set dot = "-" -%}
+{%- endif -%}
 default_install_hook_types:
   - pre-commit
   - commit-msg
@@ -14,7 +25,7 @@ repos:
       - id: check-useless-excludes
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v6.0.0
     hooks:
       - id: check-vcs-permalinks
       - id: end-of-file-fixer
@@ -27,19 +38,19 @@ repos:
       - id: check-yaml
       - id: detect-private-key
 
-  - repo: https://github.com/asottile/blacken-docs
-    rev: 1.18.0
+  - repo: https://github.com/adamchainz/blacken-docs
+    rev: 1.20.0
     hooks:
       - id: blacken-docs
         additional_dependencies: [black>=24.1.1]
 
   - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.13.0
+    rev: v0.24.0
     hooks:
     - id: markdownlint-cli2
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.3.0
+    rev: v2.4.3
     hooks:
       - id: codespell
         name: Run codespell to check for common misspellings in files
@@ -48,13 +59,13 @@ repos:
         args: ["--write-changes", "--ignore-words", "spelling_wordlist.txt"]
 {% if cookiecutter.build_docker_image %}
   - repo: https://github.com/hadolint/hadolint
-    rev: v1.22.1
+    rev: {{ cookiecutter._hadolint_version }}
     hooks:
       - id: hadolint-docker
 {%- endif %}
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.29.0
+    rev: v{{ cookiecutter._package_versions.commitizen }}
     hooks:
       - id: commitizen
       - id: commitizen-branch
@@ -63,7 +74,7 @@ repos:
           - pre-push
 
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.1
+    rev: v1.7.12
     hooks:
       - id: actionlint
 
@@ -74,7 +85,7 @@ repos:
         stages: [pre-commit]
         language: system
         pass_filenames: false
-        entry: {{ cookiecutter.dependency_management_tool }} run inv style.format
+        entry: {{ run_task }} style{{ dot }}format
         types: [python]
 
       - id: style-check
@@ -82,7 +93,7 @@ repos:
         stages: [pre-push]
         language: system
         pass_filenames: false
-        entry: {{ cookiecutter.dependency_management_tool }} run inv style
+        entry: {{ run_task }} style
         types: [python]
 
       - id: security-check
@@ -90,7 +101,7 @@ repos:
         stages: [pre-push]
         language: system
         pass_filenames: false
-        entry: {{ cookiecutter.dependency_management_tool }} run inv secure
+        entry: {{ run_task }} secure
         types: [python]
 
       - id: test
@@ -98,5 +109,5 @@ repos:
         stages: [pre-push]
         language: system
         pass_filenames: false
-        entry: {{ cookiecutter.dependency_management_tool }} run inv test -a
+        entry: {{ run_task }} test -a
         types: [python]

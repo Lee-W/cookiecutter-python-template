@@ -1,4 +1,4 @@
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=flat-square)](https://conventionalcommits.org)
 [![Github Actions]({{ cookiecutter.github_url }}/actions/workflows/python-check.yaml/badge.svg)]({{ cookiecutter.github_url }}/actions/workflows/python-check.yaml)
 {% if cookiecutter.build_pypi_package %}

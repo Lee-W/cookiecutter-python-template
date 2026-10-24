@@ -1,4 +1,4 @@
-from __future__ import annotations
+import sys
 
 from invoke.context import Context
 from invoke.tasks import task
@@ -11,8 +11,8 @@ def run(ctx: Context, allow_no_tests: bool = False) -> None:
     """Run test cases"""
     result = ctx.run(f"{VENV_PREFIX} pytest", pty=True, warn=True)
     if allow_no_tests and result.exited == 5:
-        exit(0)
-    exit(result.exited)
+        sys.exit(0)
+    sys.exit(result.exited)
 
 
 @task

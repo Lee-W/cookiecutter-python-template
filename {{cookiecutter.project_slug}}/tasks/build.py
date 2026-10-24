@@ -1,19 +1,18 @@
-from __future__ import annotations
-
 from invoke.collection import Collection
 from invoke.context import Context
 from invoke.tasks import task
-{% if cookiecutter.dependency_management_tool == 'pipenv' -%}
+{%- if cookiecutter.dependency_management_tool == 'pipenv' and cookiecutter.build_pypi_package %}
+
 from tasks.common import VENV_PREFIX
-{% endif %}
+{%- endif %}
+
 
 @task
 def clean(ctx: Context) -> None:
     """Remove all the tmp files in .gitignore"""
-    ctx.run("git clean -Xdf")
+    ctx.run("git clean -Xdf"){% if cookiecutter.build_pypi_package %}
 
 
-{% if "{{ cookiecutter.build_pypi_package }}" -%}
 @task
 def dist(ctx: Context) -> None:
     """Build distribution"""
@@ -22,21 +21,20 @@ def dist(ctx: Context) -> None:
     {%- elif cookiecutter.dependency_management_tool == "poetry" -%}
     ctx.run("poetry build")
     {%- elif cookiecutter.dependency_management_tool == "pipenv" -%}
-    ctx.run(f"{VENV_PREFIX} python setup.py sdist bdist_wheel")
+    ctx.run(f"{VENV_PREFIX} python -m build")
     {%- endif %}
-{%- endif %}
+{%- endif %}{% if cookiecutter.build_docker_image %}
 
 
-{% if "{{ cookiecutter.build_docker_image }}" -%}
 @task
 def docker(ctx: Context) -> None:
     """Build docker image"""
     {% if cookiecutter.dependency_management_tool == "uv" -%}
     ctx.run("uv lock")
     {%- elif cookiecutter.dependency_management_tool == "poetry" -%}
-    ctx.run("poetry export -f requirements.txt -o requirements.txt")
+    ctx.run("poetry lock")
     {%- elif cookiecutter.dependency_management_tool == "pipenv" -%}
-    ctx.run("pipenv lock && pipenv requirements")
+    ctx.run("pipenv lock && pipenv requirements > requirements.txt")
     {%- endif %}
     user_name = "{{ cookiecutter.github_username.lower().replace(' ', '_').replace('-', '_') }}"
     proj_name = "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}"
@@ -47,9 +45,9 @@ def docker(ctx: Context) -> None:
 
 build_ns = Collection("build")
 build_ns.add_task(clean)  # type: ignore[arg-type]
-{% if "{{ cookiecutter.build_pypi_package }}" -%}
+{%- if cookiecutter.build_pypi_package %}
 build_ns.add_task(dist)  # type: ignore[arg-type]
 {%- endif %}
-{% if "{{ cookiecutter.build_docker_image }}" -%}
+{%- if cookiecutter.build_docker_image %}
 build_ns.add_task(docker)  # type: ignore[arg-type]
 {%- endif %}

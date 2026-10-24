@@ -6,7 +6,16 @@ verify_ssl = true
 [packages]
 
 [dev-packages]
+{%- if cookiecutter.task_runner == "invoke" %}
 invoke = ">={{ cookiecutter._package_versions.invoke }}"
+{%- elif cookiecutter.task_runner == "poethepoet" %}
+poethepoet = ">={{ cookiecutter._package_versions.poethepoet }}"
+{%- elif cookiecutter.task_runner == "just" %}
+rust-just = ">={{ cookiecutter._package_versions.rust_just }}"
+{%- endif %}
+{%- if cookiecutter.build_pypi_package %}
+build = ">={{ cookiecutter._package_versions.build }}"
+{%- endif %}
 
 [test]
 pytest = ">={{ cookiecutter._package_versions.pytest }}"
@@ -19,7 +28,6 @@ ruff = ">={{ cookiecutter._package_versions.ruff }}"
 mypy = ">={{ cookiecutter._package_versions.mypy }}"
 
 [security]
-bandit = ">={{ cookiecutter._package_versions.bandit }}"
 pip-audit = ">={{ cookiecutter._package_versions.pip_audit }}"
 
 [git]
@@ -29,6 +37,3 @@ pre-commit = ">={{ cookiecutter._package_versions.pre_commit }}"
 [doc]
 mkdocs = ">={{ cookiecutter._package_versions.mkdocs }}"
 mkdocs-material = ">={{ cookiecutter._package_versions.mkdocs_material }}"
-
-[requires]
-python_version = "{{ cookiecutter.python_version }}"

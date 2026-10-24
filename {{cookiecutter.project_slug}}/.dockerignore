@@ -1,95 +1,35 @@
-# Git
+# VCS and CI
 .git
-.gitignore
+.github
 
-# CI
-.codeclimate.yml
-.travis.yml
-.taskcluster.yml
-
-# Docker
-docker-compose.yml
-.docker
-
-# Byte-compiled / optimized / DLL files
+# Python caches and build output
 __pycache__/
-*/__pycache__/
-*/*/__pycache__/
-*/*/*/__pycache__/
 *.py[cod]
-*/*.py[cod]
-*/*/*.py[cod]
-*/*/*/*.py[cod]
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
 .coverage
-.cache
-nosetests.xml
-coverage.xml
+htmlcov/
+build/
+dist/
+site/
+*.egg-info/
 
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Virtual environment
-.env/
+# Virtual environments (rebuilt inside the image)
 .venv/
 venv/
 
-# PyCharm
-.idea
+# Not needed at runtime (docs/README.md is kept because pyproject.toml may reference it as the readme)
+tests/
+**/*.md
+!docs/README.md
 
-# Python mode for VIM
-.ropeproject
-*/.ropeproject
-*/*/.ropeproject
-*/*/*/.ropeproject
-
-# Vim swap files
+# Editors and OS files
+.idea/
+.vscode/
+.DS_Store
 *.swp
-*/*.swp
-*/*/*.swp
-*/*/*/*.swp
 
-# End of https://github.com/themattrix/python-pypi-template/blob/master/.dockerignore
+# Docker
+Dockerfile
+.dockerignore

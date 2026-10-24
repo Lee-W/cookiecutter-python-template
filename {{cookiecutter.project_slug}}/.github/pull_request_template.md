@@ -1,3 +1,4 @@
+{%- set run_task = {"invoke": "inv", "poethepoet": "poe", "just": "just"}[cookiecutter.task_runner] -%}
 <!--(Thanks for sending a pull request! Please fill in the following content to let us know better about this change.)-->
 
 ## Types of changes
@@ -15,9 +16,9 @@
 
 ## Checklist:
 - [ ] Add test cases to all the changes you introduce
-- [ ] Run `inv style` locally to ensure all linter checks pass
-- [ ] Run `inv test` locally to ensure all test cases pass
-- [ ] Run `inv secure` locally to ensure no major vulnerability is introduced
+- [ ] Run `{{ run_task }} style` locally to ensure all linter checks pass
+- [ ] Run `{{ run_task }} test` locally to ensure all test cases pass
+- [ ] Run `{{ run_task }} secure` locally to ensure no major vulnerability is introduced
 - [ ] Update the documentation if necessary
 
 ## Steps to Test This Pull Request

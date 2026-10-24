@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from invoke.context import Context
 from invoke.tasks import task
 
@@ -24,8 +22,7 @@ def init(ctx: Context) -> None:
     {% if cookiecutter.dependency_management_tool == "uv" -%}
     ctx.run("uv sync --no-dev")
     {%- elif cookiecutter.dependency_management_tool == "poetry" -%}
-    ctx.run("poetry self add poetry-plugin-export")
-    ctx.run("poetry install --no-dev")
+    ctx.run("poetry install --without dev,test,style,security,git,doc")
     {%- elif cookiecutter.dependency_management_tool == "pipenv" -%}
     ctx.run("pipenv install --deploy")
     {%- endif %}
@@ -39,7 +36,7 @@ def setup_pre_commit_hook(ctx: Context) -> None:
         ctx.run(f"{VENV_PREFIX} pre-commit install -t {hook_type}")
 
 
-@task(optional=["no-pre-commit"])
+@task
 def init_dev(
     ctx: Context,
     groups_to_install: str = "dev,test,style,security,git",
@@ -51,10 +48,12 @@ def init_dev(
     groups_args = f"--group {groups_args}"
     ctx.run(f"uv sync {groups_args}")
     {%- elif cookiecutter.dependency_management_tool == "poetry" -%}
-    ctx.run("poetry self add poetry-plugin-export")
     ctx.run(f"poetry install --with {groups_to_install}")
     {%- elif cookiecutter.dependency_management_tool == "pipenv" -%}
-    ctx.run(f"pipenv install --categories {groups_to_install}")
+    # Pipfile calls the "dev" group "dev-packages"
+    groups = ["dev-packages" if group == "dev" else group for group in groups_to_install.split(",")]
+    categories = ",".join(groups)
+    ctx.run(f"pipenv install --categories {categories}")
     {%- endif %}
     if not no_pre_commit:
         setup_pre_commit_hook(ctx)
