@@ -1,4 +1,15 @@
 # Changelog
+## 4.0.0 (2026-10-24)
+
+### BREAKING CHANGE
+
+- Python 3.9 and 3.10 are no longer supported; bandit is removed in favour of ruff S rules;
+the `secure` task has no sub-tasks anymore.
+
+### Feat
+
+- modernize template for Python 3.11-3.15 and current tooling
+
 ## 3.0.0 (2025-01-19)
 
 ### Feat
