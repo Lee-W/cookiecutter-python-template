@@ -1,0 +1,137 @@
+{#- jinja renders the cookiecutter variables; "{{ P }}" below emits just's own interpolation -#}
+{%- set P = "{{prefix}}" -%}
+{%- set tool = cookiecutter.dependency_management_tool -%}
+# Task runner for {{ cookiecutter.project_slug }}. Install `just` first (`uv tool install rust-just` or `brew install just`).
+# Task names mirror the invoke / poethepoet ones ("." becomes "-").
+
+prefix := "{{ tool }} run"
+slug := "{{ cookiecutter.project_slug }}"
+
+# List available recipes
+default:
+    @{{ "{{just_executable()}}" }} --list
+
+# Remove virtual environment
+env-clean:
+    {% if tool == "uv" %}-rm -rf .venv{% elif tool == "poetry" %}-poetry env remove {{ cookiecutter.python_version }}{% else %}-pipenv --rm{% endif %}
+
+# Install production dependencies
+env-init:
+    {% if tool == "uv" %}uv sync --no-dev{% elif tool == "poetry" %}poetry install --without dev,test,style,security,git,doc{% else %}pipenv install --deploy{% endif %}
+
+# Setup pre-commit hook to automate check before git commit and git push
+env-setup-pre-commit-hook:
+    git init
+    {{ P }} pre-commit install -t pre-commit
+    {{ P }} pre-commit install -t pre-push
+    {{ P }} pre-commit install -t commit-msg
+
+# Install development dependencies and setup pre-commit hooks
+[arg('groups', long='groups-to-install')]
+[arg('no_pre_commit', long='no-pre-commit', value='true')]
+env-init-dev $groups="dev,test,style,security,git" $no_pre_commit="false":
+    #!/usr/bin/env sh
+    set -e
+{%- if tool == "uv" %}
+    groups_args=""
+    for group in $(echo "$groups" | tr ',' ' '); do
+        groups_args="$groups_args --group $group"
+    done
+    uv sync $groups_args
+{%- elif tool == "poetry" %}
+    poetry install --with "$groups"
+{%- else %}
+    # Pipfile calls the "dev" group "dev-packages"
+    categories=""
+    for group in $(echo "$groups" | tr ',' ' '); do
+        if [ "$group" = "dev" ]; then group="dev-packages"; fi
+        categories="${categories:+$categories,}$group"
+    done
+    pipenv install --categories "$categories"
+{%- endif %}
+    if [ "$no_pre_commit" != "true" ]; then
+        {{ "{{just_executable()}}" }} env-setup-pre-commit-hook
+    fi
+
+# Commit through commitizen
+git-commit:
+    {{ P }} cz commit
+
+# bump version through commitizen
+[arg('changelog', long='changelog', value='--changelog')]
+git-bump changelog="":
+    -{{ P }} cz bump -nr 3 --yes {{ "{{changelog}}" }}
+
+# Run test cases
+[arg('allow_no_tests', long='allow-no-tests', short='a', value='true')]
+test $allow_no_tests="false":
+    #!/usr/bin/env sh
+    code=0
+    {{ P }} pytest || code=$?
+    if [ "$allow_no_tests" = "true" ] && [ "$code" -eq 5 ]; then
+        exit 0
+    fi
+    exit "$code"
+
+# Run test coverage check
+test-cov:
+    {{ P }} pytest --cov={{ "{{slug}}" }} tests/
+
+# Check style through ruff
+[arg('no_fix', long='no-fix', value='')]
+style-ruff no_fix="--fix":
+    {{ P }} ruff check {{ "{{slug}}" }} tests {{ "{{no_fix}}" }}
+
+# Check style through mypy
+style-mypy:
+    {{ P }} mypy
+
+# Check commit message through commitizen
+[arg('remote', long='remote')]
+style-commit-check remote="origin":
+    -{{ P }} cz -nr 3 check --rev-range {{ "{{remote}}" }}/{{ cookiecutter.default_branch }}..
+
+# Check style through linter
+style: style-ruff style-mypy style-commit-check
+
+# Format Python code through ruff
+style-ruff-format:
+    {{ P }} ruff format {{ "{{slug}}" }} tests
+
+# Reformat python files through ruff
+style-format: style-ruff-format
+
+# Check package security through pip-audit (code security is covered by ruff "S" rules)
+secure:
+    -{{ P }} pip-audit
+
+# Remove all the tmp files in .gitignore
+build-clean:
+    git clean -Xdf
+{% if cookiecutter.build_pypi_package %}
+# Build distribution
+build-dist:
+    {% if tool == "uv" %}uv build{% elif tool == "poetry" %}poetry build{% else %}{{ P }} python -m build{% endif %}
+{% endif %}
+{%- if cookiecutter.build_docker_image %}
+# Build docker image
+build-docker:
+    {% if tool == "uv" %}uv lock{% elif tool == "poetry" %}poetry lock{% else %}pipenv lock && pipenv requirements > requirements.txt{% endif %}
+    docker build -t {{ cookiecutter.github_username.lower().replace(' ', '_').replace('-', '_') }}/{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}:latest .
+{% endif %}
+# Build documentation locally
+[arg('clean', long='no-clean', value='')]
+doc-build clean="--clean":
+    {{ P }} mkdocs build {{ "{{clean}}" }}
+
+# Run local server
+doc-serve:
+    {{ P }} mkdocs serve
+
+# Deploy to github page
+doc-deploy:
+    {{ P }} mkdocs gh-deploy
+
+# Run pre-commit hooks on all files
+run-pre-commit-hooks:
+    {{ P }} pre-commit run --all-files --hook-stage pre-push

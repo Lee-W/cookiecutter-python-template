@@ -13,7 +13,7 @@ updates:
       include: "scope"
   -
     # Maintain python dependencies
-    package-ecosystem: pip
+    package-ecosystem: {% if cookiecutter.dependency_management_tool == "uv" %}uv{% else %}pip{% endif %}
     directory: /
     schedule:
       interval: weekly

@@ -7,7 +7,7 @@ authors = [
 description = "{{ cookiecutter.project_description }}"
 license = {file = "LICENSE"}
 readme = "docs/README.md"
-requires-python = ">={{ cookiecutter.python_version }},<4.0"
+requires-python = ">={{ cookiecutter.python_version }}{% if cookiecutter.dependency_management_tool == "poetry" %},<4.0{% endif %}"
 
 [project.urls]
 Documentation = "{{ cookiecutter.github_url }}/blob/docs/README.md"
@@ -15,10 +15,15 @@ Repository = "{{ cookiecutter.github_url }}"
 Issues = "{{ cookiecutter.github_url }}/issues"
 Changelog = "{{ cookiecutter.github_url }}/blob/{{ cookiecutter.default_branch }}/CHANGELOG.md"
 
-{% if cookiecutter.dependency_management_tool != "poetry" -%}
 [dependency-groups]
 dev = [
+{%- if cookiecutter.task_runner == "invoke" %}
     "invoke>={{ cookiecutter._package_versions.invoke }}",
+{%- elif cookiecutter.task_runner == "poethepoet" %}
+    "poethepoet>={{ cookiecutter._package_versions.poethepoet }}",
+{%- elif cookiecutter.task_runner == "just" %}
+    "rust-just>={{ cookiecutter._package_versions.rust_just }}",
+{%- endif %}
 ]
 test = [
     "coverage[toml]>={{ cookiecutter._package_versions.coverage }}",
@@ -31,7 +36,6 @@ style = [
     "ruff>={{ cookiecutter._package_versions.ruff }}",
 ]
 security = [
-    "bandit>={{ cookiecutter._package_versions.bandit }}",
     "pip-audit>={{ cookiecutter._package_versions.pip_audit }}",
 ]
 git = [
@@ -42,48 +46,192 @@ doc = [
     "mkdocs>={{ cookiecutter._package_versions.mkdocs }}",
     "mkdocs-material>={{ cookiecutter._package_versions.mkdocs_material }}",
 ]
-{% else -%}
+{% if cookiecutter.dependency_management_tool == "poetry" %}
 [tool.poetry]
-requires-poetry = ">=2.0"
+requires-poetry = ">=2.2"
 package-mode = {% if cookiecutter.build_pypi_package %}true{% else %}false{% endif %}
-
-[tool.poetry.group.dev.dependencies]
-invoke = "^{{ cookiecutter._package_versions.invoke }}"
-
-[tool.poetry.group.test.dependencies]
-pytest = "^{{ cookiecutter._package_versions.pytest }}"
-pytest-cov = "^{{ cookiecutter._package_versions.pytest_cov }}"
-pytest-mock = "^{{ cookiecutter._package_versions.pytest_mock }}"
-coverage = { extras = ["toml"], version = "^{{ cookiecutter._package_versions.coverage }}" }
-
-[tool.poetry.group.style.dependencies]
-ruff = "^{{ cookiecutter._package_versions.ruff }}"
-mypy = "^{{ cookiecutter._package_versions.mypy }}"
-
-[tool.poetry.group.security.dependencies]
-bandit = "^{{ cookiecutter._package_versions.bandit }}"
-pip-audit = "^{{ cookiecutter._package_versions.pip_audit }}"
-
-[tool.poetry.group.git.dependencies]
-commitizen = "^{{ cookiecutter._package_versions.commitizen }}"
-pre-commit = "^{{ cookiecutter._package_versions.pre_commit }}"
-
-[tool.poetry.group.doc.dependencies]
-mkdocs = "^{{ cookiecutter._package_versions.mkdocs }}"
-mkdocs-material = "^{{ cookiecutter._package_versions.mkdocs_material }}"
-{%- endif %}
-
-{% if cookiecutter.build_pypi_package -%}
+{% endif %}
+{%- if cookiecutter.build_pypi_package %}
 [build-system]
 {% if cookiecutter.dependency_management_tool == "poetry" -%}
 requires = ["poetry-core>=2.0"]
 build-backend = "poetry.core.masonry.api"
-{% elif cookiecutter.dependency_management_tool == "uv" -%}
+{%- elif cookiecutter.dependency_management_tool == "uv" -%}
+requires = ["uv_build>={{ cookiecutter._package_versions.uv_build }},<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""
+{%- elif cookiecutter.dependency_management_tool == "pipenv" -%}
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 {%- endif %}
-{%- endif %}
+{% endif %}
 
+{% if cookiecutter.task_runner == "poethepoet" %}
+{%- set tool = cookiecutter.dependency_management_tool %}
+# Started as `{{ tool }} run poe <task>`; task names mirror the invoke / justfile ones ("." becomes "-")
+[tool.poe]
+executor = { type = "{% if tool == "uv" %}uv{% elif tool == "poetry" %}poetry{% else %}simple{% endif %}" }
+
+[tool.poe.tasks.env-clean]
+help = "Remove virtual environment"
+executor = { type = "simple" }
+ignore_fail = true
+cmd = "{% if tool == "uv" %}rm -rf .venv{% elif tool == "poetry" %}poetry env remove {{ cookiecutter.python_version }}{% else %}pipenv --rm{% endif %}"
+
+[tool.poe.tasks.env-init]
+help = "Install production dependencies"
+executor = { type = "simple" }
+cmd = "{% if tool == "uv" %}uv sync --no-dev{% elif tool == "poetry" %}poetry install --without dev,test,style,security,git,doc{% else %}pipenv install --deploy{% endif %}"
+
+[tool.poe.tasks.env-setup-pre-commit-hook]
+help = "Setup pre-commit hook to automate check before git commit and git push"
+executor = { type = "simple" }
+shell = '''
+set -e
+git init
+for hook_type in pre-commit pre-push commit-msg; do
+    {{ tool }} run pre-commit install -t "$hook_type"
+done
+'''
+
+[tool.poe.tasks.env-init-dev]
+help = "Install development dependencies and setup pre-commit hooks"
+executor = { type = "simple" }
+args = [
+    { name = "groups", options = ["--groups-to-install"], default = "dev,test,style,security,git" },
+    { name = "no_pre_commit", options = ["--no-pre-commit"], type = "boolean", default = false },
+]
+shell = '''
+set -e
+{%- if tool == "uv" %}
+groups_args=""
+for group in $(echo "$groups" | tr ',' ' '); do
+    groups_args="$groups_args --group $group"
+done
+uv sync $groups_args
+{%- elif tool == "poetry" %}
+poetry install --with "$groups"
+{%- else %}
+# Pipfile calls the "dev" group "dev-packages"
+categories=""
+for group in $(echo "$groups" | tr ',' ' '); do
+    if [ "$group" = "dev" ]; then group="dev-packages"; fi
+    categories="${categories:+$categories,}$group"
+done
+pipenv install --categories "$categories"
+{%- endif %}
+if [ -z "$no_pre_commit" ]; then
+    git init
+    for hook_type in pre-commit pre-push commit-msg; do
+        {{ tool }} run pre-commit install -t "$hook_type"
+    done
+fi
+'''
+
+[tool.poe.tasks.git-commit]
+help = "Commit through commitizen"
+cmd = "cz commit"
+
+[tool.poe.tasks.git-bump]
+help = "bump version through commitizen"
+ignore_fail = true
+args = [{ name = "changelog", options = ["--changelog"], type = "boolean", default = false }]
+shell = 'cz bump -nr 3 --yes ${changelog:+--changelog}'
+
+[tool.poe.tasks.test]
+help = "Run test cases"
+args = [{ name = "allow_no_tests", options = ["-a", "--allow-no-tests"], type = "boolean", default = false }]
+shell = '''
+code=0
+pytest || code=$?
+if [ -n "$allow_no_tests" ] && [ "$code" -eq 5 ]; then
+    exit 0
+fi
+exit "$code"
+'''
+
+[tool.poe.tasks.test-cov]
+help = "Run test coverage check"
+cmd = "pytest --cov={{ cookiecutter.project_slug }} tests/"
+
+[tool.poe.tasks.style-ruff]
+help = "Check style through ruff"
+args = [{ name = "fix", options = ["--no-fix"], type = "boolean", default = true }]
+shell = 'ruff check {{ cookiecutter.project_slug }} tests ${fix:+--fix}'
+
+[tool.poe.tasks.style-mypy]
+help = "Check style through mypy"
+cmd = "mypy"
+
+[tool.poe.tasks.style-commit-check]
+help = "Check commit message through commitizen"
+ignore_fail = true
+args = [{ name = "remote", options = ["--remote"], default = "origin" }]
+shell = 'cz -nr 3 check --rev-range "$remote"/{{ cookiecutter.default_branch }}..'
+
+[tool.poe.tasks.style]
+help = "Check style through linter"
+sequence = ["style-ruff", "style-mypy", "style-commit-check"]
+
+[tool.poe.tasks.style-ruff-format]
+help = "Format Python code through ruff"
+cmd = "ruff format {{ cookiecutter.project_slug }} tests"
+
+[tool.poe.tasks.style-format]
+help = "Reformat python files through ruff"
+sequence = ["style-ruff-format"]
+
+[tool.poe.tasks.secure]
+help = 'Check package security through pip-audit (code security is covered by ruff "S" rules)'
+ignore_fail = true
+cmd = "pip-audit"
+
+[tool.poe.tasks.build-clean]
+help = "Remove all the tmp files in .gitignore"
+executor = { type = "simple" }
+cmd = "git clean -Xdf"
+{% if cookiecutter.build_pypi_package %}
+[tool.poe.tasks.build-dist]
+help = "Build distribution"
+executor = { type = "simple" }
+cmd = "{% if tool == "uv" %}uv build{% elif tool == "poetry" %}poetry build{% else %}pipenv run python -m build{% endif %}"
+{% endif %}
+{%- if cookiecutter.build_docker_image %}
+[tool.poe.tasks.build-docker]
+help = "Build docker image"
+executor = { type = "simple" }
+shell = '''
+set -e
+{%- if tool == "uv" %}
+uv lock
+{%- elif tool == "poetry" %}
+poetry lock
+{%- else %}
+pipenv lock && pipenv requirements > requirements.txt
+{%- endif %}
+docker build -t {{ cookiecutter.github_username.lower().replace(' ', '_').replace('-', '_') }}/{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}:latest .
+'''
+{% endif %}
+[tool.poe.tasks.doc-build]
+help = "Build documentation locally"
+args = [{ name = "clean", options = ["--no-clean"], type = "boolean", default = true }]
+shell = 'mkdocs build ${clean:+--clean}'
+
+[tool.poe.tasks.doc-serve]
+help = "Run local server"
+cmd = "mkdocs serve"
+
+[tool.poe.tasks.doc-deploy]
+help = "Deploy to github page"
+cmd = "mkdocs gh-deploy"
+
+[tool.poe.tasks.run-pre-commit-hooks]
+help = "Run pre-commit hooks on all files"
+cmd = "pre-commit run --all-files --hook-stage pre-push"
+
+{% endif %}
 [tool.commitizen]
 name = "cz_conventional_commits"
 version = "0.0.1"
@@ -123,23 +271,26 @@ extend-select = [
     "UP",    # Pyupgrade
     "PT",    # flake8-pytest-style rules
     "TID25", # flake8-tidy-imports rules
+    "S",     # flake8-bandit security rules
 ]
 
 ignore = ["E501", "D1", "D415"]
 
 [tool.ruff.lint.isort]
-required-imports = ["from __future__ import annotations"]
 combine-as-imports = true
 known-first-party = ["tests"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
 
-[tool.pytest.ini_options]
-minversion = "8.0.0"
-testpaths = "tests"
-addopts = "--strict-markers"
+[tool.pytest]
+minversion = "9.0.0"
+testpaths = ["tests"]
+addopts = ["--strict-markers"]
 norecursedirs = [
     ".*",
     "build",

@@ -1,10 +1,17 @@
-from __future__ import annotations
-
 import os
+import shutil
 
 
 def remove_pipfile() -> None:
     os.remove("Pipfile")
+
+
+def remove_invoke_tasks() -> None:
+    shutil.rmtree("tasks")
+
+
+def remove_justfile() -> None:
+    os.remove("justfile")
 
 
 def remove_publish_pypi_github_action() -> None:
@@ -21,8 +28,14 @@ def remove_cruft_update_action() -> None:
 
 
 def main() -> None:
-    if "{{ cookiecutter.dependency_management_tool }}" != "pipenv":
+    if "{{ cookiecutter.dependency_management_tool }}" != "pipenv":  # noqa: PLR0133
         remove_pipfile()
+
+    task_runner = "{{ cookiecutter.task_runner }}"
+    if task_runner != "invoke":
+        remove_invoke_tasks()
+    if task_runner != "just":
+        remove_justfile()
 
     if "{{ cookiecutter.build_pypi_package }}" == str(False):
         remove_publish_pypi_github_action()

@@ -3,28 +3,32 @@ name = "cookiecutter-python-template"
 version = "3.0.0"
 description = "Python Project template that supports PyPI publishment and basic docker image"
 readme = "docs/README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 authors = [{ "name" = "Wei Lee", "email" = "weilee.rx@gmail.com" }]
 license = { text = "LICENSE" }
 
 
 [dependency-groups]
-dev = ["invoke>=2.2.0"]
+dev = ["invoke>=3.0.3"]
 test = [
     "pytest-cookies>=0.7.0",
-    "pytest-cov>=6.0.0",
-    "pytest-mock>=3.14.0",
-    "pytest-xdist>=3.6.1",
-    "pytest>=8.3.3",
-    "coverage[toml]>=7.6.4",
-    "pipenv>=2024.4.0",
-    "poetry>=1.8.4",
-    "uv>=0.5.4",
+    "pytest-cov>=7.1.0",
+    "pytest-mock>=3.17.0",
+    "pytest-xdist>=3.8.0",
+    "pytest>=9.1.1",
+    "coverage[toml]>=7.17.0",
+    "pipenv>=2026.10.2",
+    "poetry>=2.5.1",
+    "uv>=0.13.5",
+    "poethepoet>=0.49.0",
+    "rust-just>=1.59.0",
+    "build>=1.6.1",
+    "pyyaml>=6.0.3",
 ]
-style = ["ruff>=0.7.3", "mypy>=1.13.0"]
-security = ["bandit>=1.7.10", "pip-audit>=2.7.3"]
-doc = ["mkdocs-material>=9.5.44", "mkdocs>=1.6.1"]
-git = ["commitizen>=3.30.1", "pre-commit>=4.0.1"]
+style = ["ruff>=0.17.2", "mypy>=2.4.0"]
+security = ["pip-audit>=2.10.1"]
+doc = ["mkdocs-material>=9.7.7", "mkdocs>=1.6.1"]
+git = ["commitizen>=4.19.2", "pre-commit>=4.7.0"]
 
 
 [tool.uv]
@@ -59,23 +63,26 @@ extend-select = [
     "UP",    # Pyupgrade
     "PT",    # flake8-pytest-style rules
     "TID25", # flake8-tidy-imports rules
+    "S",     # security rules
 ]
 
 ignore = ["E501", "D1", "D415"]
 
 [tool.ruff.lint.isort]
-required-imports = ["from __future__ import annotations"]
 combine-as-imports = true
 known-first-party = ["tests"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
 
-[tool.pytest.ini_options]
-minversion = "8.0.0"
-testpaths = "tests"
-addopts = "--strict-markers"
+[tool.pytest]
+minversion = "9.0.0"
+testpaths = ["tests"]
+addopts = ["--strict-markers"]
 norecursedirs = [
     ".*",
     "build",

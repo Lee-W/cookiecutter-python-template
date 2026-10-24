@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from invoke.context import Context
 from invoke.tasks import task
 

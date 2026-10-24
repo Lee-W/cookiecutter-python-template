@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from invoke.context import Context
 from invoke.tasks import task
 
@@ -28,7 +26,6 @@ def commit_check(ctx: Context, remote: str = "origin") -> None:
 @task(pre=[ruff, mypy, commit_check], default=True)
 def run(ctx: Context) -> None:
     """Check style through linter"""
-    pass
 
 
 @task
@@ -40,4 +37,3 @@ def ruff_format(ctx: Context) -> None:
 @task(pre=[ruff_format])
 def format(ctx: Context) -> None:
     """Reformat python files through and ruff"""
-    pass
