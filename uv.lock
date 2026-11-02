@@ -580,7 +580,7 @@ wheels = [
 
 [[package]]
 name = "cookiecutter-python-template"
-version = "3.0.0"
+version = "4.0.0"
 source = { virtual = "." }
 default-groups = ["dev", "doc", "git", "security", "style", "test"]
 
@@ -1832,7 +1832,7 @@ wheels = [
 
 [[package]]
 name = "pipenv"
-version = "2026.10.2"
+version = "2026.10.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
@@ -1840,9 +1840,9 @@ dependencies = [
     { name = "setuptools" },
     { name = "virtualenv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a4/70/dc1b05c212b47771b4ad6b05a652233a57e4c479c80c31072bc245dc13a8/pipenv-2026.10.2.tar.gz", hash = "sha256:89d0e41a5f271f1352a98ea4fb0d91213d2b874c5ec1c2801eba7ab340c172e2", size = 5004870, upload-time = "2026-10-21T06:23:15.865Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/51/5d/023a47dc5971f8d29d7436dbde97be63c92b9b2149dcd00cacf71a3ebda9/pipenv-2026.10.4.tar.gz", hash = "sha256:8a4ea0e0dda9e1e26aff8a960b5603229bd662ecf72562fb5f9859a596370238", size = 5012852, upload-time = "2026-10-28T22:16:06.109Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d7/5d/800115f7ce77f97a7f5a1e2a3cf8d15e2c29b7016a16236220f1daff391e/pipenv-2026.10.2-py3-none-any.whl", hash = "sha256:c04123012e52794a456eaff667c5c2e506b65d86470796e768c82d4c5a123341", size = 2633461, upload-time = "2026-10-21T06:23:13.586Z" },
+    { url = "https://files.pythonhosted.org/packages/86/41/4d8bd00a309037c6fdf77ed601e91af78bd5c8e97e62042c90d134ba69af/pipenv-2026.10.4-py3-none-any.whl", hash = "sha256:308125623e4d08dfe32936f7259a9ed33c5480baa2c9a291a1ff8a9328eeeb1f", size = 2636779, upload-time = "2026-10-28T22:16:04.176Z" },
 ]
 
 [[package]]
