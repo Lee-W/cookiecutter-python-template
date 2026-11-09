@@ -1832,17 +1832,18 @@ wheels = [
 
 [[package]]
 name = "pipenv"
-version = "2026.10.4"
+version = "2026.10.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
+    { name = "filelock" },
     { name = "packaging" },
     { name = "setuptools" },
     { name = "virtualenv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/51/5d/023a47dc5971f8d29d7436dbde97be63c92b9b2149dcd00cacf71a3ebda9/pipenv-2026.10.4.tar.gz", hash = "sha256:8a4ea0e0dda9e1e26aff8a960b5603229bd662ecf72562fb5f9859a596370238", size = 5012852, upload-time = "2026-10-28T22:16:06.109Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/41/18/c99aa353425060d09f11636f60795853496b41d9f180e46cdc085430b39f/pipenv-2026.10.6.tar.gz", hash = "sha256:4dc8cdba8403beef444afc5a5b404c31d413afdcbf2965ca891b52c308ec27d6", size = 5020670, upload-time = "2026-11-05T14:03:31.697Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/86/41/4d8bd00a309037c6fdf77ed601e91af78bd5c8e97e62042c90d134ba69af/pipenv-2026.10.4-py3-none-any.whl", hash = "sha256:308125623e4d08dfe32936f7259a9ed33c5480baa2c9a291a1ff8a9328eeeb1f", size = 2636779, upload-time = "2026-10-28T22:16:04.176Z" },
+    { url = "https://files.pythonhosted.org/packages/9a/51/cb74fa3a77fbe462c4e314d770e73495dbca4505d599539b7f2c853e5046/pipenv-2026.10.6-py3-none-any.whl", hash = "sha256:2c7d0ccd1fab7332537a188fc131f3bc4e73074c5fb9d9afc00d6e6599cae1e0", size = 2638875, upload-time = "2026-11-05T14:03:29.877Z" },
 ]
 
 [[package]]
